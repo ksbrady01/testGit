@@ -1,0 +1,1007 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Central Texas Fellowship</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Central Texas Fellowship: worship, teaching and real community in the heart of Texas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* Layout concept: a cinematic reel. Full-bleed photographic "scenes" pinned one after another
+   (Singing → Preaching → Praise), separated by quiet typographic interludes, ending on a warm beige "first Sunday" band. */
+:root{
+  --espresso:#120c08;   /* deepest ground */
+  --brown:#1e140e;      /* primary dark brown */
+  --walnut:#3b2a1e;     /* raised surfaces, rules */
+  --beige:#d6c3a1;      /* warm accent */
+  --sand:#ebe0cb;       /* light band */
+  --white:#faf7f1;      /* text on dark */
+  --silver:#b7bbc1;     /* metal accent */
+  --silver-dim:#7d7a76; /* secondary text on dark */
+  --ink:#24180f;        /* text on beige */
+  --ink-soft:#5d4a3a;
+  --silver-grad:linear-gradient(100deg,#8e9297 0%,#f1f2f4 28%,#a3a7ad 48%,#e3e5e8 68%,#8e9297 100%);
+
+  --f-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --f-scripture:"Instrument Serif",Georgia,"Times New Roman",serif;
+
+  /* type scale (1.25 minor third-ish, fluid at the top) */
+  --t-xs:.75rem; --t-sm:.875rem; --t-base:1.0625rem; --t-lg:1.3rem;
+  --t-xl:clamp(1.6rem,2.6vw,2.2rem);
+  --t-2xl:clamp(2.4rem,5.4vw,4.6rem);
+  --t-3xl:clamp(3rem,8.4vw,7.6rem);
+  --t-mega:clamp(3.4rem,15vw,15rem);
+
+  --gutter-l:max(16px, env(safe-area-inset-left,0px));
+  --gutter-r:max(16px, env(safe-area-inset-right,0px));
+  --maxw:1320px;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--espresso)}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--espresso);color:var(--white);font-family:var(--f-body);font-size:var(--t-base);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--beige);outline-offset:3px;border-radius:4px}
+::selection{background:var(--beige);color:var(--ink)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--espresso)}
+
+.wrap{width:100%;max-width:calc(var(--maxw) + 64px);margin-inline:auto;padding-left:max(var(--gutter-l),4vw);padding-right:max(var(--gutter-r),4vw)}
+.eyebrow{font-family:var(--f-body);font-size:var(--t-xs);font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--beige);display:inline-flex;align-items:center;gap:.8em}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor;opacity:.7}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:.95;letter-spacing:-.035em;margin:0;text-wrap:balance}
+p{margin:0}
+.silver{background:var(--silver-grad);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 7s ease-in-out infinite}
+@keyframes sheen{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+.scripture{font-family:var(--f-scripture);font-style:italic;font-weight:400;letter-spacing:0}
+.ref{font-family:var(--f-body);font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--silver)}
+
+.btn{--b:var(--white);display:inline-flex;align-items:center;gap:.7em;padding:.95em 1.5em;border-radius:999px;font-family:var(--f-body);font-weight:700;font-size:var(--t-sm);letter-spacing:.04em;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s,color .3s,border-color .3s;white-space:nowrap}
+.btn svg{width:16px;height:16px;transition:transform .4s}
+.btn:hover svg{transform:translateX(4px)}
+.btn-solid{background:var(--sand);color:var(--ink)}
+.btn-solid:hover{background:var(--white);transform:translateY(-2px)}
+.btn-ghost{border-color:color-mix(in srgb,var(--silver) 50%,transparent);color:var(--white);background:color-mix(in srgb,var(--espresso) 30%,transparent);backdrop-filter:blur(8px)}
+.btn-ghost:hover{border-color:var(--white)}
+.btn-dark{background:var(--ink);color:var(--sand)}
+.btn-dark:hover{background:var(--brown);transform:translateY(-2px)}
+
+/* ───────── preloader ───────── */
+.loader{display:none}
+.js .loader{display:grid;position:fixed;inset:0;z-index:100;background:var(--espresso);place-items:center;pointer-events:none}
+.loader-inner{display:grid;justify-items:center;gap:22px}
+.loader svg{width:64px;height:64px}
+.loader-word{font-family:var(--f-display);font-size:var(--t-sm);letter-spacing:.4em;text-transform:uppercase;color:var(--silver)}
+.loader-bar{width:160px;height:1px;background:var(--walnut);overflow:hidden}
+.loader-bar i{display:block;height:100%;width:100%;background:var(--beige);transform:scaleX(0);transform-origin:left}
+
+/* ───────── nav ───────── */
+.nav{position:fixed;inset:0 0 auto;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .5s,backdrop-filter .5s}
+.nav.scrolled{background:color-mix(in srgb,var(--espresso) 72%,transparent);backdrop-filter:blur(14px) saturate(1.2)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:38px;height:38px;flex:none}
+.brand-name{font-family:var(--f-display);font-weight:700;font-size:1.02rem;line-height:1.05;letter-spacing:-.01em}
+.brand-name small{display:block;font-family:var(--f-body);font-weight:600;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--silver)}
+.nav-links{display:flex;gap:34px;list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;font-size:var(--t-sm);font-weight:600;color:color-mix(in srgb,var(--white) 82%,transparent);position:relative;padding-block:6px}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--beige);transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+@media (max-width:900px){.nav-links{display:none}.nav .btn{padding:.75em 1.1em}}
+
+/* ───────── hero ───────── */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;isolation:isolate}
+.hero-media{position:absolute;inset:0;z-index:-2}
+.hero-media img,.hero-media canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-media img{filter:sepia(.45) saturate(.85) brightness(.75)}
+.hero-media canvas{opacity:0;transition:opacity 1.2s}
+.hero-media.gl-on canvas{opacity:1}
+.hero-shade{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,color-mix(in srgb,var(--espresso) 70%,transparent) 0%,transparent 26%,transparent 45%,color-mix(in srgb,var(--espresso) 92%,transparent) 100%),
+  radial-gradient(120% 80% at 20% 100%,color-mix(in srgb,var(--espresso) 80%,transparent),transparent 60%)}
+.letterbox{position:absolute;left:0;right:0;height:0;background:var(--espresso);z-index:3}
+.letterbox.top{top:0}.letterbox.bot{bottom:0}
+.hero-content{position:relative;padding-block:22vh 48px;display:grid;gap:30px}
+.hero h1{font-size:var(--t-3xl);font-weight:800;max-width:11ch}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .line>span{display:inline-block}
+.hero-sub{max-width:44ch;font-size:var(--t-lg);line-height:1.5;color:color-mix(in srgb,var(--white) 86%,transparent)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero-foot{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;padding-top:28px;margin-top:10px;border-top:1px solid color-mix(in srgb,var(--silver) 22%,transparent)}
+.reel{display:flex;gap:28px;flex-wrap:wrap}
+.reel button{all:unset;cursor:pointer;display:grid;gap:8px;min-width:110px;font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--silver-dim);transition:color .4s}
+.reel button[aria-current="true"]{color:var(--white)}
+.reel .track{height:2px;background:color-mix(in srgb,var(--silver) 25%,transparent);overflow:hidden}
+.reel .track i{display:block;height:100%;background:var(--silver-grad);transform:scaleX(0);transform-origin:left}
+.reel button[aria-current="true"] .track i{animation:fill var(--dur,7s) linear forwards}
+@keyframes fill{to{transform:scaleX(1)}}
+.hero-verse{text-align:right;max-width:30ch;display:grid;gap:6px}
+.hero-verse .scripture{font-size:1.3rem;line-height:1.3;color:var(--sand)}
+.scroll-cue{position:absolute;left:50%;bottom:20px;translate:-50% 0;width:1px;height:46px;background:color-mix(in srgb,var(--silver) 25%,transparent);overflow:hidden}
+.scroll-cue::after{content:"";position:absolute;inset:0;background:var(--white);animation:cue 2.2s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes cue{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+@media (max-width:760px){.hero-foot{grid-template-columns:1fr}.hero-verse{text-align:left}.scroll-cue{display:none}.hero-content{padding-block:18vh 36px}}
+
+/* ───────── statement ───────── */
+.statement{padding-block:clamp(110px,16vw,220px);background:var(--espresso);position:relative}
+.statement p{font-family:var(--f-display);font-weight:600;font-size:clamp(1.8rem,4.2vw,3.7rem);line-height:1.08;letter-spacing:-.03em;max-width:22ch;text-wrap:balance}
+.statement .w{color:var(--white);transition:color .2s}
+.js .statement .w{color:color-mix(in srgb,var(--white) 16%,transparent)}
+.statement .w.on{color:var(--white)}
+.statement .w.hl.on{color:var(--beige)}
+.statement-meta{display:flex;flex-wrap:wrap;gap:clamp(24px,6vw,90px);margin-top:64px}
+.stat{display:grid;gap:4px}
+.stat b{font-family:var(--f-display);font-size:var(--t-2xl);font-weight:300;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:var(--t-sm);color:var(--silver-dim);max-width:18ch}
+
+/* ───────── scene (shared) ───────── */
+.scene{position:relative;background:var(--brown);overflow:hidden}
+.scene-pin{position:relative;min-height:100svh;display:grid;align-items:center}
+.living{position:relative;overflow:hidden;background:var(--espresso)}
+.living img,.living canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.living img{filter:sepia(.5) saturate(.8) brightness(.85)}
+.living canvas{opacity:0;transition:opacity .8s}
+.living.gl-on canvas{opacity:1}
+.living.gl-on img{opacity:0}
+.scene-label{position:absolute;z-index:4;display:flex;align-items:center;gap:10px;font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--white);padding:9px 14px;border-radius:999px;background:color-mix(in srgb,var(--espresso) 55%,transparent);backdrop-filter:blur(10px);border:1px solid color-mix(in srgb,var(--silver) 25%,transparent)}
+.scene-label .dot{width:7px;height:7px;border-radius:50%;background:#d9584a;box-shadow:0 0 0 0 #d9584a;animation:live 1.8s infinite}
+@keyframes live{0%{box-shadow:0 0 0 0 color-mix(in srgb,#d9584a 70%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
+
+/* worship / singer */
+.worship .scene-pin{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,64px);padding-block:110px 60px}
+.worship-copy{display:grid;gap:26px;align-content:center;min-width:0}
+.worship h2{font-size:var(--t-2xl)}
+.worship-copy>p{color:color-mix(in srgb,var(--white) 76%,transparent);max-width:42ch}
+.lyrics{display:grid;gap:4px;padding:22px 0;border-block:1px solid var(--walnut)}
+.lyrics .ln{font-family:var(--f-display);font-weight:600;font-size:clamp(1.25rem,2.1vw,1.8rem);line-height:1.2;letter-spacing:-.02em}
+.lyrics .wd{color:var(--white);transition:color .25s,text-shadow .25s}
+.js .lyrics .wd{color:color-mix(in srgb,var(--white) 22%,transparent)}
+.lyrics .wd.sung{color:var(--white);text-shadow:0 0 22px color-mix(in srgb,var(--beige) 55%,transparent)}
+.lyrics-meta{display:flex;justify-content:space-between;gap:12px;font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--silver-dim);font-weight:700}
+.singer-frame{position:relative;height:min(78vh,760px);border-radius:28px 28px 28px 220px;overflow:hidden;box-shadow:0 60px 120px -40px #000}
+.singer-frame .living{position:absolute;inset:0}
+.beams{position:absolute;inset:-20%;z-index:2;pointer-events:none;mix-blend-mode:screen;opacity:.55;background:
+  conic-gradient(from 200deg at 30% -10%,transparent 0deg,color-mix(in srgb,var(--beige) 60%,transparent) 6deg,transparent 14deg,transparent 30deg,color-mix(in srgb,var(--sand) 40%,transparent) 34deg,transparent 42deg,transparent 360deg),
+  conic-gradient(from 150deg at 80% -10%,transparent 0deg,color-mix(in srgb,var(--silver) 45%,transparent) 5deg,transparent 12deg,transparent 360deg)}
+.rings{position:absolute;z-index:3;width:0;height:0;pointer-events:none}
+.rings i{position:absolute;left:-60px;top:-60px;width:120px;height:120px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--sand) 80%,transparent);opacity:0;animation:ring 2.4s cubic-bezier(.2,.6,.3,1) infinite}
+.rings i:nth-child(2){animation-delay:.8s}.rings i:nth-child(3){animation-delay:1.6s}
+@keyframes ring{0%{transform:scale(.2);opacity:.9}100%{transform:scale(3.2);opacity:0}}
+.eq{position:absolute;z-index:4;left:24px;right:24px;bottom:22px;height:46px;display:flex;align-items:flex-end;gap:4px}
+.eq i{flex:1;background:linear-gradient(to top,var(--beige),var(--white));border-radius:2px;height:20%;transform-origin:bottom;animation:eq var(--d,1s) ease-in-out infinite alternate;opacity:.85}
+@keyframes eq{0%{height:12%}100%{height:var(--h,80%)}}
+.singer-frame .scene-label{top:20px;right:20px}
+@media (max-width:900px){.worship .scene-pin{grid-template-columns:1fr;padding-block:90px 50px}.singer-frame{height:62vh;border-radius:24px 24px 24px 120px}}
+
+/* marquee */
+.marquee{background:var(--espresso);padding-block:clamp(40px,7vw,90px);overflow:hidden;border-block:1px solid var(--walnut)}
+.marquee-row{display:flex;gap:.5em;white-space:nowrap;font-family:var(--f-display);font-weight:800;font-size:var(--t-mega);line-height:.9;letter-spacing:-.05em;will-change:transform}
+.marquee-row span{display:inline-flex;align-items:center;gap:.5em}
+.marquee-row .o{color:transparent;-webkit-text-stroke:1.2px color-mix(in srgb,var(--silver) 70%,transparent)}
+.marquee-row .cross{width:.42em;height:.42em;flex:none}
+.marquee-row + .marquee-row{margin-top:.08em}
+
+/* message / preacher */
+.message{background:var(--espresso)}
+.message .scene-pin{min-height:100svh;align-items:stretch}
+.preach-stage{position:absolute;inset:0}
+.preach-stage .living{position:absolute;inset:0}
+.preach-shade{position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,color-mix(in srgb,var(--espresso) 92%,transparent) 0%,color-mix(in srgb,var(--espresso) 60%,transparent) 45%,transparent 75%),linear-gradient(0deg,var(--espresso) 0%,transparent 35%)}
+.message-copy{position:relative;z-index:3;display:grid;align-content:center;gap:28px;padding-block:120px 80px;max-width:760px}
+.quote{font-family:var(--f-display);font-weight:700;font-size:clamp(2rem,4.6vw,4.2rem);line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+.quote .qw{display:inline-block;color:var(--white)}
+.quote .qw.hl{color:var(--beige)}
+.preacher-meta{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px}
+.preacher-meta .scripture{font-size:1.5rem;color:var(--sand)}
+.voice{display:flex;align-items:center;gap:3px;height:28px}
+.voice i{width:3px;border-radius:2px;background:var(--silver);height:30%;animation:eq var(--d,.9s) ease-in-out infinite alternate}
+.message .scene-label{top:auto;bottom:28px;right:max(var(--gutter-r),4vw)}
+
+.series{background:var(--espresso);padding-block:40px clamp(90px,12vw,160px)}
+.series-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.series-head h3{font-size:var(--t-xl);font-weight:600;letter-spacing:-.02em}
+.series-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.card{position:relative;display:block;text-decoration:none;border-radius:20px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:var(--brown)}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.4) saturate(.8) brightness(.72);transition:transform 1.2s cubic-bezier(.2,.8,.2,1),filter .6s}
+.card:hover img{transform:scale(1.07);filter:sepia(.2) saturate(.95) brightness(.85)}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,color-mix(in srgb,var(--espresso) 92%,transparent),transparent 60%)}
+.card-body{position:absolute;inset:auto 0 0;z-index:2;padding:26px;display:grid;gap:8px}
+.card-body h4{margin:0;font-family:var(--f-display);font-weight:700;font-size:var(--t-xl);letter-spacing:-.03em;line-height:1}
+.card-body p{font-size:var(--t-sm);color:color-mix(in srgb,var(--white) 74%,transparent)}
+.card .tag{position:absolute;z-index:2;top:20px;left:20px;font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px;border-radius:999px;background:color-mix(in srgb,var(--espresso) 50%,transparent);backdrop-filter:blur(8px);border:1px solid color-mix(in srgb,var(--silver) 25%,transparent)}
+@media (max-width:860px){.series-grid{grid-template-columns:1fr}.card{aspect-ratio:16/11}}
+
+/* praise */
+.praise{background:radial-gradient(120% 90% at 50% 100%,#3a2414 0%,var(--brown) 40%,var(--espresso) 100%)}
+.praise .scene-pin{place-items:center;text-align:center;padding-block:90px 60px}
+.praise-word{position:absolute;inset:auto 0 50%;translate:0 50%;z-index:1;font-family:var(--f-display);font-weight:800;font-size:var(--t-mega);letter-spacing:-.05em;line-height:.8;white-space:nowrap;text-align:center;color:transparent;-webkit-text-stroke:1.2px color-mix(in srgb,var(--beige) 45%,transparent);pointer-events:none}
+.praise-word span{display:inline-block}
+.sun{position:absolute;z-index:1;left:50%;top:52%;width:70vmin;height:70vmin;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,#ffd9a0 85%,transparent) 0%,color-mix(in srgb,var(--beige) 35%,transparent) 30%,transparent 68%);filter:blur(10px);pointer-events:none}
+.rays{position:absolute;z-index:1;left:50%;top:52%;width:150vmax;height:150vmax;translate:-50% -50%;background:repeating-conic-gradient(from 0deg,color-mix(in srgb,var(--sand) 9%,transparent) 0deg 3deg,transparent 3deg 12deg);-webkit-mask:radial-gradient(circle,#000 0%,transparent 55%);mask:radial-gradient(circle,#000 0%,transparent 55%);animation:spin 80s linear infinite;pointer-events:none}
+@keyframes spin{to{rotate:360deg}}
+.praise-figure{position:relative;z-index:2;width:min(980px,100%);aspect-ratio:3/2;max-width:100%;border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 0 120px -10px color-mix(in srgb,#ffb766 45%,transparent)}
+.praise-figure .living{position:absolute;inset:0}
+.praise-copy{position:relative;z-index:3;display:grid;justify-items:center;gap:22px;margin-top:-80px;padding-inline:8px}
+.praise-copy h2{font-size:var(--t-3xl);font-weight:800;text-shadow:0 10px 60px #000}
+.praise-copy .scripture{font-size:clamp(1.3rem,2.2vw,1.8rem);color:var(--sand);max-width:34ch;line-height:1.35}
+@media (max-width:700px){.praise-figure{border-radius:200px 200px 20px 20px;aspect-ratio:4/5}.praise-copy{margin-top:-50px}}
+
+/* ministries */
+.ministries{background:var(--sand);color:var(--ink);padding-block:clamp(90px,12vw,170px)}
+.ministries .eyebrow{color:var(--ink-soft)}
+.min-head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end;margin-bottom:56px}
+.min-head h2{font-size:var(--t-2xl);color:var(--ink)}
+.min-head p{color:var(--ink-soft);max-width:44ch}
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:minmax(200px,26vw);gap:16px}
+.tile{position:relative;overflow:hidden;border-radius:22px;background:var(--walnut);color:var(--white);text-decoration:none;min-width:0}
+.tile img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;filter:sepia(.35) saturate(.85) brightness(.78);transition:filter .6s}
+.tile:hover img{filter:sepia(.15) saturate(1) brightness(.9)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,color-mix(in srgb,var(--espresso) 85%,transparent),transparent 55%)}
+.tile-body{position:absolute;z-index:2;inset:auto 0 0;padding:clamp(18px,2vw,28px);display:grid;gap:6px}
+.tile h3{font-size:clamp(1.5rem,2.4vw,2.2rem);letter-spacing:-.03em}
+.tile p{font-size:var(--t-sm);color:color-mix(in srgb,var(--white) 80%,transparent);max-width:38ch}
+.tile .when{position:absolute;z-index:2;top:18px;right:18px;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border-radius:999px;background:color-mix(in srgb,var(--sand) 88%,transparent);color:var(--ink)}
+.t1{grid-column:span 7;grid-row:span 2}.t2{grid-column:span 5}.t3{grid-column:span 5}
+.t4{grid-column:span 4}.t5{grid-column:span 4}.t6{grid-column:span 4}
+@media (max-width:860px){.min-head{grid-template-columns:1fr}.bento{grid-template-columns:1fr;grid-auto-rows:300px}.t1,.t2,.t3,.t4,.t5,.t6{grid-column:auto;grid-row:auto}.t1{grid-row:span 1}}
+
+/* week (horizontal) */
+.week{background:var(--brown);overflow:hidden}
+.week-pin{min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);align-content:center;gap:44px;padding-block:100px 70px}
+.week-pin>*{min-width:0}
+.week-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.week-head h2{font-size:var(--t-2xl)}
+.week-head p{color:var(--silver-dim);max-width:34ch}
+.week-track{display:flex;width:max-content;gap:22px;padding-left:max(var(--gutter-l),4vw);padding-right:max(var(--gutter-r),4vw);will-change:transform}
+.day{flex:none;width:min(420px,78vw);display:grid;gap:16px}
+.day-img{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:20px;overflow:hidden}
+.day:nth-child(even) .day-img{aspect-ratio:1/1;margin-top:60px}
+.day-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.38) saturate(.85) brightness(.82);transform:scale(1.15)}
+.day-meta{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:baseline}
+.day-meta b{font-family:var(--f-display);font-size:var(--t-xl);font-weight:700;letter-spacing:-.03em;grid-row:span 2}
+.day-meta span{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--beige)}
+.day-meta p{font-size:var(--t-sm);color:color-mix(in srgb,var(--white) 72%,transparent)}
+.no-pin .week-track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory}
+.no-pin .day{scroll-snap-align:start}
+
+/* visit */
+.visit{background:var(--sand);color:var(--ink);padding-block:clamp(90px,12vw,170px);position:relative;overflow:hidden}
+.visit-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(36px,6vw,90px);align-items:start}
+.visit h2{font-size:var(--t-2xl);color:var(--ink)}
+.visit .eyebrow{color:var(--ink-soft)}
+.visit-intro{color:var(--ink-soft);max-width:44ch;margin-top:22px}
+.times{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin-top:40px;background:color-mix(in srgb,var(--ink) 18%,transparent);border-radius:18px;overflow:hidden}
+.time{background:var(--sand);padding:22px 22px 20px;display:grid;gap:2px}
+.time b{font-family:var(--f-display);font-size:var(--t-xl);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.time span{font-size:var(--t-sm);color:var(--ink-soft)}
+.expect{list-style:none;margin:36px 0 0;padding:0;display:grid;gap:0}
+.expect li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding-block:16px;border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent)}
+.expect li b{font-family:var(--f-display);font-weight:700}
+.expect li span{color:var(--ink-soft);font-size:var(--t-sm)}
+.visit-photo{position:relative;border-radius:200px 200px 24px 24px;overflow:hidden;aspect-ratio:4/5;max-width:100%}
+.visit-photo img{position:absolute;inset:0;width:100%;height:115%;object-fit:cover;filter:sepia(.3) saturate(.9)}
+.form{margin-top:-120px;position:relative;z-index:2;background:var(--ink);color:var(--white);border-radius:24px;padding:clamp(22px,3vw,36px);display:grid;gap:16px;box-shadow:0 40px 80px -30px color-mix(in srgb,var(--ink) 70%,transparent)}
+.form h3{font-size:var(--t-xl);letter-spacing:-.02em}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--silver)}
+.field input,.field select{width:100%;font:inherit;font-size:var(--t-base);color:var(--white);background:color-mix(in srgb,var(--white) 6%,transparent);border:1px solid color-mix(in srgb,var(--silver) 25%,transparent);border-radius:12px;padding:12px 14px;transition:border-color .3s,background .3s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--beige);background:color-mix(in srgb,var(--white) 10%,transparent)}
+.field select option{background:var(--brown)}
+.form .btn{justify-self:start;margin-top:4px}
+.form-done{font-size:var(--t-sm);color:var(--beige);min-height:1.5em}
+@media (max-width:900px){.visit-grid{grid-template-columns:1fr}.visit-photo{aspect-ratio:1/1}.form .row{grid-template-columns:1fr}.expect li{grid-template-columns:1fr;gap:2px}}
+
+/* footer */
+.footer{background:var(--espresso);padding-block:90px 40px;overflow:hidden}
+.foot-word{font-family:var(--f-display);font-weight:800;font-size:clamp(3rem,12.5vw,13rem);line-height:.82;letter-spacing:-.06em;margin-bottom:70px}
+.foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;padding-top:36px;border-top:1px solid var(--walnut)}
+.foot-grid h4{margin:0 0 12px;font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--silver)}
+.foot-grid p,.foot-grid a{font-size:var(--t-sm);color:color-mix(in srgb,var(--white) 72%,transparent);text-decoration:none;line-height:1.9}
+.foot-grid a:hover{color:var(--white)}
+.foot-grid ul{list-style:none;margin:0;padding:0}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:60px;font-size:var(--t-xs);color:var(--silver-dim);letter-spacing:.04em}
+@media (max-width:760px){.foot-grid{grid-template-columns:1fr 1fr}}
+
+/* grain */
+.grain{position:fixed;inset:-50%;z-index:70;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-2%,6%)}80%{transform:translate(5%,-2%)}100%{transform:translate(0,0)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .grain{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- shared SVG symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="silv" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2f3f5"/><stop offset=".45" stop-color="#9da1a7"/><stop offset="1" stop-color="#e4e6e9"/>
+    </linearGradient>
+  </defs>
+  <symbol id="mark" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="30" fill="none" stroke="url(#silv)" stroke-width="1.6"/>
+    <path d="M32 9v46M19 24h26" stroke="url(#silv)" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M8 44c8-5 16-7 24-7s16 2 24 7" fill="none" stroke="#d6c3a1" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="arrow" viewBox="0 0 16 16"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="crs" viewBox="0 0 20 20"><path d="M10 1v18M4 7h12" stroke="#d6c3a1" stroke-width="2.4" stroke-linecap="round"/></symbol>
+</svg>
+
+<div class="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <svg><use href="#mark"/></svg>
+    <div class="loader-word">Central Texas Fellowship</div>
+    <div class="loader-bar"><i></i></div>
+  </div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Central Texas Fellowship, home">
+      <svg aria-hidden="true"><use href="#mark"/></svg>
+      <span class="brand-name">Central Texas<small>Fellowship</small></span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#worship">Worship</a></li>
+        <li><a href="#message">Messages</a></li>
+        <li><a href="#ministries">Ministries</a></li>
+        <li><a href="#week">Community</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-solid" href="#visit">Plan a visit <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" aria-label="Welcome">
+    <div class="hero-media" id="heroMedia">
+      <img src="img/hero1.jpg" alt="A congregation with hands raised in worship under warm stage light">
+      <canvas id="heroGL" aria-hidden="true"></canvas>
+    </div>
+    <div class="hero-shade"></div>
+    <div class="letterbox top" aria-hidden="true"></div>
+    <div class="letterbox bot" aria-hidden="true"></div>
+    <div class="wrap hero-content">
+      <span class="eyebrow hero-in">A church family in the heart of Texas</span>
+      <h1 id="heroTitle"><span class="line"><span>Lift your eyes.</span></span><span class="line"><span class="silver">He is near.</span></span></h1>
+      <p class="hero-sub hero-in">Spirit-led worship, honest Bible teaching and a table with room for you. Join us Sundays at 9:00 and 10:45 AM.</p>
+      <div class="hero-ctas hero-in">
+        <a class="btn btn-solid" href="#visit">Plan your first Sunday <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#message">Watch the latest message</a>
+      </div>
+      <div class="hero-foot hero-in">
+        <div class="reel" id="reel" role="group" aria-label="Hero photographs">
+          <button type="button" aria-current="true" data-i="0"><span>Worship</span><span class="track"><i></i></span></button>
+          <button type="button" data-i="1"><span>Gather</span><span class="track"><i></i></span></button>
+          <button type="button" data-i="2"><span>Believe</span><span class="track"><i></i></span></button>
+        </div>
+        <div class="hero-verse">
+          <p class="scripture">“I lift up my eyes to the hills. My help comes from the LORD.”</p>
+          <span class="ref">Psalm 121 : 1–2</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"></div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement" aria-label="Who we are">
+    <div class="wrap">
+      <span class="eyebrow">Who we are</span>
+      <p id="statement" style="margin-top:28px">From the Hill Country to the Brazos, we are ranchers, teachers, soldiers, students and families, gathered around one table and one Savior. Come as you are. You will be known here.</p>
+      <div class="statement-meta">
+        <div class="stat"><b data-count="2">0</b><span>Sunday services, every week</span></div>
+        <div class="stat"><b data-count="40">0</b><span>Small groups meeting in homes across the region</span></div>
+        <div class="stat"><b data-count="75">0</b><span>Minutes of worship and teaching each Sunday</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORSHIP / SINGER -->
+  <section class="scene worship" id="worship" aria-label="Worship">
+    <div class="scene-pin wrap" id="worshipPin">
+      <div class="worship-copy">
+        <span class="eyebrow">Worship</span>
+        <h2>Sing a <span class="silver">new song</span> with us.</h2>
+        <p>Our worship team leads with full hearts and a full band. Old hymns and new songs, sung loud, because the One we sing to is worthy of every note.</p>
+        <div class="lyrics" id="lyrics" aria-label="Lyrics: Holy, Holy, Holy">
+          <div class="ln">Holy, holy, holy!</div>
+          <div class="ln">Lord God Almighty!</div>
+          <div class="ln">Early in the morning</div>
+          <div class="ln">our song shall rise to Thee.</div>
+        </div>
+        <div class="lyrics-meta"><span>Holy, Holy, Holy · R. Heber, 1826</span><span>Psalm 96 : 1</span></div>
+      </div>
+      <div class="singer-frame" id="singerFrame">
+        <div class="living" id="singerLiving" data-src="img/singer.jpg" data-fx=".63" data-fy=".46" data-px=".58" data-py=".45" data-mode="0">
+          <img src="img/singer.jpg" alt="A worship leader singing into a microphone under stage lights" style="object-position:58% 45%">
+          <canvas aria-hidden="true"></canvas>
+        </div>
+        <div class="beams" aria-hidden="true"></div>
+        <div class="rings" id="rings" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="eq" id="eq" aria-hidden="true"></div>
+        <div class="scene-label"><span class="dot"></span> Live · Sundays 9:00 AM</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section class="marquee" aria-label="He is">
+    <div class="marquee-row" data-dir="-1">
+      <span>Holy <svg class="cross" aria-hidden="true"><use href="#crs"/></svg> <span class="o">Worthy</span> <svg class="cross" aria-hidden="true"><use href="#crs"/></svg> Faithful <svg class="cross" aria-hidden="true"><use href="#crs"/></svg> <span class="o">Mighty to save</span> <svg class="cross" aria-hidden="true"><use href="#crs"/></svg></span>
+      <span aria-hidden="true">Holy <svg class="cross"><use href="#crs"/></svg> <span class="o">Worthy</span> <svg class="cross"><use href="#crs"/></svg> Faithful <svg class="cross"><use href="#crs"/></svg> <span class="o">Mighty to save</span> <svg class="cross"><use href="#crs"/></svg></span>
+    </div>
+    <div class="marquee-row" data-dir="1">
+      <span><span class="o">Grace upon grace</span> <svg class="cross" aria-hidden="true"><use href="#crs"/></svg> Jesus is Lord <svg class="cross" aria-hidden="true"><use href="#crs"/></svg> <span class="o">Prince of Peace</span> <svg class="cross" aria-hidden="true"><use href="#crs"/></svg></span>
+      <span aria-hidden="true"><span class="o">Grace upon grace</span> <svg class="cross"><use href="#crs"/></svg> Jesus is Lord <svg class="cross"><use href="#crs"/></svg> <span class="o">Prince of Peace</span> <svg class="cross"><use href="#crs"/></svg></span>
+    </div>
+  </section>
+
+  <!-- MESSAGE / PREACHER -->
+  <section class="scene message" id="message" aria-label="Messages">
+    <div class="scene-pin" id="messagePin">
+      <div class="preach-stage" id="preachStage">
+        <div class="living" id="preachLiving" data-src="img/preacher.jpg" data-fx=".72" data-fy=".42" data-px=".7" data-py=".5" data-mode="1">
+          <img src="img/preacher.jpg" alt="A pastor preaching with a microphone to a packed auditorium" style="object-position:70% 50%">
+          <canvas aria-hidden="true"></canvas>
+        </div>
+        <div class="preach-shade"></div>
+      </div>
+      <div class="wrap" style="position:relative;z-index:3;display:grid">
+        <div class="message-copy">
+          <span class="eyebrow">This Sunday’s message</span>
+          <p class="quote" id="quote">Faith is not the absence of the storm. It is knowing who is asleep in the boat.</p>
+          <div class="preacher-meta">
+            <span class="scripture">Mark 4 : 35–41</span>
+            <span class="voice" id="voice" aria-hidden="true"></span>
+            <span class="ref">Series · Unshaken, week 3</span>
+          </div>
+          <div class="hero-ctas">
+            <a class="btn btn-solid" href="#series">Watch the message <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="btn btn-ghost" href="#series">Browse all series</a>
+          </div>
+        </div>
+      </div>
+      <div class="scene-label"><span class="dot"></span> Preaching · 42 min</div>
+    </div>
+  </section>
+
+  <section class="series" id="series" aria-label="Message series">
+    <div class="wrap">
+      <div class="series-head">
+        <div style="display:grid;gap:14px"><span class="eyebrow">Message series</span><h3>Teaching straight from the Book, one chapter at a time.</h3></div>
+        <a class="btn btn-ghost" href="#series">All messages <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+      </div>
+      <div class="series-grid">
+        <a class="card reveal-card" href="#series"><img src="img/stage.jpg" alt="A preacher on a round stage before a large crowd" loading="lazy"><span class="tag">Now</span><div class="card-body"><h4>Unshaken</h4><p>Mark 4–6 · Finding peace with Jesus in the middle of the storm.</p></div></a>
+        <a class="card reveal-card" href="#series"><img src="img/bible.jpg" alt="An open Bible resting on a rock outdoors" loading="lazy"><span class="tag">6 weeks</span><div class="card-body"><h4>Rooted</h4><p>Psalms 1–8 · Planted by streams of water, even in a Texas drought.</p></div></a>
+        <a class="card reveal-card" href="#series"><img src="img/dinner.jpg" alt="Friends sharing a meal around a long table" loading="lazy"><span class="tag">5 weeks</span><div class="card-body"><h4>Open Table</h4><p>Luke 14 · The hospitality of Jesus and the seat He saved for you.</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRAISE -->
+  <section class="scene praise" id="praise" aria-label="Praise">
+    <div class="scene-pin wrap" id="praisePin">
+      <div class="rays" aria-hidden="true"></div>
+      <div class="sun" id="sun" aria-hidden="true"></div>
+      <div class="praise-word" id="praiseWord" aria-hidden="true">Hallelujah</div>
+      <div class="praise-figure" id="praiseFigure">
+        <div class="living" id="praiseLiving" data-src="img/praise.jpg" data-fx=".54" data-fy=".47" data-px=".5" data-py=".55" data-mode="2">
+          <img src="img/praise.jpg" alt="A man with both arms raised toward the sunrise in praise" style="object-position:50% 55%">
+          <canvas aria-hidden="true"></canvas>
+        </div>
+      </div>
+      <div class="praise-copy">
+        <h2>Lift your <span class="silver">hands.</span></h2>
+        <p class="scripture">“Lift up your hands in the sanctuary and praise the LORD.”</p>
+        <span class="ref">Psalm 134 : 2</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MINISTRIES -->
+  <section class="ministries" id="ministries" aria-label="Ministries">
+    <div class="wrap">
+      <div class="min-head">
+        <div style="display:grid;gap:18px"><span class="eyebrow">Find your people</span><h2>There is a place here for every age and every season.</h2></div>
+        <p>Church happens on Sunday, but life happens all week. These are the rooms, tables and campfires where faith gets lived out.</p>
+      </div>
+      <div class="bento">
+        <a class="tile t1" href="#visit"><img src="img/prayer.jpg" alt="A group of people gathered closely in prayer" loading="lazy"><span class="when">Wed · 7 PM</span><div class="tile-body"><h3>Prayer Night</h3><p>An hour of praise and intercession for our families, our neighbors and Central Texas.</p></div></a>
+        <a class="tile t2" href="#visit"><img src="img/kid.jpg" alt="A joyful child walking with arms out" loading="lazy" style="object-position:50% 30%"><span class="when">Sundays</span><div class="tile-body"><h3>CTF Kids</h3><p>Safe check-in, Bible stories and a lot of joy, nursery through 5th grade.</p></div></a>
+        <a class="tile t3" href="#visit"><img src="img/campfire.jpg" alt="Young people gathered around a campfire at night" loading="lazy"><span class="when">Wed · 6:30 PM</span><div class="tile-body"><h3>Students</h3><p>Grades 6–12. Worship, real questions and the occasional campfire.</p></div></a>
+        <a class="tile t4" href="#visit"><img src="img/friends.jpg" alt="Friends with arms around each other watching the sunset" loading="lazy"><span class="when">Weekly</span><div class="tile-body"><h3>Life Groups</h3><p>Ten to twelve people in a living room, doing life together.</p></div></a>
+        <a class="tile t5" href="#visit"><img src="img/giving.jpg" alt="Open hands holding coins and a note that reads Make a Change" loading="lazy"><span class="when">Monthly</span><div class="tile-body"><h3>Outreach</h3><p>Food pantry, school supply drives and storm relief across the county.</p></div></a>
+        <a class="tile t6" href="#visit"><img src="img/bible2.jpg" alt="Hands holding an open Bible" loading="lazy"><span class="when">Tue · 6:30 AM</span><div class="tile-body"><h3>Men &amp; Women</h3><p>Early-morning studies with strong coffee and stronger friendships.</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEEK -->
+  <section class="week" id="week" aria-label="A week at the Fellowship">
+    <div class="week-pin" id="weekPin">
+      <div class="wrap week-head">
+        <div style="display:grid;gap:16px"><span class="eyebrow">A week at the Fellowship</span><h2>Seven days of <span class="silver">life together.</span></h2></div>
+        <p>From Sunday morning worship to a Saturday serving our neighbors, here is what a week looks like.</p>
+      </div>
+      <div class="week-track" id="weekTrack">
+        <article class="day"><div class="day-img"><img src="img/hero1.jpg" alt="Hands lifted during Sunday worship" loading="lazy"></div><div class="day-meta"><b>Sun</b><span>9:00 &amp; 10:45 AM</span><p>Worship and the Word, kids ministry in every service.</p></div></article>
+        <article class="day"><div class="day-img"><img src="img/pews.jpg" alt="Wooden pews in a quiet sanctuary" loading="lazy"></div><div class="day-meta"><b>Mon</b><span>Open sanctuary</span><p>The doors are open from noon to 6 for quiet prayer.</p></div></article>
+        <article class="day"><div class="day-img"><img src="img/bible2.jpg" alt="An open Bible held in two hands" loading="lazy"></div><div class="day-meta"><b>Tue</b><span>6:30 AM</span><p>Men’s and women’s Bible studies over breakfast tacos.</p></div></article>
+        <article class="day"><div class="day-img"><img src="img/hands.jpg" alt="Silhouetted hands raised in a dark worship room" loading="lazy"></div><div class="day-meta"><b>Wed</b><span>6:30 PM</span><p>Students, Prayer Night and a family meal before it all.</p></div></article>
+        <article class="day"><div class="day-img"><img src="img/dinner.jpg" alt="A life group sharing dinner" loading="lazy"></div><div class="day-meta"><b>Thu</b><span>In homes</span><p>Life Groups meet in living rooms from Temple to Round Rock.</p></div></article>
+        <article class="day"><div class="day-img"><img src="img/glass.jpg" alt="Stained glass windows and hanging lamps in a chapel" loading="lazy"></div><div class="day-meta"><b>Fri</b><span>Evening</span><p>Date nights, game nights and worship team rehearsal.</p></div></article>
+        <article class="day"><div class="day-img"><img src="img/hills.jpg" alt="Rolling hills at sunrise" loading="lazy"></div><div class="day-meta"><b>Sat</b><span>8:00 AM</span><p>Serve days across the county, then rest.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="visit" id="visit" aria-label="Plan a visit">
+    <div class="wrap visit-grid">
+      <div>
+        <span class="eyebrow">Plan a visit</span>
+        <h2 style="margin-top:18px">Your first Sunday, made simple.</h2>
+        <p class="visit-intro">We know walking into a new church can feel like a lot. Tell us you are coming and someone will meet you at the door, walk you to kids check-in and save you a seat.</p>
+        <div class="times">
+          <div class="time"><b>9:00 AM</b><span>Sunday · Worship &amp; Word</span></div>
+          <div class="time"><b>10:45 AM</b><span>Sunday · Worship &amp; Word</span></div>
+          <div class="time"><b>6:30 PM</b><span>Wednesday · Students</span></div>
+          <div class="time"><b>7:00 PM</b><span>Wednesday · Prayer Night</span></div>
+        </div>
+        <ul class="expect">
+          <li><b>Arrive</b><span>Guest parking is up front. Look for the silver flags.</span></li>
+          <li><b>Coffee</b><span>Fresh pour-over and kolaches in the lobby, on us.</span></li>
+          <li><b>Kids</b><span>Secure check-in for nursery through 5th grade, about five minutes.</span></li>
+          <li><b>Service</b><span>About 75 minutes of worship, prayer and Bible teaching. Jeans welcome.</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="visit-photo"><img src="img/summit.jpg" alt="A person on a mountaintop with one arm raised above the clouds" loading="lazy"></div>
+        <form class="form" id="visitForm" novalidate>
+          <h3>We will save you a seat.</h3>
+          <div class="row">
+            <div class="field"><label for="v-name">Your name</label><input id="v-name" name="name" autocomplete="name" placeholder="Jordan Rivera" required></div>
+            <div class="field"><label for="v-email">Email</label><input id="v-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="v-service">Service</label>
+              <select id="v-service" name="service"><option>Sunday · 9:00 AM</option><option>Sunday · 10:45 AM</option><option>Wednesday · 6:30 PM</option></select></div>
+            <div class="field"><label for="v-kids">Kids coming</label>
+              <select id="v-kids" name="kids"><option>None</option><option>1</option><option>2</option><option>3</option><option>4+</option></select></div>
+          </div>
+          <button class="btn btn-solid" type="submit">Plan my visit <svg aria-hidden="true"><use href="#arrow"/></svg></button>
+          <p class="form-done" id="formDone" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-word"><span class="silver">Central Texas</span><br>Fellowship</div>
+    <div class="foot-grid">
+      <div><h4>Gather</h4><p>Sundays 9:00 &amp; 10:45 AM<br>Wednesdays 6:30 PM</p></div>
+      <div><h4>Explore</h4><ul><li><a href="#worship">Worship</a></li><li><a href="#message">Messages</a></li><li><a href="#ministries">Ministries</a></li><li><a href="#visit">Plan a visit</a></li></ul></div>
+      <div><h4>Give</h4><p>Your generosity fuels outreach across Central Texas.</p><a href="#visit">Give online →</a></div>
+      <div><h4>Scripture</h4><p class="scripture" style="font-size:1.2rem;line-height:1.35;color:var(--sand)">“Where two or three gather in my name, there am I with them.”</p><span class="ref">Matthew 18 : 20</span></div>
+    </div>
+    <div class="legal"><span>© 2026 Central Texas Fellowship</span><span>Photography: Unsplash</span></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+  const hasTHREE = typeof THREE !== 'undefined';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const loader = $('.loader');
+
+  if (!hasGSAP) { if (loader) loader.remove(); return; }
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ── smooth scroll ── */
+  let lenis = null;
+  if (!reduce && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href'); const el = id.length > 1 && $(id);
+    if (!el) return; e.preventDefault();
+    lenis ? lenis.scrollTo(el, { offset: 0, duration: 1.6 }) : el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  }));
+
+  /* ── nav state ── */
+  ScrollTrigger.create({ start: 80, onUpdate: s => $('#nav').classList.toggle('scrolled', s.scroll() > 80) });
+
+  /* ── shared GLSL ── */
+  const NOISE = `
+    vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
+    vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}
+    vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}
+    float snoise(vec2 v){const vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);
+      vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);
+      vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);
+      vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));
+      vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);m=m*m;m=m*m;
+      vec3 x=2.*fract(p*C.www)-1.;vec3 h=abs(x)-.5;vec3 ox=floor(x+.5);vec3 a0=x-ox;
+      m*=1.79284291400159-.85373472095314*(a0*a0+h*h);
+      vec3 g;g.x=a0.x*x0.x+h.x*x0.y;g.yz=a0.yz*x12.xz+h.yz*x12.yw;return 130.*dot(m,g);}
+    // object-fit:cover with object-position (pos), zoom about focus (f). uv in top-down image space.
+    vec2 coverUV(vec2 vuv, vec2 res, vec2 img, vec2 pos, float zoom, vec2 f){
+      vec2 pix=vec2(vuv.x,1.-vuv.y)*res; float sc=max(res.x/img.x,res.y/img.y); vec2 nsz=img*sc;
+      vec2 off=(res-nsz)*pos; vec2 u=(pix-off)/nsz; return (u-f)/zoom+f; }
+    vec3 grade(vec3 c, float amt){ float l=dot(c,vec3(.299,.587,.114));
+      vec3 warm=vec3(l)*vec3(1.12,.94,.74); vec3 g=mix(c,warm,amt);
+      g=mix(g, g*vec3(1.04,.97,.9), .5); return g; }
+  `;
+  const VERT = `varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.,1.); }`;
+
+  function makeRenderer(canvas) {
+    try {
+      const r = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, powerPreference: 'high-performance' });
+      r.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+      return r;
+    } catch (e) { return null; }
+  }
+  const texLoader = hasTHREE ? new THREE.TextureLoader() : null;
+  function loadTex(src) {
+    return new Promise((res, rej) => texLoader.load(src, t => {
+      t.minFilter = THREE.LinearFilter; t.generateMipmaps = false; res(t);
+    }, undefined, rej));
+  }
+
+  /* ── HERO: cinematic WebGL reel ── */
+  const heroSrcs = ['img/hero1.jpg', 'img/hero2.jpg', 'img/hero3.jpg'];
+  const hero = { idx: 0, timer: null, mouse: { x: 0, y: 0, tx: 0, ty: 0 }, scroll: 0 };
+  async function initHero() {
+    const canvas = $('#heroGL');
+    if (!hasTHREE) return false;
+    const renderer = makeRenderer(canvas); if (!renderer) return false;
+    let texs;
+    try { texs = await Promise.all(heroSrcs.map(loadTex)); } catch (e) { return false; }
+    const scene = new THREE.Scene(); const cam = new THREE.Camera();
+    const U = {
+      uA: { value: texs[0] }, uB: { value: texs[1] },
+      uImgA: { value: new THREE.Vector2(texs[0].image.width, texs[0].image.height) },
+      uImgB: { value: new THREE.Vector2(texs[1].image.width, texs[1].image.height) },
+      uMix: { value: 0 }, uZoomA: { value: 1.0 }, uZoomB: { value: 1.12 },
+      uTime: { value: 0 }, uRes: { value: new THREE.Vector2(1, 1) },
+      uMouse: { value: new THREE.Vector2() }, uScroll: { value: 0 }
+    };
+    const mat = new THREE.ShaderMaterial({ uniforms: U, vertexShader: VERT, fragmentShader: `
+      precision highp float; varying vec2 vUv;
+      uniform sampler2D uA,uB; uniform vec2 uImgA,uImgB,uRes,uMouse; uniform float uMix,uZoomA,uZoomB,uTime,uScroll;
+      ${NOISE}
+      vec3 samp(sampler2D t, vec2 img, float z, vec2 disp){
+        vec2 u=coverUV(vUv,uRes,img,vec2(.5),z,vec2(.5,.45))+disp; u=clamp(u,.001,.999);
+        float ca=.0018+length(disp)*.4;
+        return vec3(texture2D(t,vec2(u.x+ca,1.-u.y)).r, texture2D(t,vec2(u.x,1.-u.y)).g, texture2D(t,vec2(u.x-ca,1.-u.y)).b);
+      }
+      void main(){
+        vec2 par=uMouse*vec2(.012,-.01);
+        float n=snoise(vUv*vec2(2.6,1.8)+uTime*.07)*.5+.5;
+        float v=n*.55+(1.-vUv.x)*.25+vUv.y*.2;
+        float m=smoothstep(v-.08,v+.08,uMix*1.25-.12);
+        vec2 dA=par+(n-.5)*.06*uMix*vec2(1.,.6);
+        vec2 dB=par-(n-.5)*.06*(1.-uMix)*vec2(1.,.6);
+        vec3 a=samp(uA,uImgA,uZoomA+uScroll*.12,dA);
+        vec3 b=samp(uB,uImgB,uZoomB+uScroll*.12,dB);
+        vec3 c=mix(a,b,m);
+        float edge=1.-abs(m*2.-1.); c+=vec3(1.,.82,.58)*pow(edge,3.)*.35;
+        c=grade(c,.5);
+        // drifting light leak
+        float leak=smoothstep(.9,0.,distance(vUv,vec2(.15+.1*sin(uTime*.15),.95)));
+        c+=vec3(.55,.35,.18)*leak*.22;
+        // vignette + scroll dim
+        float vig=smoothstep(1.25,.25,length((vUv-.5)*vec2(1.25,1.)));
+        c*=mix(.55,1.,vig); c*=1.-uScroll*.55;
+        gl_FragColor=vec4(c,1.);
+      }` });
+    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+
+    // golden dust
+    const N = innerWidth < 700 ? 260 : 650;
+    const pos = new Float32Array(N * 3), seed = new Float32Array(N);
+    for (let i = 0; i < N; i++) { pos[i*3] = Math.random()*2-1; pos[i*3+1] = Math.random()*2-1; pos[i*3+2] = 0; seed[i] = Math.random(); }
+    const pg = new THREE.BufferGeometry();
+    pg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    pg.setAttribute('seed', new THREE.BufferAttribute(seed, 1));
+    const pm = new THREE.ShaderMaterial({ transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      uniforms: { uTime: U.uTime, uMouse: U.uMouse, uPR: { value: renderer.getPixelRatio() }, uScroll: U.uScroll },
+      vertexShader: `attribute float seed; uniform float uTime,uPR,uScroll; uniform vec2 uMouse; varying float vA;
+        void main(){ vec3 p=position; float sp=.015+seed*.04;
+          p.y=mod(p.y+1.+uTime*sp+uScroll*seed*.6,2.)-1.;
+          p.x+=sin(uTime*.4+seed*30.)*.02+uMouse.x*.03*seed;
+          gl_Position=vec4(p.xy,0.,1.);
+          gl_PointSize=(1.2+pow(seed,3.)*6.)*uPR;
+          vA=(.25+.75*seed)*(.6+.4*sin(uTime*1.3+seed*50.)); }`,
+      fragmentShader: `varying float vA; void main(){ float d=length(gl_PointCoord-.5); float a=smoothstep(.5,0.,d);
+        gl_FragColor=vec4(vec3(1.,.88,.68)*a*vA*.75,1.); }` });
+    scene.add(new THREE.Points(pg, pm));
+
+    const size = () => { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); U.uRes.value.set(w, h); };
+    size(); addEventListener('resize', size);
+
+    let visible = true;
+    ScrollTrigger.create({ trigger: '.hero', start: 'top top', end: 'bottom top',
+      onUpdate: s => { U.uScroll.value = s.progress; }, onToggle: s => { visible = s.isActive; } });
+    addEventListener('pointermove', e => { hero.mouse.tx = e.clientX / innerWidth * 2 - 1; hero.mouse.ty = e.clientY / innerHeight * 2 - 1; });
+    gsap.ticker.add((t) => {
+      if (!visible) return;
+      hero.mouse.x += (hero.mouse.tx - hero.mouse.x) * .05; hero.mouse.y += (hero.mouse.ty - hero.mouse.y) * .05;
+      U.uMouse.value.set(hero.mouse.x, hero.mouse.y); U.uTime.value = t;
+      renderer.render(scene, cam);
+    });
+
+    // reel control
+    const btns = $$('#reel button');
+    const DUR = 7;
+    gsap.to(U.uZoomA, { value: 1.1, duration: DUR + 2, ease: 'none' });
+    function go(next) {
+      if (next === hero.idx) return;
+      U.uB.value = texs[next]; U.uImgB.value.set(texs[next].image.width, texs[next].image.height);
+      U.uZoomB.value = 1.16;
+      gsap.killTweensOf(U.uMix);
+      gsap.to(U.uZoomB, { value: 1.0, duration: 2.4, ease: 'expo.out', onComplete: () => gsap.to(U.uZoomB, { value: 1.1, duration: DUR, ease: 'none' }) });
+      gsap.fromTo(U.uMix, { value: 0 }, { value: 1, duration: 2.2, ease: 'power2.inOut', onComplete: () => {
+        U.uA.value = texs[next]; U.uImgA.value.copy(U.uImgB.value); U.uZoomA.value = U.uZoomB.value;
+        gsap.killTweensOf(U.uZoomA); gsap.to(U.uZoomA, { value: 1.12, duration: DUR, ease: 'none' });
+        U.uMix.value = 0;
+      }});
+      hero.idx = next;
+      btns.forEach((b, i) => { b.setAttribute('aria-current', i === next ? 'true' : 'false'); });
+      // restart progress animation
+      const tr = btns[next].querySelector('.track i'); tr.style.animation = 'none'; void tr.offsetWidth; tr.style.animation = '';
+      schedule();
+    }
+    function schedule() { clearTimeout(hero.timer); if (!reduce) hero.timer = setTimeout(() => go((hero.idx + 1) % texs.length), DUR * 1000); }
+    btns.forEach(b => b.addEventListener('click', () => go(+b.dataset.i)));
+    btns.forEach(b => b.style.setProperty('--dur', DUR + 's'));
+    schedule();
+    $('#heroMedia').classList.add('gl-on');
+    return true;
+  }
+
+  /* ── LIVING PHOTO: makes a still feel alive (breathing, sway, light pulse, rays) ── */
+  const livings = [];
+  async function initLiving(el) {
+    if (!hasTHREE) return null;
+    const canvas = el.querySelector('canvas'); const renderer = makeRenderer(canvas); if (!renderer) return null;
+    let tex; try { tex = await loadTex(el.dataset.src); } catch (e) { return null; }
+    const d = el.dataset;
+    const U = {
+      uTex: { value: tex }, uImg: { value: new THREE.Vector2(tex.image.width, tex.image.height) },
+      uRes: { value: new THREE.Vector2(1, 1) }, uTime: { value: 0 }, uProg: { value: 0 },
+      uFocus: { value: new THREE.Vector2(+d.fx, +d.fy) }, uPos: { value: new THREE.Vector2(+d.px, +d.py) },
+      uMouse: { value: new THREE.Vector2() }, uMode: { value: +d.mode }, uReveal: { value: 1 }
+    };
+    const mat = new THREE.ShaderMaterial({ uniforms: U, vertexShader: VERT, fragmentShader: `
+      precision highp float; varying vec2 vUv;
+      uniform sampler2D uTex; uniform vec2 uImg,uRes,uFocus,uPos,uMouse; uniform float uTime,uProg,uMode,uReveal;
+      ${NOISE}
+      void main(){
+        float t=uTime;
+        // beat: worship ~ 72bpm, preaching slow cadence, praise slow swell
+        float bpm = uMode<.5 ? 1.2 : (uMode<1.5 ? .55 : .35);
+        float beat=pow(max(0.,sin(t*6.2831*bpm)),6.);
+        float zoom=1.04+uProg*.10+beat*(uMode<.5?.012:.004);
+        vec2 u=coverUV(vUv,uRes,uImg,uPos,zoom,uFocus);
+        vec2 asp=vec2(uImg.x/uImg.y,1.);
+        float dist=distance(u*asp,uFocus*asp);
+        float fall=smoothstep(.55,0.,dist);
+        // organic sway around the subject (hair, hands, breath)
+        vec2 sway=vec2(snoise(u*3.+vec2(t*.35,0.)),snoise(u*3.+vec2(0.,t*.3)+7.));
+        u+=sway*.0055*fall;
+        // lift: praise mode pulls pixels above the subject gently upward with scroll
+        if(uMode>1.5){ u.y+=smoothstep(uFocus.y,uFocus.y-.4,u.y)*fall*.012*sin(t*.8); }
+        // subtle parallax: background shifts more than subject
+        u+=uMouse*.008*(1.-fall);
+        u=clamp(u,.001,.999);
+        float ca=.0012+(1.-fall)*.0015;
+        vec3 c=vec3(texture2D(uTex,vec2(u.x+ca,1.-u.y)).r,texture2D(uTex,vec2(u.x,1.-u.y)).g,texture2D(uTex,vec2(u.x-ca,1.-u.y)).b);
+        float l=dot(c,vec3(.299,.587,.114));
+        c=grade(c, uMode<.5 ? .55 : .42);
+        // light pulse in the highlights (stage lights / sunlight)
+        c+=smoothstep(.55,1.,l)*beat*(uMode<.5?.32:.12)*vec3(1.,.84,.6);
+        // god rays from focus (praise) / soft key light (preach)
+        vec2 dv=(u-uFocus)*asp; float ang=atan(dv.y,dv.x);
+        float rays=pow(abs(sin(ang*11.+t*.12)),24.)+pow(abs(sin(ang*7.-t*.08)),30.);
+        float rf=smoothstep(.9,.0,length(dv));
+        float rayAmt = uMode>1.5 ? .35+uProg*.6 : (uMode>.5 ? .10 : .0);
+        c+=vec3(1.,.8,.52)*rays*rf*rayAmt;
+        c+=vec3(1.,.78,.5)*smoothstep(.35,0.,length(dv))*(uMode>1.5 ? .25+uProg*.5 : (uMode>.5?.10:.0));
+        // vignette
+        float vig=smoothstep(1.2,.3,length((vUv-.5)*vec2(1.2,1.)));
+        c*=mix(.6,1.,vig);
+        c*=uReveal;
+        gl_FragColor=vec4(c,1.);
+      }` });
+    const scene = new THREE.Scene(); scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+    const cam = new THREE.Camera();
+    const size = () => { const w = el.clientWidth, h = el.clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); U.uRes.value.set(w, h); };
+    size(); new ResizeObserver(size).observe(el);
+    const item = { el, U, renderer, scene, cam, visible: false, mouse: { x: 0, y: 0, tx: 0, ty: 0 } };
+    new IntersectionObserver(es => es.forEach(e => item.visible = e.isIntersecting), { rootMargin: '100px' }).observe(el);
+    el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); item.mouse.tx = (e.clientX - r.left) / r.width * 2 - 1; item.mouse.ty = (e.clientY - r.top) / r.height * 2 - 1; });
+    el.addEventListener('pointerleave', () => { item.mouse.tx = 0; item.mouse.ty = 0; });
+    el.classList.add('gl-on');
+    livings.push(item);
+    return item;
+  }
+  gsap.ticker.add(t => {
+    for (const it of livings) {
+      if (!it.visible) continue;
+      it.mouse.x += (it.mouse.tx - it.mouse.x) * .06; it.mouse.y += (it.mouse.ty - it.mouse.y) * .06;
+      it.U.uMouse.value.set(it.mouse.x, -it.mouse.y); it.U.uTime.value = reduce ? 0 : t;
+      it.renderer.render(it.scene, it.cam);
+    }
+  });
+  const livingFor = id => livings.find(l => l.el.id === id);
+  const setProg = (id, v) => { const l = livingFor(id); if (l) l.U.uProg.value = v; };
+
+  /* ── place sound rings on the singer's microphone ── */
+  function placeRings() {
+    const el = $('#singerLiving'), rings = $('#rings'); if (!el) return;
+    const W = el.clientWidth, H = el.clientHeight, iw = 1600, ih = 1067;
+    const sc = Math.max(W / iw, H / ih), nw = iw * sc, nh = ih * sc;
+    const ox = (W - nw) * +el.dataset.px, oy = (H - nh) * +el.dataset.py;
+    rings.style.left = (ox + .66 * nw) + 'px'; rings.style.top = (oy + .47 * nh) + 'px';
+  }
+  placeRings(); addEventListener('resize', placeRings);
+
+  /* equalizer + voice bars */
+  const eq = $('#eq');
+  for (let i = 0; i < 36; i++) { const b = document.createElement('i'); b.style.setProperty('--d', (.35 + Math.random() * .7).toFixed(2) + 's'); b.style.setProperty('--h', (35 + Math.random() * 65).toFixed(0) + '%'); b.style.animationDelay = (-Math.random()).toFixed(2) + 's'; eq.appendChild(b); }
+  const voice = $('#voice');
+  for (let i = 0; i < 22; i++) { const b = document.createElement('i'); b.style.setProperty('--d', (.3 + Math.random() * .8).toFixed(2) + 's'); b.style.setProperty('--h', (30 + Math.random() * 70).toFixed(0) + '%'); b.style.animationDelay = (-Math.random()).toFixed(2) + 's'; voice.appendChild(b); }
+
+  /* ── text splitting helpers ── */
+  function splitWords(el, cls, hl = []) {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(w => `<span class="${cls}${hl.some(h => w.replace(/[.,]/g, '').toLowerCase() === h) ? ' hl' : ''}">${w}</span>`).join(' ');
+    return $$('.' + cls, el);
+  }
+  const stWords = splitWords($('#statement'), 'w', ['savior.', 'savior', 'known']);
+  const lyricWords = $$('#lyrics .ln').flatMap(ln => splitWords(ln, 'wd'));
+  const qWords = splitWords($('#quote'), 'qw', ['storm', 'boat']);
+  const pw = $('#praiseWord'); pw.innerHTML = [...pw.textContent].map(c => `<span>${c}</span>`).join('');
+
+  /* ── INTRO sequence ── */
+  function intro() {
+    const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+    if (loader) {
+      tl.to('.loader-bar i', { scaleX: 1, duration: 1.1, ease: 'power2.inOut' })
+        .to('.loader-inner', { autoAlpha: 0, y: -20, duration: .5, ease: 'power2.in' })
+        .to(loader, { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.inOut' }, '-=.1')
+        .add(() => loader.remove());
+    }
+    tl.fromTo('.letterbox', { height: '14vh' }, { height: '0vh', duration: 2.2, ease: 'expo.inOut' }, loader ? '-=.9' : 0)
+      .from('.hero-media', { scale: 1.18, duration: 2.6, ease: 'expo.out' }, '<')
+      .from('#heroTitle .line > span', { yPercent: 115, rotate: 3, duration: 1.4, stagger: .12 }, '-=1.9')
+      .from('.hero-in', { y: 30, autoAlpha: 0, duration: 1.2, stagger: .1 }, '-=1.1')
+      .from('.nav', { y: -30, autoAlpha: 0, duration: 1 }, '-=1.2');
+    return tl;
+  }
+
+  /* ── scroll choreography ── */
+  function scenes() {
+    const mm = gsap.matchMedia();
+    mm.add({ motion: '(prefers-reduced-motion: no-preference)', desktop: '(min-width: 901px)' }, ctx => {
+      const { motion, desktop } = ctx.conditions;
+      if (!motion) { document.body.classList.add('no-pin'); stWords.forEach(w => w.classList.add('on')); lyricWords.forEach(w => w.classList.add('sung')); return; }
+
+      // hero parallax out
+      gsap.to('.hero-content', { yPercent: -18, autoAlpha: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+      // statement: word-by-word illumination
+      ScrollTrigger.create({ trigger: '#statement', start: 'top 80%', end: 'bottom 45%', scrub: true,
+        onUpdate: s => { const n = Math.round(s.progress * stWords.length); stWords.forEach((w, i) => w.classList.toggle('on', i < n)); } });
+      $$('[data-count]').forEach(el => {
+        const o = { v: 0 };
+        gsap.to(o, { v: +el.dataset.count, duration: 2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' }, onUpdate: () => el.textContent = Math.round(o.v) });
+      });
+
+      // WORSHIP: singer animates in, then sings the lyrics as you scroll
+      const wt = gsap.timeline({ scrollTrigger: { trigger: '#worship', start: 'top top', end: '+=160%', pin: '#worshipPin', scrub: 1,
+        onUpdate: s => setProg('singerLiving', s.progress) } });
+      wt.fromTo('#singerFrame', { clipPath: 'inset(30% 10% 30% 40% round 28px)', scale: .9, xPercent: 8 },
+                 { clipPath: 'inset(0% 0% 0% 0% round 28px)', scale: 1, xPercent: 0, duration: .35, ease: 'power3.out' })
+        .from('.worship-copy > *', { y: 50, autoAlpha: 0, stagger: .05, duration: .25 }, 0)
+        .fromTo('.beams', { rotate: -12, opacity: 0 }, { rotate: 8, opacity: .55, duration: 1, ease: 'none' }, 0)
+        .to({}, { duration: .65, onUpdate() {} }, .35);
+      ScrollTrigger.create({ trigger: '#worship', start: 'top top+=1', end: '+=160%', scrub: true,
+        onUpdate: s => { const p = gsap.utils.clamp(0, 1, (s.progress - .3) / .62); const n = Math.round(p * lyricWords.length); lyricWords.forEach((w, i) => w.classList.toggle('sung', i < n)); } });
+
+      // marquee driven by scroll
+      $$('.marquee-row').forEach(row => {
+        const dir = +row.dataset.dir;
+        gsap.fromTo(row, { xPercent: dir < 0 ? 0 : -50 }, { xPercent: dir < 0 ? -50 : 0, ease: 'none', scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: .6 } });
+      });
+
+      // MESSAGE: the preacher steps in, light opens from his face, words land one by one
+      const mt = gsap.timeline({ scrollTrigger: { trigger: '#message', start: 'top top', end: '+=200%', pin: '#messagePin', scrub: 1,
+        onUpdate: s => setProg('preachLiving', s.progress) } });
+      mt.fromTo('#preachStage', { clipPath: 'circle(6% at 72% 42%)' }, { clipPath: 'circle(140% at 72% 42%)', duration: .35, ease: 'power2.inOut' })
+        .fromTo('#preachLiving', { xPercent: 12, scale: 1.25 }, { xPercent: 0, scale: 1, duration: .45, ease: 'power3.out' }, 0)
+        .from('.message-copy .eyebrow', { y: 30, autoAlpha: 0, duration: .1 }, .25)
+        .fromTo(qWords, { autoAlpha: .08, y: 26, filter: 'blur(8px)' }, { autoAlpha: 1, y: 0, filter: 'blur(0px)', stagger: .025, duration: .12 }, .3)
+        .from('.preacher-meta, .message-copy .hero-ctas', { y: 30, autoAlpha: 0, stagger: .05, duration: .12 }, .72)
+        .from('.message .scene-label', { x: 40, autoAlpha: 0, duration: .1 }, .4);
+
+      gsap.from('.reveal-card', { y: 90, autoAlpha: 0, rotate: 2, stagger: .12, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: '.series-grid', start: 'top 85%' } });
+
+      // PRAISE: the worshipper rises into the light, hands up
+      const pt = gsap.timeline({ scrollTrigger: { trigger: '#praise', start: 'top top', end: '+=200%', pin: '#praisePin', scrub: 1,
+        onUpdate: s => setProg('praiseLiving', s.progress) } });
+      pt.fromTo('#praiseFigure', { yPercent: 55, scale: .7, clipPath: 'inset(60% 0% 0% 0% round 999px 999px 28px 28px)' },
+                  { yPercent: 0, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 999px 999px 28px 28px)', duration: .5, ease: 'power2.out' })
+        .fromTo('#sun', { scale: .2, autoAlpha: 0 }, { scale: 1.6, autoAlpha: 1, duration: .8, ease: 'power1.inOut' }, 0)
+        .fromTo('#praiseWord span', { yPercent: 120, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, stagger: { each: .02, from: 'center' }, duration: .3 }, .1)
+        .to('#praiseWord', { letterSpacing: '.06em', scale: 1.08, duration: .6, ease: 'none' }, .3)
+        .from('.praise-copy > *', { y: 50, autoAlpha: 0, stagger: .06, duration: .2 }, .45);
+
+      // MINISTRIES: tiles rise, images parallax
+      gsap.from('.tile', { y: 80, autoAlpha: 0, stagger: .08, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: '.bento', start: 'top 85%' } });
+      $$('.tile img, .visit-photo img').forEach(img => gsap.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } }));
+      $$('.min-head > *, .visit-grid > div:first-child > *').forEach(el => gsap.from(el, { y: 40, autoAlpha: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } }));
+
+      // WEEK: horizontal pinned reel
+      const track = $('#weekTrack');
+      const dist = () => Math.max(0, track.scrollWidth - innerWidth);
+      const ht = gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: '#week', start: 'top top', end: () => '+=' + dist(), pin: '#weekPin', scrub: 1, invalidateOnRefresh: true } });
+      $$('.day-img img').forEach(img => gsap.to(img, { scale: 1, xPercent: -6, ease: 'none', scrollTrigger: { trigger: img.closest('.day'), containerAnimation: ht, start: 'left right', end: 'right left', scrub: true } }));
+
+      // form card float in
+      gsap.from('#visitForm', { y: 80, autoAlpha: 0, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: '#visitForm', start: 'top 92%' } });
+      gsap.from('.foot-word', { yPercent: 40, autoAlpha: 0, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: '.footer', start: 'top 85%' } });
+    });
+  }
+
+  /* ── form ── */
+  $('#visitForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target, name = f.name.value.trim(), email = f.email.value.trim(), done = $('#formDone');
+    if (!name) { done.textContent = 'Please add your name so we know who to greet.'; f.name.focus(); return; }
+    if (!/^\S+@\S+\.\S+$/.test(email)) { done.textContent = 'Please add an email we can reach you at.'; f.email.focus(); return; }
+    done.textContent = `Thank you, ${name.split(' ')[0]}. We will look for you on ${f.service.value}.`;
+    gsap.fromTo(done, { y: 8, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .6 });
+  });
+
+  /* ── boot ── */
+  scenes();
+  const tl = intro();
+  initHero().then(ok => { if (!ok) $('#heroGL').remove(); });
+  Promise.all($$('.living').map(initLiving)).then(() => ScrollTrigger.refresh());
+  addEventListener('load', () => ScrollTrigger.refresh());
+  if (reduce) tl.progress(1);
+})();
+</script>
+</body>
+</html>
