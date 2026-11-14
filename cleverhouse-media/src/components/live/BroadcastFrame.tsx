@@ -2,7 +2,15 @@ import Image from "../ui/Img";
 import { useEffect, useState } from "react";
 
 /** A "live broadcast" frame: REC indicator, running timecode, lower-third. Decorative. */
-export function BroadcastFrame({ image, title = "Product launch · Live", subtitle = "Streaming to web, social & in-room" }: { image: string; title?: string; subtitle?: string }) {
+export function BroadcastFrame({
+  image,
+  title = "Product launch · Live",
+  subtitle = "Streaming to web, social & in-room",
+}: {
+  image: string;
+  title?: string;
+  subtitle?: string;
+}) {
   const [t, setT] = useState(0);
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -13,11 +21,26 @@ export function BroadcastFrame({ image, title = "Product launch · Live", subtit
   const tc = (n: number) => String(n).padStart(2, "0");
   const time = `00:${tc(Math.floor(t / 60) % 60)}:${tc(t % 60)}`;
   return (
-    <div className="relative aspect-16/10 overflow-hidden rounded-[28px] ring-1 ring-bone/15" aria-hidden="true">
-      <Image src={image} alt="" fill priority sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+    <div
+      className="relative aspect-16/10 overflow-hidden rounded-[28px] ring-1 ring-bone/15"
+      aria-hidden="true"
+    >
+      <Image
+        src={image}
+        alt=""
+        fill
+        priority
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        className="object-cover"
+      />
       <div className="absolute inset-0 bg-linear-to-t from-ink/80 via-transparent to-ink/30" />
       {/* corner brackets */}
-      {["left-4 top-4 border-l border-t", "right-4 top-4 border-r border-t", "left-4 bottom-4 border-l border-b", "right-4 bottom-4 border-r border-b"].map((c) => (
+      {[
+        "left-4 top-4 border-l border-t",
+        "right-4 top-4 border-r border-t",
+        "left-4 bottom-4 border-l border-b",
+        "right-4 bottom-4 border-r border-b",
+      ].map((c) => (
         <span key={c} className={`absolute h-6 w-6 border-bone/60 ${c}`} />
       ))}
       <div className="absolute left-7 top-7 flex items-center gap-2 rounded-full bg-ink/70 px-3 py-1.5 backdrop-blur-sm">
@@ -35,7 +58,11 @@ export function BroadcastFrame({ image, title = "Product launch · Live", subtit
         </div>
         <div className="hidden items-end gap-1 sm:flex">
           {[8, 14, 10, 18, 12, 16, 9].map((h, i) => (
-            <span key={i} className="w-1 animate-pulse rounded-full bg-verdigris-300" style={{ height: h, animationDelay: `${i * 0.12}s` }} />
+            <span
+              key={i}
+              className="w-1 animate-pulse rounded-full bg-verdigris-300"
+              style={{ height: h, animationDelay: `${i * 0.12}s` }}
+            />
           ))}
         </div>
       </div>

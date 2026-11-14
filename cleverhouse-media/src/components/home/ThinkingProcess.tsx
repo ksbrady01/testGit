@@ -67,7 +67,12 @@ export function ThinkingProcess() {
           pin: true,
           scrub: true,
           anticipatePin: 1,
-          snap: { snapTo: [0, 0.25, 0.5, 0.75, 1], duration: { min: 0.2, max: 0.6 }, delay: 0.05, ease: "power2.inOut" },
+          snap: {
+            snapTo: [0, 0.25, 0.5, 0.75, 1],
+            duration: { min: 0.2, max: 0.6 },
+            delay: 0.05,
+            ease: "power2.inOut",
+          },
           onUpdate: (self) => {
             progress.current.v = self.progress * 4;
             setStage(Math.min(4, Math.round(self.progress * 4)));
@@ -88,8 +93,12 @@ export function ThinkingProcess() {
     <section ref={root} className="relative bg-ink" aria-labelledby="thinking-heading">
       <div className="shell relative pb-16 pt-28 md:pb-20 md:pt-40">
         <p className="label label-dot text-copper-300">How we think</p>
-        <SplitHeading id="thinking-heading" className="mt-6 max-w-[16ch] font-display text-huge font-medium">
-          We don&apos;t just think outside the box. <span className="serif-accent text-copper-300">We rethink the box.</span>
+        <SplitHeading
+          id="thinking-heading"
+          className="mt-6 max-w-[16ch] font-display text-huge font-medium"
+        >
+          We don&apos;t just think outside the box.{" "}
+          <span className="serif-accent text-copper-300">We rethink the box.</span>
         </SplitHeading>
       </div>
 
@@ -100,7 +109,11 @@ export function ThinkingProcess() {
           {/* Stage index */}
           <ol className="relative col-span-3 space-y-3 pl-6" aria-label="Our process">
             <span className="absolute left-0 top-0 h-full w-px bg-bone/10" aria-hidden="true" />
-            <span data-tp-bar className="absolute left-0 top-0 h-full w-px origin-top scale-y-0 bg-copper-400" aria-hidden="true" />
+            <span
+              data-tp-bar
+              className="absolute left-0 top-0 h-full w-px origin-top scale-y-0 bg-copper-400"
+              aria-hidden="true"
+            />
             {stages.map((s, i) => (
               <li key={s.word} aria-current={stage === i ? "step" : undefined}>
                 <span
@@ -110,7 +123,16 @@ export function ThinkingProcess() {
                   )}
                 >
                   {s.word}
-                  {i < 4 && <span className={clsx("ml-3 text-copper-400 transition-opacity", stage === i ? "opacity-100" : "opacity-0")}>→</span>}
+                  {i < 4 && (
+                    <span
+                      className={clsx(
+                        "ml-3 text-copper-400 transition-opacity",
+                        stage === i ? "opacity-100" : "opacity-0",
+                      )}
+                    >
+                      →
+                    </span>
+                  )}
                 </span>
               </li>
             ))}
@@ -125,7 +147,16 @@ export function ThinkingProcess() {
                   className="absolute inset-0 transition-[clip-path] duration-1100 ease-in-out-quart"
                   style={{ clipPath: stage >= i ? "inset(0% 0% 0% 0%)" : "inset(100% 0% 0% 0%)" }}
                 >
-                  <Image src={s.image} alt={s.alt} fill sizes="42vw" className={clsx("object-cover transition-transform duration-1600 ease-out-expo", stage === i ? "scale-100" : "scale-110")} />
+                  <Image
+                    src={s.image}
+                    alt={s.alt}
+                    fill
+                    sizes="42vw"
+                    className={clsx(
+                      "object-cover transition-transform duration-1600 ease-out-expo",
+                      stage === i ? "scale-100" : "scale-110",
+                    )}
+                  />
                   <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/50 to-ink/30" />
                 </div>
               ))}
@@ -142,7 +173,14 @@ export function ThinkingProcess() {
             {stages.map((s, i) => (
               <div
                 key={s.word}
-                className={clsx("absolute inset-0 flex flex-col justify-center transition-all duration-700 ease-out-expo", stage === i ? "translate-y-0 opacity-100" : stage > i ? "-translate-y-8 opacity-0" : "translate-y-8 opacity-0")}
+                className={clsx(
+                  "absolute inset-0 flex flex-col justify-center transition-all duration-700 ease-out-expo",
+                  stage === i
+                    ? "translate-y-0 opacity-100"
+                    : stage > i
+                      ? "-translate-y-8 opacity-0"
+                      : "translate-y-8 opacity-0",
+                )}
                 aria-hidden={stage !== i}
               >
                 <p className="label text-copper-300">Stage 0{i + 1}</p>
@@ -161,7 +199,9 @@ export function ThinkingProcess() {
             <div className="relative aspect-4/3 overflow-hidden rounded-3xl">
               <Image src={s.image} alt={s.alt} fill sizes="100vw" className="object-cover" />
               <div className="absolute inset-0 bg-linear-to-t from-ink/80 to-transparent" />
-              <span className="absolute bottom-4 left-5 font-display text-5xl font-medium uppercase tracking-[-0.03em]">{s.word}</span>
+              <span className="absolute bottom-4 left-5 font-display text-5xl font-medium uppercase tracking-[-0.03em]">
+                {s.word}
+              </span>
             </div>
             <p className="label mt-6 text-copper-300">Stage 0{i + 1}</p>
             <h3 className="mt-3 font-display text-3xl font-medium tracking-tight">{s.title}</h3>

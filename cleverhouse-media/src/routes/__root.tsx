@@ -1,6 +1,15 @@
-import type { ReactNode } from "react";
-import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
+import { useEffect, type ReactNode } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  HeadContent,
+  Outlet,
+  Scripts,
+  createRootRouteWithContext,
+  useRouter,
+} from "@tanstack/react-router";
 import appCss from "../styles.css?url";
+import { reportVibeError } from "../lib/vibe-error-reporting";
+import Link from "../components/ui/Link";
 import { Nav } from "../components/layout/Nav";
 import { Footer } from "../components/layout/Footer";
 import { NotFound } from "../components/layout/NotFound";
@@ -30,13 +39,57 @@ const orgJsonLd = {
     { "@type": "State", name: "Texas" },
     { "@type": "Country", name: "United States" },
   ],
-  knowsAbout: ["Web design", "Web development", "Search engine optimization", "Digital marketing", "Branding", "Social media marketing", "Marketing automation", "Analytics"],
+  knowsAbout: [
+    "Web design",
+    "Web development",
+    "Search engine optimization",
+    "Digital marketing",
+    "Branding",
+    "Social media marketing",
+    "Marketing automation",
+    "Analytics",
+  ],
 };
 
 const FONTS =
   "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300..800&family=Space+Grotesk:wght@300..700&display=swap";
 
-export const Route = createRootRoute({
+function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+  console.error(error);
+  const router = useRouter();
+  useEffect(() => {
+    reportVibeError(error, { boundary: "tanstack_root_error_component" });
+  }, [error]);
+
+  return (
+    <section className="relative flex min-h-[80svh] items-center bg-ink">
+      <div className="shell">
+        <p className="label label-dot text-copper-300">Something went wrong</p>
+        <h1 className="mt-6 font-display text-big font-medium">This page didn’t load.</h1>
+        <p className="mt-5 max-w-[52ch] text-lead text-bone/70">
+          Try again, or head back to the homepage.
+        </p>
+        <div className="mt-10 flex flex-wrap gap-4">
+          <button
+            type="button"
+            className="btn btn-copper"
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
+          >
+            Try again
+          </button>
+          <Link href="/" className="btn btn-ghost">
+            Go home
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -57,9 +110,20 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootDocument,
-  component: () => <Outlet />,
+  component: RootComponent,
   notFoundComponent: NotFound,
+  errorComponent: ErrorComponent,
 });
+
+function RootComponent() {
+  const { queryClient } = Route.useRouteContext();
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* Required: nested routes render here. */}
+      <Outlet />
+    </QueryClientProvider>
+  );
+}
 
 function RootDocument({ children }: { children: ReactNode }) {
   return (
@@ -67,7 +131,10 @@ function RootDocument({ children }: { children: ReactNode }) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: introGate }} />
         <HeadContent />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
       </head>
       <body>
         <SmoothScroll>

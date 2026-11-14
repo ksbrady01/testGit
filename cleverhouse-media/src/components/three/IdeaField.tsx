@@ -59,7 +59,8 @@ function Thoughts({ count, intensity }: { count: number; intensity: Intensity })
       const s = speeds[i]!;
       const i3 = i * 3;
       arr[i3] = base[i3]! + Math.sin(t * 0.3 * s + i) * 0.12;
-      arr[i3 + 1] = base[i3 + 1]! + ((t * 0.08 * s + i * 0.37) % 2.4) * 0.35 - 0.4 + intensity.scroll * 1.6 * s;
+      arr[i3 + 1] =
+        base[i3 + 1]! + ((t * 0.08 * s + i * 0.37) % 2.4) * 0.35 - 0.4 + intensity.scroll * 1.6 * s;
       arr[i3 + 2] = base[i3 + 2]! + Math.cos(t * 0.25 * s + i) * 0.12;
     }
     attr.needsUpdate = true;
@@ -126,12 +127,45 @@ function Form({
 }
 
 /** A small "interface" panel — wireframe website fragment. */
-function Panel({ position, rotation, intensity }: { position: [number, number, number]; rotation: [number, number, number]; intensity: Intensity }) {
+function Panel({
+  position,
+  rotation,
+  intensity,
+}: {
+  position: [number, number, number];
+  rotation: [number, number, number];
+  intensity: Intensity;
+}) {
   const ref = useRef<THREE.Group>(null);
   const geo = useMemo(() => {
     const pts: number[] = [];
     const rect = (x: number, y: number, w: number, h: number) => {
-      pts.push(x, y, 0, x + w, y, 0, x + w, y, 0, x + w, y - h, 0, x + w, y - h, 0, x, y - h, 0, x, y - h, 0, x, y, 0);
+      pts.push(
+        x,
+        y,
+        0,
+        x + w,
+        y,
+        0,
+        x + w,
+        y,
+        0,
+        x + w,
+        y - h,
+        0,
+        x + w,
+        y - h,
+        0,
+        x,
+        y - h,
+        0,
+        x,
+        y - h,
+        0,
+        x,
+        y,
+        0,
+      );
     };
     rect(-0.8, 0.5, 1.6, 1);
     pts.push(-0.8, 0.38, 0, 0.8, 0.38, 0); // browser bar
@@ -149,7 +183,8 @@ function Panel({ position, rotation, intensity }: { position: [number, number, n
     g.position.y = position[1] + Math.sin(t * 0.6) * 0.08 + intensity.scroll * 1.2;
     g.rotation.y = rotation[1] + Math.sin(t * 0.4) * 0.12;
     const appear = THREE.MathUtils.clamp((intensity.v - 0.4) / 0.6, 0, 1);
-    ((g.children[0] as THREE.LineSegments).material as THREE.LineBasicMaterial).opacity = appear * 0.7 * (1 - intensity.scroll);
+    ((g.children[0] as THREE.LineSegments).material as THREE.LineBasicMaterial).opacity =
+      appear * 0.7 * (1 - intensity.scroll);
   });
   return (
     <group ref={ref} position={position} rotation={rotation}>
@@ -161,7 +196,13 @@ function Panel({ position, rotation, intensity }: { position: [number, number, n
 }
 
 /** Connected idea nodes. */
-function Network({ intensity, offset }: { intensity: Intensity; offset: [number, number, number] }) {
+function Network({
+  intensity,
+  offset,
+}: {
+  intensity: Intensity;
+  offset: [number, number, number];
+}) {
   const group = useRef<THREE.Group>(null);
   const lineMat = useRef<THREE.LineBasicMaterial>(null);
   const dotMat = useRef<THREE.MeshBasicMaterial>(null);
@@ -206,7 +247,12 @@ function Network({ intensity, offset }: { intensity: Intensity; offset: [number,
       {nodes.map((p, i) => (
         <mesh key={i} position={p}>
           <sphereGeometry args={[i % 3 === 0 ? 0.05 : 0.032, 12, 12]} />
-          <meshBasicMaterial ref={i === 0 ? dotMat : undefined} color={i === 4 ? "#9BD8CB" : "#EDCDAE"} transparent opacity={0} />
+          <meshBasicMaterial
+            {...(i === 0 ? { ref: dotMat } : {})}
+            color={i === 4 ? "#9BD8CB" : "#EDCDAE"}
+            transparent
+            opacity={0}
+          />
         </mesh>
       ))}
     </group>
@@ -239,7 +285,13 @@ function SyncNodeOpacity() {
   return null;
 }
 
-export default function IdeaField({ intensity, className }: { intensity: Intensity; className?: string }) {
+export default function IdeaField({
+  intensity,
+  className,
+}: {
+  intensity: Intensity;
+  className?: string;
+}) {
   const [tier, setTier] = useState<"low" | "mid" | "high">("low");
   const [wide, setWide] = useState(true);
   const [visible, setVisible] = useState(true);
@@ -295,11 +347,42 @@ export default function IdeaField({ intensity, className }: { intensity: Intensi
           <Thoughts count={count} intensity={intensity} />
         </group>
         <Network intensity={intensity} offset={[cx, cy - 0.6, -0.5]} />
-        <Form geometry={geos.ico} position={[cx - 2.9, cy + 1.1, 0.4]} intensity={intensity} delay={0.3} />
-        <Form geometry={geos.oct} position={[cx + 2.1, cy + 1.6, -0.6]} intensity={intensity} speed={1.4} delay={0.45} color="#9BD8CB" />
-        <Form geometry={geos.torus} position={[cx + 2.4, cy - 1.2, 0.5]} intensity={intensity} speed={0.8} delay={0.5} />
-        <Form geometry={geos.box} position={[cx - 2.4, cy - 1.5, -0.2]} intensity={intensity} speed={0.6} delay={0.6} scale={0.9} />
-        {wide && aspect > 1.5 && <Panel position={[cx + 2.3, cy + 0.3, -1]} rotation={[0, -0.5, 0]} intensity={intensity} />}
+        <Form
+          geometry={geos.ico}
+          position={[cx - 2.9, cy + 1.1, 0.4]}
+          intensity={intensity}
+          delay={0.3}
+        />
+        <Form
+          geometry={geos.oct}
+          position={[cx + 2.1, cy + 1.6, -0.6]}
+          intensity={intensity}
+          speed={1.4}
+          delay={0.45}
+          color="#9BD8CB"
+        />
+        <Form
+          geometry={geos.torus}
+          position={[cx + 2.4, cy - 1.2, 0.5]}
+          intensity={intensity}
+          speed={0.8}
+          delay={0.5}
+        />
+        <Form
+          geometry={geos.box}
+          position={[cx - 2.4, cy - 1.5, -0.2]}
+          intensity={intensity}
+          speed={0.6}
+          delay={0.6}
+          scale={0.9}
+        />
+        {wide && aspect > 1.5 && (
+          <Panel
+            position={[cx + 2.3, cy + 0.3, -1]}
+            rotation={[0, -0.5, 0]}
+            intensity={intensity}
+          />
+        )}
         <SyncNodeOpacity />
       </Canvas>
     </div>

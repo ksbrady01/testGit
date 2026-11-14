@@ -38,7 +38,7 @@ export function Cursor() {
       const t = e.target as HTMLElement;
       const labeled = t.closest<HTMLElement>("[data-cursor]");
       const interactive = t.closest("a, button, [role='button'], label, summary, select");
-      const text = labeled?.dataset.cursor || "";
+      const text = labeled?.dataset["cursor"] || "";
       setLabel(text);
       gsap.to(ring.current, {
         scale: text ? 2.6 : interactive ? 1.6 : 1,
@@ -72,14 +72,23 @@ export function Cursor() {
   }, []);
 
   return (
-    <div className="cursor-root" aria-hidden="true" style={{ display: enabled ? undefined : "none" }}>
+    <div
+      className="cursor-root"
+      aria-hidden="true"
+      style={{ display: enabled ? undefined : "none" }}
+    >
       <div
         ref={ring}
         className="invisible absolute left-0 top-0 -ml-5 -mt-5 grid h-10 w-10 place-items-center rounded-full border border-copper-300/60 opacity-0"
       >
-        <span className="font-mono text-[0.32rem] uppercase tracking-[0.2em] text-ink">{label}</span>
+        <span className="font-mono text-[0.32rem] uppercase tracking-[0.2em] text-ink">
+          {label}
+        </span>
       </div>
-      <div ref={dot} className="invisible absolute left-0 top-0 -ml-[3px] -mt-[3px] h-[6px] w-[6px] rounded-full bg-copper-300 opacity-0" />
+      <div
+        ref={dot}
+        className="invisible absolute left-0 top-0 -ml-[3px] -mt-[3px] h-[6px] w-[6px] rounded-full bg-copper-300 opacity-0"
+      />
     </div>
   );
 }

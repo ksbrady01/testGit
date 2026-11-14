@@ -5,12 +5,20 @@ import Link from "../../components/ui/Link";
 import { ArrowUpRight, Info } from "lucide-react";
 import { getProject, projects } from "../../content/projects";
 import { Parallax, Reveal, SplitHeading, ScrollZoom } from "../../components/motion/Motion";
-import { BrowserFrame, MockMobile, MockSite, PhoneFrame, SearchConcept, SocialPost } from "../../components/work/Mockups";
+import {
+  BrowserFrame,
+  MockMobile,
+  MockSite,
+  PhoneFrame,
+  SearchConcept,
+  SocialPost,
+} from "../../components/work/Mockups";
 import { CtaBand, JsonLd, Tags } from "../../components/sections/Blocks";
 import { site } from "../../content/site";
 import clsx from "../../lib/clsx";
 
-const fontFor = (s: string) => (s === "serif" ? "font-serif" : s === "grotesk" ? "font-display" : "font-sans");
+const fontFor = (s: string) =>
+  s === "serif" ? "font-serif" : s === "grotesk" ? "font-display" : "font-sans";
 
 function ProjectPage() {
   const { slug } = Route.useParams();
@@ -18,7 +26,10 @@ function ProjectPage() {
   if (!p) return null;
   const b = p.brand;
   const idx = projects.findIndex((x) => x.slug === p.slug);
-  const related = [projects[(idx + 1) % projects.length], projects[(idx + 2) % projects.length]].filter((r) => r !== undefined);
+  const related = [
+    projects[(idx + 1) % projects.length],
+    projects[(idx + 2) % projects.length],
+  ].filter((r) => r !== undefined);
 
   return (
     <>
@@ -40,22 +51,39 @@ function ProjectPage() {
           <Image src={p.hero} alt="" fill priority sizes="100vw" className="object-cover" />
         </Parallax>
         <div className="absolute inset-0 -z-10 bg-linear-to-t from-ink via-ink/55 to-ink/25" />
-        <div className="absolute -z-10 h-[50vh] w-[50vw] rounded-full blur-[140px]" style={{ background: p.accent, opacity: 0.22, left: "-10%", bottom: "-10%" }} aria-hidden="true" />
+        <div
+          className="absolute -z-10 h-[50vh] w-[50vw] rounded-full blur-[140px]"
+          style={{ background: p.accent, opacity: 0.22, left: "-10%", bottom: "-10%" }}
+          aria-hidden="true"
+        />
         <div className="shell">
           <Reveal kind="fade" className="flex flex-wrap items-center gap-3">
             <Link href="/work" className="label text-bone/60 link-line">
               ← All work
             </Link>
-            <span className="concept-badge">{p.kind === "concept" ? "Concept Project · Design Demonstration" : "Client Project"}</span>
+            <span className="concept-badge">
+              {p.kind === "concept" ? "Concept Project · Design Demonstration" : "Client Project"}
+            </span>
           </Reveal>
-          <SplitHeading as="h1" onLoad delay={0.45} by="chars" className="mt-8 font-display text-mega font-medium">
+          <SplitHeading
+            as="h1"
+            onLoad
+            delay={0.45}
+            by="chars"
+            className="mt-8 font-display text-mega font-medium"
+          >
             {p.name}
           </SplitHeading>
           <Reveal kind="up" delay={0.6}>
             <p className="mt-6 max-w-[32ch] font-display text-large text-bone/85">{p.tagline}</p>
           </Reveal>
           {/* 2. Company & industry */}
-          <Reveal kind="up" delay={0.75} as="dl" className="mt-14 grid grid-cols-2 gap-6 border-t border-bone/15 pt-6 md:grid-cols-4">
+          <Reveal
+            kind="up"
+            delay={0.75}
+            as="dl"
+            className="mt-14 grid grid-cols-2 gap-6 border-t border-bone/15 pt-6 md:grid-cols-4"
+          >
             {[
               ["Company", p.name],
               ["Industry", p.industry],
@@ -77,7 +105,9 @@ function ProjectPage() {
         <div className="shell relative grid gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
             <p className="label label-dot text-copper-700">Overview</p>
-            <SplitHeading className="mt-6 font-display text-big font-medium text-ink">{p.summary}</SplitHeading>
+            <SplitHeading className="mt-6 font-display text-big font-medium text-ink">
+              {p.summary}
+            </SplitHeading>
           </div>
           <div className="md:col-span-6 md:col-start-7 md:pt-16">
             <p className="label label-dot text-copper-700">The challenge</p>
@@ -86,7 +116,10 @@ function ProjectPage() {
             </Reveal>
             <div className="mt-10 flex items-start gap-3 rounded-2xl bg-bone p-5 text-sm text-ink/65 ring-1 ring-ink/10">
               <Info size={18} className="mt-0.5 shrink-0 text-copper-700" aria-hidden="true" />
-              <p>This is a concept project created to demonstrate our approach. {p.name} is a fictional business; no client endorsement or results are implied.</p>
+              <p>
+                This is a concept project created to demonstrate our approach. {p.name} is a
+                fictional business; no client endorsement or results are implied.
+              </p>
             </div>
           </div>
         </div>
@@ -98,16 +131,24 @@ function ProjectPage() {
           <div className="grid gap-8 md:grid-cols-12">
             <p className="label label-dot text-copper-300 md:col-span-3">Our approach</p>
             <SplitHeading className="font-display text-huge font-medium md:col-span-9">
-              Creative and strategic, <span className="serif-accent text-copper-300">in equal measure.</span>
+              Creative and strategic,{" "}
+              <span className="serif-accent text-copper-300">in equal measure.</span>
             </SplitHeading>
           </div>
-          <Reveal kind="up" stagger={0.1} as="ol" className="mt-16 grid gap-px overflow-hidden rounded-[28px] bg-bone/10 md:grid-cols-2">
+          <Reveal
+            kind="up"
+            stagger={0.1}
+            as="ol"
+            className="mt-16 grid gap-px overflow-hidden rounded-[28px] bg-bone/10 md:grid-cols-2"
+          >
             {p.approach.map((a, i) => (
               <li key={a.title} className="bg-ink p-8 md:p-12">
                 <span className="font-mono text-sm" style={{ color: b.accent }}>
                   0{i + 1}
                 </span>
-                <h3 className="mt-8 font-display text-3xl font-medium tracking-tight md:text-4xl">{a.title}</h3>
+                <h3 className="mt-8 font-display text-3xl font-medium tracking-tight md:text-4xl">
+                  {a.title}
+                </h3>
                 <p className="mt-4 max-w-[46ch] text-lg text-bone/70">{a.body}</p>
               </li>
             ))}
@@ -123,44 +164,100 @@ function ProjectPage() {
       </section>
 
       {/* 7. Brand visuals */}
-      <section className="relative overflow-hidden py-24 md:py-36" style={{ background: b.bg, color: b.fg }}>
+      <section
+        className="relative overflow-hidden py-24 md:py-36"
+        style={{ background: b.bg, color: b.fg }}
+      >
         <div className="shell">
           <p className="label" style={{ color: b.accent }}>
             Brand system
           </p>
           <div className="mt-10 grid gap-4 md:grid-cols-12">
-            <Reveal kind="scale" className="flex min-h-[340px] flex-col justify-between rounded-[28px] p-8 md:col-span-7 md:p-12" style={{ background: `${b.fg}0d`, boxShadow: `inset 0 0 0 1px ${b.fg}1a` }}>
+            <Reveal
+              kind="scale"
+              className="flex min-h-[340px] flex-col justify-between rounded-[28px] p-8 md:col-span-7 md:p-12"
+              style={{ background: `${b.fg}0d`, boxShadow: `inset 0 0 0 1px ${b.fg}1a` }}
+            >
               <span className="label opacity-60">Wordmark</span>
-              <p className={clsx(fontFor(b.fontStyle), "text-[clamp(3rem,8vw,8rem)] font-semibold leading-[0.9] tracking-[-0.04em]")}>{b.wordmark}</p>
-              <span className="text-sm opacity-60">{p.industry} · {p.location}</span>
+              <p
+                className={clsx(
+                  fontFor(b.fontStyle),
+                  "text-[clamp(3rem,8vw,8rem)] font-semibold leading-[0.9] tracking-[-0.04em]",
+                )}
+              >
+                {b.wordmark}
+              </p>
+              <span className="text-sm opacity-60">
+                {p.industry} · {p.location}
+              </span>
             </Reveal>
-            <Reveal kind="scale" delay={0.1} className="grid place-items-center rounded-[28px] p-8 md:col-span-5" style={{ background: b.accent, color: b.bg }}>
-              <span className={clsx(fontFor(b.fontStyle), "text-[clamp(4rem,10vw,9rem)] font-bold tracking-[-0.04em]")}>{b.monogram}</span>
+            <Reveal
+              kind="scale"
+              delay={0.1}
+              className="grid place-items-center rounded-[28px] p-8 md:col-span-5"
+              style={{ background: b.accent, color: b.bg }}
+            >
+              <span
+                className={clsx(
+                  fontFor(b.fontStyle),
+                  "text-[clamp(4rem,10vw,9rem)] font-bold tracking-[-0.04em]",
+                )}
+              >
+                {b.monogram}
+              </span>
             </Reveal>
             <Reveal kind="up" stagger={0.08} className="grid grid-cols-4 gap-4 md:col-span-7">
               {[b.bg, b.fg, b.accent, b.muted].map((c) => (
-                <div key={c} className="overflow-hidden rounded-2xl" style={{ boxShadow: `inset 0 0 0 1px ${b.fg}22` }}>
+                <div
+                  key={c}
+                  className="overflow-hidden rounded-2xl"
+                  style={{ boxShadow: `inset 0 0 0 1px ${b.fg}22` }}
+                >
                   <div className="aspect-square" style={{ background: c }} />
                   <p className="px-3 py-2 font-mono text-[0.65rem] uppercase opacity-70">{c}</p>
                 </div>
               ))}
             </Reveal>
-            <Reveal kind="up" delay={0.1} className="rounded-[28px] p-8 md:col-span-5" style={{ background: `${b.fg}0d` }}>
+            <Reveal
+              kind="up"
+              delay={0.1}
+              className="rounded-[28px] p-8 md:col-span-5"
+              style={{ background: `${b.fg}0d` }}
+            >
               <span className="label opacity-60">Typography</span>
-              <p className={clsx(fontFor(b.fontStyle), "mt-6 text-5xl font-semibold tracking-tight")}>Aa</p>
-              <p className={clsx(fontFor(b.fontStyle), "mt-3 text-2xl leading-tight")}>{b.heroLine}</p>
+              <p
+                className={clsx(fontFor(b.fontStyle), "mt-6 text-5xl font-semibold tracking-tight")}
+              >
+                Aa
+              </p>
+              <p className={clsx(fontFor(b.fontStyle), "mt-3 text-2xl leading-tight")}>
+                {b.heroLine}
+              </p>
               <p className="mt-3 text-sm opacity-70">{b.heroSub}</p>
             </Reveal>
           </div>
           {/* Photography direction */}
           <div className="mt-4 grid gap-4 md:grid-cols-3">
             {p.gallery.map((g, i) => (
-              <Reveal key={g} kind="image" delay={i * 0.1} className="relative aspect-4/5 overflow-hidden rounded-[28px]">
-                <Image src={g} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              <Reveal
+                key={g}
+                kind="image"
+                delay={i * 0.1}
+                className="relative aspect-4/5 overflow-hidden rounded-[28px]"
+              >
+                <Image
+                  src={g}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
               </Reveal>
             ))}
           </div>
-          <p className="mt-4 text-sm opacity-60">Photography direction references. Final photography would be produced with the client.</p>
+          <p className="mt-4 text-sm opacity-60">
+            Photography direction references. Final photography would be produced with the client.
+          </p>
         </div>
       </section>
 
@@ -170,10 +267,15 @@ function ProjectPage() {
         <div className="shell relative">
           <div className="grid gap-8 md:grid-cols-12">
             <p className="label label-dot text-copper-300 md:col-span-3">Website experience</p>
-            <SplitHeading className="font-display text-huge font-medium md:col-span-9">Desktop to mobile, designed as one.</SplitHeading>
+            <SplitHeading className="font-display text-huge font-medium md:col-span-9">
+              Desktop to mobile, designed as one.
+            </SplitHeading>
           </div>
           <Reveal kind="up" className="relative mt-16 md:mt-24">
-            <BrowserFrame url={`${p.slug.replace(/-/g, "")}.com`} className="mx-auto max-w-[1200px]">
+            <BrowserFrame
+              url={`${p.slug.replace(/-/g, "")}.com`}
+              className="mx-auto max-w-[1200px]"
+            >
               <MockSite project={p} />
             </BrowserFrame>
           </Reveal>
@@ -197,11 +299,16 @@ function ProjectPage() {
           <div className="grid gap-8 md:grid-cols-12">
             <p className="label label-dot text-copper-700 md:col-span-3">Social & campaigns</p>
             <SplitHeading className="font-display text-huge font-medium text-ink md:col-span-9">
-              Consistent everywhere <span className="serif-accent text-copper-600">people scroll.</span>
+              Consistent everywhere{" "}
+              <span className="serif-accent text-copper-600">people scroll.</span>
             </SplitHeading>
           </div>
           <div className="mt-16 grid items-start gap-6 md:grid-cols-12">
-            <Reveal kind="up" stagger={0.12} className="grid grid-cols-1 gap-6 sm:grid-cols-3 md:col-span-8">
+            <Reveal
+              kind="up"
+              stagger={0.12}
+              className="grid grid-cols-1 gap-6 sm:grid-cols-3 md:col-span-8"
+            >
               {p.social.map((s, i) => (
                 <div key={i} className={i === 1 ? "sm:mt-16" : ""}>
                   <SocialPost project={p} post={s} />
@@ -221,10 +328,16 @@ function ProjectPage() {
           <div className="md:col-span-4">
             <p className="label label-dot text-copper-300">Outcomes we design for</p>
             <p className="mt-6 text-bone/60">
-              Because this is a concept project, there are no results to report. Here’s what we would measure from day one — and report on transparently.
+              Because this is a concept project, there are no results to report. Here’s what we
+              would measure from day one — and report on transparently.
             </p>
           </div>
-          <Reveal kind="up" stagger={0.1} as="ul" className="grid gap-4 md:col-span-8 md:grid-cols-3">
+          <Reveal
+            kind="up"
+            stagger={0.1}
+            as="ul"
+            className="grid gap-4 md:col-span-8 md:grid-cols-3"
+          >
             {p.outcomes.map((o) => (
               <li key={o.title} className="rounded-[24px] bg-bone/5 p-7 ring-1 ring-bone/10">
                 <span className="block h-1 w-10 rounded-full" style={{ background: b.accent }} />
@@ -235,7 +348,10 @@ function ProjectPage() {
           </Reveal>
         </div>
         <div className="shell mt-16">
-          <Link href={`/case-studies/${p.slug}`} className="group inline-flex items-center gap-3 font-display text-lg">
+          <Link
+            href={`/case-studies/${p.slug}`}
+            className="group inline-flex items-center gap-3 font-display text-lg"
+          >
             <span className="link-line">Read the thinking behind this project</span>
             <span className="grid h-10 w-10 place-items-center rounded-full bg-copper-300 text-ink transition-transform duration-500 group-hover:rotate-45">
               <ArrowUpRight size={18} />
@@ -250,16 +366,29 @@ function ProjectPage() {
           <p className="label label-dot text-copper-300">More work</p>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {related.map((r) => (
-              <Link key={r.slug} href={`/work/${r.slug}`} className="group block" data-cursor="View">
+              <Link
+                key={r.slug}
+                href={`/work/${r.slug}`}
+                className="group block"
+                data-cursor="View"
+              >
                 <ScrollZoom className="relative aspect-16/10 rounded-[28px]" from={1.12}>
                   <div className="relative h-full w-full">
-                    <Image src={r.hero} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-105" />
+                    <Image
+                      src={r.hero}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-105"
+                    />
                   </div>
                 </ScrollZoom>
                 <div className="mt-5 flex items-baseline justify-between gap-4">
                   <div>
                     <p className="label text-bone/50">{r.industry}</p>
-                    <h3 className="mt-2 font-display text-3xl font-medium tracking-tight group-hover:text-copper-200">{r.name}</h3>
+                    <h3 className="mt-2 font-display text-3xl font-medium tracking-tight group-hover:text-copper-200">
+                      {r.name}
+                    </h3>
                   </div>
                   <span className="concept-badge">Concept</span>
                 </div>
@@ -274,7 +403,8 @@ function ProjectPage() {
         light
         title={
           <>
-            Want something like this for your <span className="serif-accent text-copper-600">{p.industry.toLowerCase()}</span> brand?
+            Want something like this for your{" "}
+            <span className="serif-accent text-copper-600">{p.industry.toLowerCase()}</span> brand?
           </>
         }
         body="Let’s talk about your goals. We’ll show you how strategy, design, and technology can work together for your business."
@@ -289,8 +419,15 @@ export const Route = createFileRoute("/work/$slug")({
   loader: ({ params }) => {
     const x = getProject(params.slug);
     if (!x) throw notFound();
-    return { meta: { title: `${x.name} — ${x.kind === "concept" ? "Concept Project" : "Case Study"}`, description: x.summary, openGraph: { images: [{ url: `${x.hero}?w=1200&q=70&auto=format` }] } } };
+    return {
+      meta: {
+        title: `${x.name} — ${x.kind === "concept" ? "Concept Project" : "Case Study"}`,
+        description: x.summary,
+        openGraph: { images: [{ url: `${x.hero}?w=1200&q=70&auto=format` }] },
+      },
+    };
   },
-  head: ({ loaderData, params }) => (loaderData ? seo(loaderData.meta, `/work/${params.slug}`) : {}),
+  head: ({ loaderData, params }) =>
+    loaderData ? seo(loaderData.meta, `/work/${params.slug}`) : {},
   component: ProjectPage,
 });

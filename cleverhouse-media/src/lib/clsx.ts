@@ -1,4 +1,5 @@
-type ClassValue = string | number | false | null | undefined | ClassValue[] | Record<string, boolean | undefined>;
+type ClassValue =
+  string | number | false | null | undefined | ClassValue[] | Record<string, boolean | undefined>;
 
 export default function clsx(...values: ClassValue[]): string {
   const out: string[] = [];

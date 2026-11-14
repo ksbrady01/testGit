@@ -1,24 +1,25 @@
 /** Shared validation for every inquiry form (client + server). */
 
-export type InquiryType = "contact" | "seo-evaluation" | "website-evaluation" | "careers" | "live-concepts";
+export type InquiryType =
+  "contact" | "seo-evaluation" | "website-evaluation" | "careers" | "live-concepts";
 
 export type InquiryPayload = {
   type: InquiryType;
   name: string;
   email: string;
-  company?: string;
-  website?: string;
-  phone?: string;
-  service?: string;
-  budget?: string;
-  timeline?: string;
-  message?: string;
-  keywords?: string;
-  location?: string;
-  goals?: string[];
+  company?: string | undefined;
+  website?: string | undefined;
+  phone?: string | undefined;
+  service?: string | undefined;
+  budget?: string | undefined;
+  timeline?: string | undefined;
+  message?: string | undefined;
+  keywords?: string | undefined;
+  location?: string | undefined;
+  goals?: string[] | undefined;
   /** spam traps */
-  hp?: string;
-  startedAt?: number;
+  hp?: string | undefined;
+  startedAt?: number | undefined;
 };
 
 export type FieldErrors = Partial<Record<keyof InquiryPayload, string>>;
@@ -49,14 +50,18 @@ export function validateInquiry(p: Partial<InquiryPayload>): FieldErrors {
   if (!EMAIL_RE.test(email)) e.email = "Please enter a valid email address.";
 
   const needsWebsite = p.type === "seo-evaluation" || p.type === "website-evaluation";
-  if (needsWebsite && !(p.website || "").trim()) e.website = "We need your website address to evaluate it.";
-  if ((p.website || "").trim() && !isUrl(p.website!)) e.website = "That doesn’t look like a website address.";
+  if (needsWebsite && !(p.website || "").trim())
+    e.website = "We need your website address to evaluate it.";
+  if ((p.website || "").trim() && !isUrl(p.website!))
+    e.website = "That doesn’t look like a website address.";
 
   if (p.type === "contact") {
     if (!p.service) e.service = "Choose what you’re interested in.";
-    if ((p.message || "").trim().length < 10) e.message = "A sentence or two about your project helps a lot.";
+    if ((p.message || "").trim().length < 10)
+      e.message = "A sentence or two about your project helps a lot.";
   }
-  if (p.type === "careers" && (p.message || "").trim().length < 10) e.message = "Tell us a little about yourself.";
+  if (p.type === "careers" && (p.message || "").trim().length < 10)
+    e.message = "Tell us a little about yourself.";
   if ((p.message || "").length > 5000) e.message = "Please keep it under 5,000 characters.";
   return e;
 }

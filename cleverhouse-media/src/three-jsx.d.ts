@@ -5,6 +5,7 @@ import type { ThreeElements } from "@react-three/fiber";
 
 declare module "react" {
   namespace JSX {
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type -- declaration merging
     interface IntrinsicElements extends ThreeElements {}
   }
 }

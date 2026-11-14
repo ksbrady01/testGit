@@ -29,7 +29,8 @@ export function WorkIndex() {
 
   const choose = (id: "all" | WorkCategory) => {
     if (id === filter) return;
-    if (grid.current) flipState.current = Flip.getState(grid.current.querySelectorAll("[data-work-item]"));
+    if (grid.current)
+      flipState.current = Flip.getState(grid.current.querySelectorAll("[data-work-item]"));
     setFilter(id);
   };
 
@@ -47,8 +48,14 @@ export function WorkIndex() {
         ease: "expo.inOut",
         absolute: true,
         scale: true,
-        onEnter: (els) => gsap.fromTo(els, { autoAlpha: 0, y: 60, scale: 0.94 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.9, ease: "expo.out", delay: 0.2 }),
-        onLeave: (els) => gsap.to(els, { autoAlpha: 0, scale: 0.92, duration: 0.5, ease: "power2.in" }),
+        onEnter: (els) =>
+          gsap.fromTo(
+            els,
+            { autoAlpha: 0, y: 60, scale: 0.94 },
+            { autoAlpha: 1, y: 0, scale: 1, duration: 0.9, ease: "expo.out", delay: 0.2 },
+          ),
+        onLeave: (els) =>
+          gsap.to(els, { autoAlpha: 0, scale: 0.92, duration: 0.5, ease: "power2.in" }),
         onComplete: () => {
           import("../../lib/gsap").then(({ ScrollTrigger }) => ScrollTrigger.refresh());
         },
@@ -66,7 +73,12 @@ export function WorkIndex() {
           gsap.fromTo(
             el,
             { clipPath: "inset(14% 10% 14% 10% round 32px)" },
-            { clipPath: "inset(0% 0% 0% 0% round 32px)", ease: "expo.out", duration: 1.6, scrollTrigger: { trigger: el, start: "top 85%", once: true } },
+            {
+              clipPath: "inset(0% 0% 0% 0% round 32px)",
+              ease: "expo.out",
+              duration: 1.6,
+              scrollTrigger: { trigger: el, start: "top 85%", once: true },
+            },
           );
         });
       });
@@ -79,10 +91,17 @@ export function WorkIndex() {
     <div ref={root}>
       <div className="sticky top-[84px] z-30 py-4 md:top-[92px]">
         <div className="shell">
-          <div role="toolbar" aria-label="Filter work" className="no-scrollbar -mx-1 flex gap-2 overflow-x-auto rounded-full p-1">
+          <div
+            role="toolbar"
+            aria-label="Filter work"
+            className="no-scrollbar -mx-1 flex gap-2 overflow-x-auto rounded-full p-1"
+          >
             <div className="glass flex gap-1 rounded-full p-1.5 ring-1 ring-bone/10">
               {workFilters.map((f) => {
-                const count = f.id === "all" ? projects.length : projects.filter((p) => p.categories.includes(f.id as WorkCategory)).length;
+                const count =
+                  f.id === "all"
+                    ? projects.length
+                    : projects.filter((p) => p.categories.includes(f.id as WorkCategory)).length;
                 const on = filter === f.id;
                 return (
                   <button
@@ -92,11 +111,20 @@ export function WorkIndex() {
                     onClick={() => choose(f.id)}
                     className={clsx(
                       "relative flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-sm transition-all duration-500 ease-out-expo",
-                      on ? "bg-copper-300 text-ink" : "text-bone/70 hover:bg-bone/8 hover:text-bone",
+                      on
+                        ? "bg-copper-300 text-ink"
+                        : "text-bone/70 hover:bg-bone/8 hover:text-bone",
                     )}
                   >
                     {f.label}
-                    <span className={clsx("font-mono text-[0.65rem]", on ? "text-ink/60" : "text-bone/40")}>{count}</span>
+                    <span
+                      className={clsx(
+                        "font-mono text-[0.65rem]",
+                        on ? "text-ink/60" : "text-bone/40",
+                      )}
+                    >
+                      {count}
+                    </span>
                   </button>
                 );
               })}
@@ -108,11 +136,19 @@ export function WorkIndex() {
         </div>
       </div>
 
-      <ul ref={grid} className="shell mt-10 grid grid-cols-1 gap-x-6 gap-y-24 md:grid-cols-12 md:gap-y-32">
+      <ul
+        ref={grid}
+        className="shell mt-10 grid grid-cols-1 gap-x-6 gap-y-24 md:grid-cols-12 md:gap-y-32"
+      >
         {visible.map((p, i) => {
           const big = i === 0;
           return (
-            <li key={p.slug} data-work-item data-flip-id={p.slug} className={clsx(layouts[i % layouts.length])}>
+            <li
+              key={p.slug}
+              data-work-item
+              data-flip-id={p.slug}
+              className={clsx(layouts[i % layouts.length])}
+            >
               <Link href={`/work/${p.slug}`} className="group block" data-cursor="View">
                 <div
                   data-work-media
@@ -156,28 +192,42 @@ export function WorkIndex() {
                     )}
                   </div>
                   <div className="absolute left-5 top-5 flex flex-wrap gap-2 md:left-7 md:top-7">
-                    <span className="concept-badge">{p.kind === "concept" ? "Concept Project" : "Client Project"}</span>
+                    <span className="concept-badge">
+                      {p.kind === "concept" ? "Concept Project" : "Client Project"}
+                    </span>
                   </div>
                   {big && (
                     <div className="absolute bottom-0 left-0 p-6 md:p-10">
                       <p className="label text-copper-200">{p.industry}</p>
-                      <h2 className="mt-3 max-w-[11ch] font-display text-[clamp(2.6rem,5.2vw,6rem)] font-medium leading-[0.9] tracking-[-0.045em] md:max-w-[44vw]">{p.name}</h2>
+                      <h2 className="mt-3 max-w-[11ch] font-display text-[clamp(2.6rem,5.2vw,6rem)] font-medium leading-[0.9] tracking-[-0.045em] md:max-w-[44vw]">
+                        {p.name}
+                      </h2>
                     </div>
                   )}
                 </div>
                 <div className={clsx("mt-6 grid gap-3", big ? "md:grid-cols-12" : "")}>
                   {!big && (
                     <div className="flex items-baseline justify-between gap-4">
-                      <h2 className="font-display text-[clamp(1.9rem,3vw,3rem)] font-medium leading-[0.95] tracking-[-0.035em] transition-colors group-hover:text-copper-200">{p.name}</h2>
+                      <h2 className="font-display text-[clamp(1.9rem,3vw,3rem)] font-medium leading-[0.95] tracking-[-0.035em] transition-colors group-hover:text-copper-200">
+                        {p.name}
+                      </h2>
                       <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full ring-1 ring-bone/20 transition-all duration-500 group-hover:rotate-45 group-hover:bg-copper-300 group-hover:text-ink">
                         <ArrowUpRight size={18} />
                       </span>
                     </div>
                   )}
                   <p className={clsx("text-bone/65", big ? "md:col-span-6" : "")}>{p.summary}</p>
-                  <ul className={clsx("flex flex-wrap gap-2", big ? "md:col-span-5 md:col-start-8 md:justify-end" : "")}>
+                  <ul
+                    className={clsx(
+                      "flex flex-wrap gap-2",
+                      big ? "md:col-span-5 md:col-start-8 md:justify-end" : "",
+                    )}
+                  >
                     {p.categories.map((c) => (
-                      <li key={c} className="rounded-full px-3 py-1 text-xs text-bone/60 ring-1 ring-bone/15">
+                      <li
+                        key={c}
+                        className="rounded-full px-3 py-1 text-xs text-bone/60 ring-1 ring-bone/15"
+                      >
                         {workFilters.find((f) => f.id === c)?.label}
                       </li>
                     ))}

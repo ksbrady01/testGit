@@ -20,7 +20,14 @@ function shapes(n: number) {
     const r = Math.cbrt(Math.random()) * 1.9;
     const t = Math.random() * Math.PI * 2;
     const p = Math.acos(2 * Math.random() - 1);
-    think.set([r * Math.sin(p) * Math.cos(t) * 1.25, r * Math.cos(p) * 1.05, r * Math.sin(p) * Math.sin(t) * 0.9], i * 3);
+    think.set(
+      [
+        r * Math.sin(p) * Math.cos(t) * 1.25,
+        r * Math.cos(p) * 1.05,
+        r * Math.sin(p) * Math.sin(t) * 0.9,
+      ],
+      i * 3,
+    );
   }
   out.push(think);
 
@@ -81,7 +88,10 @@ function shapes(n: number) {
       const a = nodes[i % 7]!;
       const b = (i % 2 ? nodes[7] : nodes[(i + 1) % 7])!;
       const t = Math.random();
-      connect.set([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t], i * 3);
+      connect.set(
+        [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t],
+        i * 3,
+      );
     }
   }
   out.push(connect);
@@ -149,12 +159,26 @@ function Particles({ progress, count }: { progress: MorphProgress; count: number
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
-      <pointsMaterial size={0.035} vertexColors transparent opacity={0.95} depthWrite={false} blending={THREE.AdditiveBlending} sizeAttenuation />
+      <pointsMaterial
+        size={0.035}
+        vertexColors
+        transparent
+        opacity={0.95}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        sizeAttenuation
+      />
     </points>
   );
 }
 
-export default function ThinkingMorph({ progress, className }: { progress: MorphProgress; className?: string }) {
+export default function ThinkingMorph({
+  progress,
+  className,
+}: {
+  progress: MorphProgress;
+  className?: string;
+}) {
   const [count, setCount] = useState(900);
   const [visible, setVisible] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
@@ -167,7 +191,12 @@ export default function ThinkingMorph({ progress, className }: { progress: Morph
   }, []);
   return (
     <div ref={wrap} className={className} aria-hidden="true">
-      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 6], fov: 45 }} gl={{ alpha: true, antialias: false }} frameloop={visible ? "always" : "never"}>
+      <Canvas
+        dpr={[1, 1.5]}
+        camera={{ position: [0, 0, 6], fov: 45 }}
+        gl={{ alpha: true, antialias: false }}
+        frameloop={visible ? "always" : "never"}
+      >
         <Particles key={count} progress={progress} count={count} />
       </Canvas>
     </div>

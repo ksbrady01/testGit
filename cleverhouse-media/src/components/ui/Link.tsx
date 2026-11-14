@@ -20,7 +20,7 @@ const Link = forwardRef<HTMLAnchorElement, Props>(function Link({ href, children
   return (
     // The router resolves literal paths (e.g. /work/ember-and-oak) against the
     // route tree at runtime; the cast only bridges string-typed content data.
-    <RouterLink ref={ref} to={href as "/"} {...rest}>
+    <RouterLink ref={ref} to={href as "/"} {...(rest as object)}>
       {children}
     </RouterLink>
   );

@@ -22,7 +22,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     setLenis(instance);
     (window as unknown as { __lenis?: Lenis }).__lenis = instance;
 
-    if (document.documentElement.dataset.intro === "play") instance.stop();
+    if (document.documentElement.dataset["intro"] === "play") instance.stop();
 
     return () => {
       if (rafRef.current) gsap.ticker.remove(rafRef.current);

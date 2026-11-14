@@ -1,16 +1,24 @@
-# CleverHouse Media — Website (TanStack Start)
+# CleverHouse Media — Website (GoHighLevel AI Studio edition)
 
-**The Art of Thinking Ahead.** The CleverHouse Media, LLC site built on TanStack Start (React + Vite) for GoHighLevel AI Studio, with GSAP motion, Three.js / React Three Fiber scenes, Lenis smooth scrolling, and a server route for inquiries.
+**The Art of Thinking Ahead.** The CleverHouse Media, LLC website, built on AI Studio's own TanStack Start template (`tanstack_start_ts`), with GSAP motion, Three.js / React Three Fiber scenes, Lenis smooth scrolling, and a server route for inquiries.
+
+This project uses AI Studio's template files unchanged — `tsconfig.json` (strict, incl. `exactOptionalPropertyTypes` and `noPropertyAccessFromIndexSignature`), `vite.config.ts` (`@leadconnector/vite-tanstack-config`), `bunfig.toml`, `eslint.config.js`, `src/server.ts`, `src/start.ts` and the error-reporting helpers — so it drops into an AI Studio project with no conversion. Type check, lint and the Cloudflare build all pass.
 
 ## Run it
 
 ```bash
-npm install
-npm run dev        # http://localhost:3001
-npm run build && npm start
+bun install
+bun run dev
+bun run build
 ```
 
-Requires Node.js 20+. Styling is **Tailwind CSS v4** via `@tailwindcss/vite`: all design tokens live in the `@theme` block of `src/styles.css` (there is no `tailwind.config` file). Imports are relative (no path alias), and the code type-checks under strict settings, including `noUncheckedIndexedAccess`, `verbatimModuleSyntax` and `noUnusedLocals`, so it drops into a hosted builder's locked `tsconfig`. Append `?intro=1` to the homepage URL to replay the intro film (it plays once per browser session and never with reduced motion).
+Append `?intro=1` to the homepage URL to replay the intro film (it plays once per browser session and never with reduced motion).
+
+## Moving it into AI Studio
+
+1. In AI Studio, create a new **TanStack Start** project and connect **Git Sync** (it creates a private GitHub repo).
+2. Replace that repo's contents with this project and push a normal commit (never force-push). AI Studio pulls it in automatically.
+3. Add form-delivery **Secrets** (below), then **Publish** and add the custom domain.
 
 ## Structure
 
@@ -18,16 +26,12 @@ Requires Node.js 20+. Styling is **Tailwind CSS v4** via `@tailwindcss/vite`: al
 - `src/server/inquiry.server.ts` — server-only validation, spam protection (honeypot, minimum fill time, rate limit) and delivery.
 - `src/content/` — all copy and data (`site.ts`, `services.ts`, `projects.ts`, `insights.ts`, `images.ts`).
 - `src/components/` — UI, sections, homepage, motion primitives, and lazy-loaded WebGL scenes (`three/`).
-- `src/lib/seo.ts` — per-page title, description, canonical, Open Graph and Twitter tags.
+- `src/styles.css` — Tailwind CSS v4; every design token lives in its `@theme` block.
 - `public/` — logo files, favicon, `og.png`, `sitemap.xml`, `robots.txt`.
-
-## Importing into GoHighLevel AI Studio
-
-AI Studio keeps its own locked `package.json`, `tsconfig.json` and Vite config (Tailwind v4). Copy in `src/` and `public/`, keep AI Studio's config files, and have it add these packages: `@react-three/fiber`, `three`, `@types/three`, `gsap`, `@gsap/react`, `lenis`, `lucide-react`.
 
 ## Form delivery
 
-Set at least one of these as **AI Studio Secrets** (see `.env.example`): `RESEND_API_KEY` + `INQUIRY_TO_EMAIL` (+ `INQUIRY_FROM_EMAIL`), or `INQUIRY_WEBHOOK_URL` (a GoHighLevel inbound-webhook workflow works well). Without one, production submissions return an error and the form shows the email address, so leads are never silently lost.
+Set at least one of these as **AI Studio Secrets** (see `.env.example`): `RESEND_API_KEY` + `INQUIRY_TO_EMAIL` (+ `INQUIRY_FROM_EMAIL`), or `INQUIRY_WEBHOOK_URL` (a GoHighLevel inbound-webhook workflow works well). Without one, production submissions return an error and the form shows the email address, so leads are never silently lost. In development, submissions are logged to the server console.
 
 ## Before launch
 

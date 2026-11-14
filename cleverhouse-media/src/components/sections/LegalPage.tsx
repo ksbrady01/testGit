@@ -1,13 +1,26 @@
 import { SplitHeading } from "../motion/Motion";
 
-export function LegalPage({ title, updated, sections }: { title: string; updated: string; sections: { h: string; p: string[] }[] }) {
+export function LegalPage({
+  title,
+  updated,
+  sections,
+}: {
+  title: string;
+  updated: string;
+  sections: { h: string; p: string[] }[];
+}) {
   return (
     <>
       <section className="relative bg-ink pb-14 pt-36 md:pt-44">
         <div className="absolute inset-0 grid-lines opacity-40" aria-hidden="true" />
         <div className="shell relative">
           <p className="label label-dot text-copper-300">Legal</p>
-          <SplitHeading as="h1" onLoad delay={0.45} className="mt-6 font-display text-giant font-medium">
+          <SplitHeading
+            as="h1"
+            onLoad
+            delay={0.45}
+            className="mt-6 font-display text-giant font-medium"
+          >
             {title}
           </SplitHeading>
           <p className="mt-6 text-bone/55">Last updated {updated}</p>

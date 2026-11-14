@@ -18,7 +18,12 @@ export function StackCards({ cards }: { cards: Card[] }) {
             scale: 0.9 + i * 0.02,
             filter: "brightness(0.55)",
             ease: "none",
-            scrollTrigger: { trigger: els[i + 1], start: "top bottom", end: "top 18%", scrub: true },
+            scrollTrigger: {
+              trigger: els[i + 1]!,
+              start: "top bottom",
+              end: "top 18%",
+              scrub: true,
+            },
           });
         });
       });
@@ -40,13 +45,18 @@ export function StackCards({ cards }: { cards: Card[] }) {
               <p className="font-mono text-sm text-copper-300">
                 0{i + 1} · {c.kicker}
               </p>
-              <h3 className="mt-6 font-display text-[clamp(2.4rem,5vw,5rem)] font-medium leading-[0.92] tracking-[-0.04em]">{c.title}</h3>
+              <h3 className="mt-6 font-display text-[clamp(2.4rem,5vw,5rem)] font-medium leading-[0.92] tracking-[-0.04em]">
+                {c.title}
+              </h3>
             </div>
             <div>
               <p className="max-w-[44ch] text-lg text-bone/70">{c.body}</p>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {c.points.map((p) => (
-                  <li key={p} className="rounded-full px-3 py-1.5 text-sm text-bone/75 ring-1 ring-bone/15">
+                  <li
+                    key={p}
+                    className="rounded-full px-3 py-1.5 text-sm text-bone/75 ring-1 ring-bone/15"
+                  >
                     {p}
                   </li>
                 ))}
@@ -54,7 +64,13 @@ export function StackCards({ cards }: { cards: Card[] }) {
             </div>
           </div>
           <div className="relative min-h-[300px]">
-            <Image src={c.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+            <Image
+              src={c.image}
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
             <div className="absolute inset-0 bg-linear-to-r from-ink-850/60 to-transparent" />
           </div>
         </article>

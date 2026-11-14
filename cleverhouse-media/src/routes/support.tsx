@@ -8,7 +8,8 @@ import { site } from "../content/site";
 
 const metadata = {
   title: "Support",
-  description: "Ongoing maintenance, troubleshooting, and strategic guidance from CleverHouse Media. Launching is just the beginning.",
+  description:
+    "Ongoing maintenance, troubleshooting, and strategic guidance from CleverHouse Media. Launching is just the beginning.",
   alternates: { canonical: "/support" },
 };
 
@@ -32,22 +33,49 @@ function SupportPage() {
         <div className="shell">
           <NumberedRows
             items={[
-              { title: "Regular maintenance & updates", body: "Platform, plugin, and security updates applied carefully and tested." },
-              { title: "Priority email support", body: "A direct line to people who know your site and your business." },
-              { title: "Scheduled strategy calls", body: "Regular check-ins to review performance and plan what’s next." },
-              { title: "Emergency troubleshooting", body: "When something breaks, we prioritize getting you back online." },
+              {
+                title: "Regular maintenance & updates",
+                body: "Platform, plugin, and security updates applied carefully and tested.",
+              },
+              {
+                title: "Priority email support",
+                body: "A direct line to people who know your site and your business.",
+              },
+              {
+                title: "Scheduled strategy calls",
+                body: "Regular check-ins to review performance and plan what’s next.",
+              },
+              {
+                title: "Emergency troubleshooting",
+                body: "When something breaks, we prioritize getting you back online.",
+              },
             ]}
           />
           <Reveal kind="up" className="mt-16 rounded-[28px] bg-copper-300 p-8 text-ink md:p-12">
             <p className="label">Need assistance right now?</p>
             <p className="mt-4 font-display text-big font-medium">
-              Email <a href={`mailto:${site.email}`} className="underline decoration-1 underline-offset-8">{site.email}</a>
+              Email{" "}
+              <a
+                href={`mailto:${site.email}`}
+                className="underline decoration-1 underline-offset-8"
+              >
+                {site.email}
+              </a>
             </p>
-            <p className="mt-4 max-w-[52ch] text-ink/70">Include your website address and a short description of what you’re seeing. Screenshots help us move faster.</p>
+            <p className="mt-4 max-w-[52ch] text-ink/70">
+              Include your website address and a short description of what you’re seeing.
+              Screenshots help us move faster.
+            </p>
           </Reveal>
         </div>
       </section>
-      <CtaBand light title="Looking for a long-term partner?" body="Ask us about care plans that combine support, hosting, and ongoing optimization." primary={{ label: "Talk to Us", href: "/contact" }} secondary={{ label: "Hosting & security", href: "/hosting-security" }} />
+      <CtaBand
+        light
+        title="Looking for a long-term partner?"
+        body="Ask us about care plans that combine support, hosting, and ongoing optimization."
+        primary={{ label: "Talk to Us", href: "/contact" }}
+        secondary={{ label: "Hosting & security", href: "/hosting-security" }}
+      />
     </>
   );
 }

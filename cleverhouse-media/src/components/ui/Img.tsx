@@ -27,13 +27,17 @@ export default function Img({
   width?: number;
   height?: number;
   sizes?: string;
-  priority?: boolean;
+  priority?: boolean | undefined;
   className?: string;
   style?: CSSProperties;
 }) {
   const remote = src.startsWith("https://images.unsplash.com/");
-  const srcSet = remote ? WIDTHS.map((w) => `${imageLoader({ src, width: w })} ${w}w`).join(", ") : undefined;
-  const fillStyle: CSSProperties | undefined = fill ? { position: "absolute", inset: 0, width: "100%", height: "100%" } : undefined;
+  const srcSet = remote
+    ? WIDTHS.map((w) => `${imageLoader({ src, width: w })} ${w}w`).join(", ")
+    : undefined;
+  const fillStyle: CSSProperties | undefined = fill
+    ? { position: "absolute", inset: 0, width: "100%", height: "100%" }
+    : undefined;
   return (
     <img
       src={remote ? imageLoader({ src, width: 1600 }) : src}

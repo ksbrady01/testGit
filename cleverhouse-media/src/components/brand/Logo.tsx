@@ -14,7 +14,7 @@ export function Logo({
 }: {
   variant?: "light" | "dark";
   className?: string;
-  priority?: boolean;
+  priority?: boolean | undefined;
 }) {
   return (
     <Image
@@ -29,7 +29,15 @@ export function Logo({
   );
 }
 
-export function LogoMark({ className, priority, alt = "" }: { className?: string; priority?: boolean; alt?: string }) {
+export function LogoMark({
+  className,
+  priority,
+  alt = "",
+}: {
+  className?: string;
+  priority?: boolean | undefined;
+  alt?: string;
+}) {
   return (
     <Image
       src="/brand/chm-mark.png"

@@ -36,33 +36,77 @@ export function Reveal({
       mm.add(MOTION_OK, () => {
         const el = ref.current!;
         const targets = stagger ? Array.from(el.children) : [el];
+        const each = stagger ?? 0;
         const st = { trigger: el, start, once: true };
         switch (kind) {
           case "up":
-            gsap.from(targets, { y: 60, autoAlpha: 0, duration: 1.2, delay, stagger, scrollTrigger: st });
+            gsap.from(targets, {
+              y: 60,
+              autoAlpha: 0,
+              duration: 1.2,
+              delay,
+              stagger: each,
+              scrollTrigger: st,
+            });
             break;
           case "left":
-            gsap.from(targets, { x: -60, autoAlpha: 0, duration: 1.2, delay, stagger, scrollTrigger: st });
+            gsap.from(targets, {
+              x: -60,
+              autoAlpha: 0,
+              duration: 1.2,
+              delay,
+              stagger: each,
+              scrollTrigger: st,
+            });
             break;
           case "fade":
-            gsap.from(targets, { autoAlpha: 0, duration: 1.4, delay, stagger, ease: "power2.out", scrollTrigger: st });
+            gsap.from(targets, {
+              autoAlpha: 0,
+              duration: 1.4,
+              delay,
+              stagger: each,
+              ease: "power2.out",
+              scrollTrigger: st,
+            });
             break;
           case "scale":
-            gsap.from(targets, { scale: 0.9, autoAlpha: 0, duration: 1.3, delay, stagger, scrollTrigger: st });
+            gsap.from(targets, {
+              scale: 0.9,
+              autoAlpha: 0,
+              duration: 1.3,
+              delay,
+              stagger: each,
+              scrollTrigger: st,
+            });
             break;
           case "mask":
             gsap.fromTo(
               targets,
               { clipPath: "inset(100% 0% 0% 0%)" },
-              { clipPath: "inset(0% 0% 0% 0%)", duration: 1.4, ease: "expo.inOut", delay, stagger, scrollTrigger: st },
+              {
+                clipPath: "inset(0% 0% 0% 0%)",
+                duration: 1.4,
+                ease: "expo.inOut",
+                delay,
+                stagger: each,
+                scrollTrigger: st,
+              },
             );
             break;
           case "image": {
             targets.forEach((t, i) => {
               const inner = (t as HTMLElement).querySelector("img");
-              const tl = gsap.timeline({ scrollTrigger: { ...st, trigger: t }, delay: delay + (stagger || 0) * i });
-              tl.fromTo(t, { clipPath: "inset(18% 12% 18% 12% round 24px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", duration: 1.6, ease: "expo.inOut" });
-              if (inner) tl.fromTo(inner, { scale: 1.35 }, { scale: 1, duration: 1.8, ease: "expo.out" }, 0);
+              const tl = gsap.timeline({
+                scrollTrigger: { ...st, trigger: t },
+                delay: delay + (stagger || 0) * i,
+              });
+              tl.fromTo(
+                t,
+                { clipPath: "inset(18% 12% 18% 12% round 24px)" },
+                { clipPath: "inset(0% 0% 0% 0% round 0px)", duration: 1.6, ease: "expo.inOut" },
+              );
+              if (inner)
+                tl.fromTo(inner, { scale: 1.35 }, { scale: 1, duration: 1.8, ease: "expo.out" }, 0);
             });
             break;
           }
@@ -95,7 +139,7 @@ export function SplitHeading({
   id,
 }: {
   children: ReactNode;
-  id?: string;
+  id?: string | undefined;
   as?: ElementType;
   className?: string;
   by?: "lines" | "words" | "chars";
@@ -114,7 +158,11 @@ export function SplitHeading({
         let split: SplitText | null = null;
         let tween: gsap.core.Tween | null = null;
         const run = () => {
-          split = new SplitText(el, { type: by === "chars" ? "words,chars" : by === "words" ? "lines,words" : "lines", mask: "lines", linesClass: "split-line" });
+          split = new SplitText(el, {
+            type: by === "chars" ? "words,chars" : by === "words" ? "lines,words" : "lines",
+            mask: "lines",
+            linesClass: "split-line",
+          });
           const targets = by === "chars" ? split.chars : by === "words" ? split.words : split.lines;
           gsap.set(el, { autoAlpha: 1 });
           tween = gsap.from(targets, {
@@ -124,7 +172,7 @@ export function SplitHeading({
             stagger: by === "chars" ? 0.025 : by === "words" ? 0.06 : 0.11,
             ease: "expo.out",
             delay,
-            scrollTrigger: onLoad ? undefined : { trigger: el, start, once: true },
+            ...(onLoad ? {} : { scrollTrigger: { trigger: el, start, once: true } }),
           });
         };
         let dead = false;
@@ -133,7 +181,7 @@ export function SplitHeading({
         };
         const ready = () => (document.fonts ? document.fonts.ready.then(safeRun) : safeRun());
         let handler: (() => void) | null = null;
-        if (waitForIntro && document.documentElement.dataset.intro === "play") {
+        if (waitForIntro && document.documentElement.dataset["intro"] === "play") {
           gsap.set(el, { autoAlpha: 0 });
           handler = () => ready();
           document.addEventListener("chm:intro-done", handler, { once: true });
@@ -159,7 +207,17 @@ export function SplitHeading({
 /* -------------------------------------------------------------------------- */
 /* ScrubWords — words light up as you read (scroll-scrubbed).                 */
 /* -------------------------------------------------------------------------- */
-export function ScrubWords({ text, className, as: Tag = "p", dim = 0.16 }: { text: string; className?: string; as?: ElementType; dim?: number }) {
+export function ScrubWords({
+  text,
+  className,
+  as: Tag = "p",
+  dim = 0.16,
+}: {
+  text: string;
+  className?: string;
+  as?: ElementType;
+  dim?: number;
+}) {
   const ref = useRef<HTMLElement>(null);
   useGSAP(
     () => {
@@ -169,7 +227,17 @@ export function ScrubWords({ text, className, as: Tag = "p", dim = 0.16 }: { tex
         gsap.fromTo(
           words,
           { opacity: dim },
-          { opacity: 1, ease: "none", stagger: 0.1, scrollTrigger: { trigger: ref.current, start: "top 80%", end: "bottom 45%", scrub: true } },
+          {
+            opacity: 1,
+            ease: "none",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: ref.current,
+              start: "top 80%",
+              end: "bottom 45%",
+              scrub: true,
+            },
+          },
         );
       });
       return () => mm.revert();
@@ -198,7 +266,7 @@ export function Parallax({
 }: {
   children: ReactNode;
   /** yPercent travel; negative moves up faster */
-  speed?: number;
+  speed?: number | undefined;
   className?: string;
   style?: CSSProperties;
 }) {
@@ -210,7 +278,16 @@ export function Parallax({
         gsap.fromTo(
           ref.current,
           { yPercent: -speed / 2 },
-          { yPercent: speed / 2, ease: "none", scrollTrigger: { trigger: ref.current, start: "top bottom", end: "bottom top", scrub: true } },
+          {
+            yPercent: speed / 2,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ref.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          },
         );
       });
       return () => mm.revert();
@@ -225,14 +302,35 @@ export function Parallax({
 }
 
 /** Image that zooms subtly within its frame while scrolling. */
-export function ScrollZoom({ children, className, from = 1.18 }: { children: ReactNode; className?: string; from?: number }) {
+export function ScrollZoom({
+  children,
+  className,
+  from = 1.18,
+}: {
+  children: ReactNode;
+  className?: string;
+  from?: number;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
         const inner = ref.current!.firstElementChild;
-        gsap.fromTo(inner, { scale: from }, { scale: 1, ease: "none", scrollTrigger: { trigger: ref.current, start: "top bottom", end: "bottom top", scrub: true } });
+        gsap.fromTo(
+          inner,
+          { scale: from },
+          {
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ref.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          },
+        );
       });
       return () => mm.revert();
     },
@@ -248,7 +346,15 @@ export function ScrollZoom({ children, className, from = 1.18 }: { children: Rea
 /* -------------------------------------------------------------------------- */
 /* Magnetic — pulls toward the pointer on desktop.                             */
 /* -------------------------------------------------------------------------- */
-export function Magnetic({ children, strength = 0.35, className }: { children: ReactNode; strength?: number; className?: string }) {
+export function Magnetic({
+  children,
+  strength = 0.35,
+  className,
+}: {
+  children: ReactNode;
+  strength?: number;
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
@@ -287,14 +393,28 @@ export function Magnetic({ children, strength = 0.35, className }: { children: R
 /* -------------------------------------------------------------------------- */
 /* Marquee — infinite ribbon; speeds with scroll velocity.                    */
 /* -------------------------------------------------------------------------- */
-export function Marquee({ children, className, reverse = false, speed = 40 }: { children: ReactNode; className?: string; reverse?: boolean; speed?: number }) {
+export function Marquee({
+  children,
+  className,
+  reverse = false,
+  speed = 40,
+}: {
+  children: ReactNode;
+  className?: string;
+  reverse?: boolean;
+  speed?: number;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
         const track = ref.current!.firstElementChild as HTMLElement;
-        const tween = gsap.fromTo(track, { xPercent: reverse ? -50 : 0 }, { xPercent: reverse ? 0 : -50, duration: speed, ease: "none", repeat: -1 });
+        const tween = gsap.fromTo(
+          track,
+          { xPercent: reverse ? -50 : 0 },
+          { xPercent: reverse ? 0 : -50, duration: speed, ease: "none", repeat: -1 },
+        );
         const st = ScrollTrigger.create({
           trigger: ref.current,
           start: "top bottom",

@@ -39,7 +39,11 @@ export function PageHero({
 }) {
   const ctas = (primary || secondary) && (
     <Reveal kind="up" delay={0.5} className="mt-10 flex flex-wrap gap-3">
-      {primary && <Button href={primary.href} variant={light ? "dark" : "copper"}>{primary.label}</Button>}
+      {primary && (
+        <Button href={primary.href} variant={light ? "dark" : "copper"}>
+          {primary.label}
+        </Button>
+      )}
       {secondary && (
         <Button href={secondary.href} variant={light ? "ghost-dark" : "ghost"} icon={false}>
           {secondary.label}
@@ -56,7 +60,9 @@ export function PageHero({
 
   const eyebrowEl = (
     <Reveal kind="fade">
-      <p className={clsx("label label-dot", light ? "text-copper-700" : "text-copper-300")}>{eyebrow}</p>
+      <p className={clsx("label label-dot", light ? "text-copper-700" : "text-copper-300")}>
+        {eyebrow}
+      </p>
     </Reveal>
   );
 
@@ -65,7 +71,14 @@ export function PageHero({
       <section className="relative isolate flex min-h-[92svh] items-end overflow-hidden bg-ink pb-16 pt-40 md:pb-24">
         {image && (
           <Parallax speed={18} className="absolute inset-0 -z-10 scale-110">
-            <Image src={image} alt={imageAlt} fill priority sizes="100vw" className="object-cover" />
+            <Image
+              src={image}
+              alt={imageAlt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
           </Parallax>
         )}
         <div className="absolute inset-0 -z-10 bg-linear-to-t from-ink via-ink/60 to-ink/20" />
@@ -90,15 +103,33 @@ export function PageHero({
 
   if (variant === "split") {
     return (
-      <section className={clsx("relative overflow-hidden pb-20 pt-36 md:pb-28 md:pt-44", light ? "surface-paper" : "bg-ink")}>
-        <div className={clsx("absolute inset-0", light ? "grid-lines-dark opacity-70" : "grid-lines opacity-60")} aria-hidden="true" />
+      <section
+        className={clsx(
+          "relative overflow-hidden pb-20 pt-36 md:pb-28 md:pt-44",
+          light ? "surface-paper" : "bg-ink",
+        )}
+      >
+        <div
+          className={clsx(
+            "absolute inset-0",
+            light ? "grid-lines-dark opacity-70" : "grid-lines opacity-60",
+          )}
+          aria-hidden="true"
+        />
         <div className="shell relative grid items-end gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             {eyebrowEl}
             {heading(clsx("mt-6 font-display text-huge font-medium", light && "text-ink"))}
             {intro && (
               <Reveal kind="up" delay={0.35}>
-                <div className={clsx("mt-8 max-w-[52ch] text-lead", light ? "text-ink/70" : "text-bone/75")}>{intro}</div>
+                <div
+                  className={clsx(
+                    "mt-8 max-w-[52ch] text-lead",
+                    light ? "text-ink/70" : "text-bone/75",
+                  )}
+                >
+                  {intro}
+                </div>
               </Reveal>
             )}
             {ctas}
@@ -106,9 +137,18 @@ export function PageHero({
           {image && (
             <div className="relative lg:col-span-5">
               <Reveal kind="image" className="relative aspect-4/5 overflow-hidden rounded-[32px]">
-                <Image src={image} alt={imageAlt} fill priority sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
+                <Image
+                  src={image}
+                  alt={imageAlt}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
               </Reveal>
-              {aside && <div className="absolute -bottom-6 -left-6 max-w-[80%] md:-left-12">{aside}</div>}
+              {aside && (
+                <div className="absolute -bottom-6 -left-6 max-w-[80%] md:-left-12">{aside}</div>
+              )}
             </div>
           )}
         </div>
@@ -128,11 +168,22 @@ export function PageHero({
               speed={[-30, 20, -14][i]}
               className={clsx(
                 "absolute overflow-hidden rounded-[24px] shadow-2xl",
-                ["right-[6%] top-[14%] hidden w-[22vw] max-w-[340px] rotate-[4deg] md:block", "right-[22%] top-[52%] hidden w-[16vw] max-w-[240px] -rotate-[5deg] lg:block", "left-[58%] top-[8%] hidden w-[12vw] max-w-[180px] -rotate-3 xl:block"][i],
+                [
+                  "right-[6%] top-[14%] hidden w-[22vw] max-w-[340px] rotate-[4deg] md:block",
+                  "right-[22%] top-[52%] hidden w-[16vw] max-w-[240px] -rotate-[5deg] lg:block",
+                  "left-[58%] top-[8%] hidden w-[12vw] max-w-[180px] -rotate-3 xl:block",
+                ][i],
               )}
             >
               <Reveal kind="image" delay={0.2 + i * 0.15} className="relative aspect-3/4">
-                <Image src={src} alt="" fill priority={i === 0} sizes="25vw" className="object-cover" />
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  priority={i === 0}
+                  sizes="25vw"
+                  className="object-cover"
+                />
               </Reveal>
             </Parallax>
           ))}
@@ -153,8 +204,19 @@ export function PageHero({
 
   // "type"
   return (
-    <section className={clsx("relative overflow-hidden pb-20 pt-40 md:pb-28 md:pt-52", light ? "surface-paper" : "bg-ink")}>
-      <div className={clsx("absolute inset-0", light ? "grid-lines-dark opacity-70" : "grid-lines opacity-60")} aria-hidden="true" />
+    <section
+      className={clsx(
+        "relative overflow-hidden pb-20 pt-40 md:pb-28 md:pt-52",
+        light ? "surface-paper" : "bg-ink",
+      )}
+    >
+      <div
+        className={clsx(
+          "absolute inset-0",
+          light ? "grid-lines-dark opacity-70" : "grid-lines opacity-60",
+        )}
+        aria-hidden="true"
+      />
       <div
         className="pointer-events-none absolute -right-[20vw] -top-[20vw] h-[60vw] w-[60vw] rounded-full"
         style={{ background: "radial-gradient(circle, rgba(184,128,88,0.18), transparent 60%)" }}
@@ -162,11 +224,15 @@ export function PageHero({
       />
       <div className="shell relative">
         {eyebrowEl}
-        {heading(clsx("mt-6 max-w-[18ch] font-display text-giant font-medium", light && "text-ink"))}
+        {heading(
+          clsx("mt-6 max-w-[18ch] font-display text-giant font-medium", light && "text-ink"),
+        )}
         <div className="mt-10 grid gap-10 md:grid-cols-12">
           {intro && (
             <Reveal kind="up" delay={0.35} className="md:col-span-6 md:col-start-6">
-              <div className={clsx("text-lead", light ? "text-ink/70" : "text-bone/75")}>{intro}</div>
+              <div className={clsx("text-lead", light ? "text-ink/70" : "text-bone/75")}>
+                {intro}
+              </div>
             </Reveal>
           )}
           {aside && <div className="md:col-span-4 md:col-start-1 md:row-start-1">{aside}</div>}

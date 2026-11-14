@@ -32,14 +32,42 @@ export const primaryNav: NavItem[] = [
 ];
 
 export const serviceNav: NavItem[] = [
-  { label: "Web Design & Development", href: "/services/web-design-development", description: "Custom, conversion-minded websites" },
+  {
+    label: "Web Design & Development",
+    href: "/services/web-design-development",
+    description: "Custom, conversion-minded websites",
+  },
   { label: "SEO & Search Visibility", href: "/seo", description: "Help the right people find you" },
-  { label: "Digital Marketing", href: "/digital-marketing", description: "Campaigns that connect and convert" },
-  { label: "Branding & Creative", href: "/services/branding-creative", description: "Identity, content, and storytelling" },
-  { label: "Social Media Strategy", href: "/services/social-media", description: "Presence with a point of view" },
-  { label: "Digital Ecosystems", href: "/services/digital-ecosystems", description: "Platforms that work as one" },
-  { label: "AI & Automation", href: "/services/ai-automation", description: "Smarter workflows, faster follow-up" },
-  { label: "Live Concepts", href: "/live-concepts", description: "Livestreams, launches, virtual events" },
+  {
+    label: "Digital Marketing",
+    href: "/digital-marketing",
+    description: "Campaigns that connect and convert",
+  },
+  {
+    label: "Branding & Creative",
+    href: "/services/branding-creative",
+    description: "Identity, content, and storytelling",
+  },
+  {
+    label: "Social Media Strategy",
+    href: "/services/social-media",
+    description: "Presence with a point of view",
+  },
+  {
+    label: "Digital Ecosystems",
+    href: "/services/digital-ecosystems",
+    description: "Platforms that work as one",
+  },
+  {
+    label: "AI & Automation",
+    href: "/services/ai-automation",
+    description: "Smarter workflows, faster follow-up",
+  },
+  {
+    label: "Live Concepts",
+    href: "/live-concepts",
+    description: "Livestreams, launches, virtual events",
+  },
 ];
 
 export const resourceNav: NavItem[] = [
@@ -78,4 +106,9 @@ export const budgetOptions = [
   "Not sure yet",
 ] as const;
 
-export const timelineOptions = ["As soon as possible", "1–3 months", "3–6 months", "Just exploring"] as const;
+export const timelineOptions = [
+  "As soon as possible",
+  "1–3 months",
+  "3–6 months",
+  "Just exploring",
+] as const;

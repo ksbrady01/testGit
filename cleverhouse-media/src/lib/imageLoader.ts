@@ -3,7 +3,15 @@
  * - Unsplash photos are resized and format-negotiated (AVIF/WebP) by Unsplash's own CDN.
  * - Local assets (logo files) are served as-is.
  */
-export default function imageLoader({ src, width, quality }: { src: string; width: number; quality?: number }) {
+export default function imageLoader({
+  src,
+  width,
+  quality,
+}: {
+  src: string;
+  width: number;
+  quality?: number;
+}) {
   if (src.startsWith("https://images.unsplash.com/")) {
     const url = new URL(src);
     url.searchParams.set("w", String(width));

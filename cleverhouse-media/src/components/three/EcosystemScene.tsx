@@ -43,7 +43,19 @@ function Hub() {
   );
 }
 
-function Pulse({ from, to, speed, offset, color }: { from: THREE.Vector3; to: THREE.Vector3; speed: number; offset: number; color: string }) {
+function Pulse({
+  from,
+  to,
+  speed,
+  offset,
+  color,
+}: {
+  from: THREE.Vector3;
+  to: THREE.Vector3;
+  speed: number;
+  offset: number;
+  color: string;
+}) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
     const t = (clock.elapsedTime * speed + offset) % 1;
@@ -58,7 +70,15 @@ function Pulse({ from, to, speed, offset, color }: { from: THREE.Vector3; to: TH
   );
 }
 
-function Network({ nodes, active, onSelect }: { nodes: readonly Node[]; active: number; onSelect: (i: number) => void }) {
+function Network({
+  nodes,
+  active,
+  onSelect,
+}: {
+  nodes: readonly Node[];
+  active: number;
+  onSelect: (i: number) => void;
+}) {
   const group = useRef<THREE.Group>(null);
   const [hover, setHover] = useState<number | null>(null);
   const positions = useMemo(
@@ -100,7 +120,8 @@ function Network({ nodes, active, onSelect }: { nodes: readonly Node[]; active: 
 
   useFrame(({ clock, pointer }) => {
     const g = group.current!;
-    g.rotation.y += ((pointer.x * 0.35 + Math.sin(clock.elapsedTime * 0.15) * 0.15) - g.rotation.y) * 0.04;
+    g.rotation.y +=
+      (pointer.x * 0.35 + Math.sin(clock.elapsedTime * 0.15) * 0.15 - g.rotation.y) * 0.04;
     g.rotation.x += (-pointer.y * 0.2 - g.rotation.x) * 0.04;
     const p = positions[active];
     if (!p) return;
@@ -134,10 +155,24 @@ function Network({ nodes, active, onSelect }: { nodes: readonly Node[]; active: 
         <lineBasicMaterial color="#9BD8CB" transparent opacity={0.9} />
       </lineSegments>
       {positions.map((p, i) => (
-        <Pulse key={`in${i}`} from={p} to={center} speed={0.22 + i * 0.03} offset={i * 0.17} color={i === active ? "#9BD8CB" : "#E2B48A"} />
+        <Pulse
+          key={`in${i}`}
+          from={p}
+          to={center}
+          speed={0.22 + i * 0.03}
+          offset={i * 0.17}
+          color={i === active ? "#9BD8CB" : "#E2B48A"}
+        />
       ))}
       {positions.map((_, i) => (
-        <Pulse key={`out${i}`} from={center} to={positions[(i + 2) % positions.length]!} speed={0.16} offset={i * 0.31} color="#CF9A6A" />
+        <Pulse
+          key={`out${i}`}
+          from={center}
+          to={positions[(i + 2) % positions.length]!}
+          speed={0.16}
+          offset={i * 0.31}
+          color="#CF9A6A"
+        />
       ))}
       {positions.map((p, i) => {
         const on = i === active || i === hover;
@@ -160,10 +195,20 @@ function Network({ nodes, active, onSelect }: { nodes: readonly Node[]; active: 
             </mesh>
             <mesh scale={on ? 1.35 : 1}>
               <ringGeometry args={[0.24, 0.255, 48]} />
-              <meshBasicMaterial color={i === active ? "#9BD8CB" : "#E2B48A"} transparent opacity={on ? 0.9 : 0.35} side={THREE.DoubleSide} />
+              <meshBasicMaterial
+                color={i === active ? "#9BD8CB" : "#E2B48A"}
+                transparent
+                opacity={on ? 0.9 : 0.35}
+                side={THREE.DoubleSide}
+              />
             </mesh>
             <sprite position={[0, -0.48, 0]} scale={[1.4, 0.35, 1]}>
-              <spriteMaterial map={labels[i]} transparent opacity={on ? 1 : 0.7} depthWrite={false} />
+              <spriteMaterial
+                map={labels[i] ?? null}
+                transparent
+                opacity={on ? 1 : 0.7}
+                depthWrite={false}
+              />
             </sprite>
           </group>
         );
@@ -172,7 +217,17 @@ function Network({ nodes, active, onSelect }: { nodes: readonly Node[]; active: 
   );
 }
 
-export default function EcosystemScene({ nodes, active, onSelect, className }: { nodes: readonly Node[]; active: number; onSelect: (i: number) => void; className?: string }) {
+export default function EcosystemScene({
+  nodes,
+  active,
+  onSelect,
+  className,
+}: {
+  nodes: readonly Node[];
+  active: number;
+  onSelect: (i: number) => void;
+  className?: string;
+}) {
   const [visible, setVisible] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -182,7 +237,12 @@ export default function EcosystemScene({ nodes, active, onSelect, className }: {
   }, []);
   return (
     <div ref={wrap} className={className}>
-      <Canvas dpr={[1, 1.75]} camera={{ position: [0, 0, 6.4], fov: 45 }} gl={{ alpha: true, antialias: true }} frameloop={visible ? "always" : "never"}>
+      <Canvas
+        dpr={[1, 1.75]}
+        camera={{ position: [0, 0, 6.4], fov: 45 }}
+        gl={{ alpha: true, antialias: true }}
+        frameloop={visible ? "always" : "never"}
+      >
         <Network nodes={nodes} active={active} onSelect={onSelect} />
       </Canvas>
     </div>

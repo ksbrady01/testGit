@@ -3,7 +3,12 @@ import { Search } from "lucide-react";
 import { gsap, useGSAP } from "../../lib/gsap";
 import { SplitHeading } from "../motion/Motion";
 
-const queries = ["web design agency in texas", "how to rank on google maps", "best local seo for small business", "website that gets more leads"];
+const queries = [
+  "web design agency in texas",
+  "how to rank on google maps",
+  "best local seo for small business",
+  "website that gets more leads",
+];
 
 function TypingSearch() {
   const [text, setText] = useState("");
@@ -44,9 +49,16 @@ function TypingSearch() {
       </div>
       <div className="mt-3 space-y-2">
         {[0, 1, 2].map((i) => (
-          <div key={i} className={`rounded-xl px-4 py-3 ${i === 0 ? "bg-ink text-bone" : "bg-white/70 text-ink/60"}`}>
-            <span className={`block h-2 rounded-full ${i === 0 ? "w-2/3 bg-copper-300" : "w-1/2 bg-ink/15"}`} />
-            <span className={`mt-2 block h-1.5 rounded-full ${i === 0 ? "w-11/12 bg-bone/30" : "w-10/12 bg-ink/10"}`} />
+          <div
+            key={i}
+            className={`rounded-xl px-4 py-3 ${i === 0 ? "bg-ink text-bone" : "bg-white/70 text-ink/60"}`}
+          >
+            <span
+              className={`block h-2 rounded-full ${i === 0 ? "w-2/3 bg-copper-300" : "w-1/2 bg-ink/15"}`}
+            />
+            <span
+              className={`mt-2 block h-1.5 rounded-full ${i === 0 ? "w-11/12 bg-bone/30" : "w-10/12 bg-ink/10"}`}
+            />
           </div>
         ))}
       </div>
@@ -103,10 +115,31 @@ function DataLine() {
           <path key={y} d={`M10 ${y} H310`} />
         ))}
       </g>
-      <path data-draw d="M10 190 C 50 180, 70 150, 100 160 S 150 120, 180 110 S 240 70, 270 50 S 300 30, 310 22" stroke="#985E38" strokeWidth="2.5" pathLength={1} />
-      <path data-draw d="M10 200 C 60 196, 110 190, 160 170 S 260 120, 310 100" stroke="#3F9C8B" strokeWidth="1.5" strokeDasharray="4 6" pathLength={1} />
+      <path
+        data-draw
+        d="M10 190 C 50 180, 70 150, 100 160 S 150 120, 180 110 S 240 70, 270 50 S 300 30, 310 22"
+        stroke="#985E38"
+        strokeWidth="2.5"
+        pathLength={1}
+      />
+      <path
+        data-draw
+        d="M10 200 C 60 196, 110 190, 160 170 S 260 120, 310 100"
+        stroke="#3F9C8B"
+        strokeWidth="1.5"
+        strokeDasharray="4 6"
+        pathLength={1}
+      />
       <circle cx="310" cy="22" r="5" fill="#985E38" />
-      <text x="10" y="16" fill="#120B07" fillOpacity="0.45" fontSize="10" fontFamily="var(--font-mono)" letterSpacing="2">
+      <text
+        x="10"
+        y="16"
+        fill="#120B07"
+        fillOpacity="0.45"
+        fontSize="10"
+        fontFamily="var(--font-mono)"
+        letterSpacing="2"
+      >
         ILLUSTRATIVE
       </text>
     </svg>
@@ -145,8 +178,19 @@ export function WhyUs() {
         gsap.utils.toArray<HTMLElement>("[data-why]").forEach((card) => {
           const paths = card.querySelectorAll("[data-draw], [data-draw] > *");
           gsap.set(paths, { strokeDasharray: 1, strokeDashoffset: 1 });
-          gsap.to(paths, { strokeDashoffset: 0, duration: 1.8, stagger: 0.08, ease: "power2.inOut", scrollTrigger: { trigger: card, start: "top 70%", once: true } });
-          gsap.from(card, { y: 80, autoAlpha: 0, duration: 1.3, scrollTrigger: { trigger: card, start: "top 88%", once: true } });
+          gsap.to(paths, {
+            strokeDashoffset: 0,
+            duration: 1.8,
+            stagger: 0.08,
+            ease: "power2.inOut",
+            scrollTrigger: { trigger: card, start: "top 70%", once: true },
+          });
+          gsap.from(card, {
+            y: 80,
+            autoAlpha: 0,
+            duration: 1.3,
+            scrollTrigger: { trigger: card, start: "top 88%", once: true },
+          });
         });
       });
       return () => mm.revert();
@@ -155,17 +199,27 @@ export function WhyUs() {
   );
 
   return (
-    <section ref={root} className="surface-paper relative py-28 md:py-40" aria-labelledby="why-heading">
+    <section
+      ref={root}
+      className="surface-paper relative py-28 md:py-40"
+      aria-labelledby="why-heading"
+    >
       <div className="absolute inset-0 grid-lines-dark opacity-60" aria-hidden="true" />
       <div className="shell relative grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-32">
             <p className="label label-dot text-copper-700">Why CleverHouse Media</p>
-            <SplitHeading id="why-heading" className="mt-6 font-display text-huge font-medium text-ink">
-              Creative thinking backed by <span className="serif-accent text-copper-600">real strategy.</span>
+            <SplitHeading
+              id="why-heading"
+              className="mt-6 font-display text-huge font-medium text-ink"
+            >
+              Creative thinking backed by{" "}
+              <span className="serif-accent text-copper-600">real strategy.</span>
             </SplitHeading>
             <p className="mt-8 max-w-[44ch] text-lg text-ink/65">
-              We believe in purposeful design. By understanding your goals, we tailor strategy to connect with your audience, drive engagement, and show you measurable progress — with a dedicated partnership along the way.
+              We believe in purposeful design. By understanding your goals, we tailor strategy to
+              connect with your audience, drive engagement, and show you measurable progress — with
+              a dedicated partnership along the way.
             </p>
           </div>
         </div>
@@ -179,11 +233,15 @@ export function WhyUs() {
               <div className="flex flex-col justify-between">
                 <span className="font-mono text-sm text-copper-700">0{i + 1}</span>
                 <div className="mt-10">
-                  <h3 className="font-display text-[clamp(1.7rem,2.6vw,2.4rem)] font-medium leading-[1.02] tracking-[-0.03em] text-ink">{it.title}</h3>
+                  <h3 className="font-display text-[clamp(1.7rem,2.6vw,2.4rem)] font-medium leading-[1.02] tracking-[-0.03em] text-ink">
+                    {it.title}
+                  </h3>
                   <p className="mt-4 text-ink/65">{it.body}</p>
                 </div>
               </div>
-              <div className="flex items-center justify-center rounded-2xl bg-bone-50 p-6 ring-1 ring-ink/5">{it.visual}</div>
+              <div className="flex items-center justify-center rounded-2xl bg-bone-50 p-6 ring-1 ring-ink/5">
+                {it.visual}
+              </div>
             </li>
           ))}
         </ol>

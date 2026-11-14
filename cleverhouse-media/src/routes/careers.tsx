@@ -7,7 +7,8 @@ import { img } from "../content/images";
 
 const metadata = {
   title: "Careers",
-  description: "Join CleverHouse Media. We’re always glad to meet talented strategists, designers, developers, and marketers who love great work.",
+  description:
+    "Join CleverHouse Media. We’re always glad to meet talented strategists, designers, developers, and marketers who love great work.",
   alternates: { canonical: "/careers" },
 };
 
@@ -45,7 +46,9 @@ function CareersPage() {
           </Reveal>
           <div className="rounded-[32px] bg-ink-850/80 p-6 ring-1 ring-bone/10 md:p-12 lg:col-span-7 lg:col-start-6">
             <h2 className="font-display text-3xl font-medium tracking-tight">Introduce yourself</h2>
-            <p className="mt-3 text-bone/60">Share a little about what you do and a link to your portfolio or profile.</p>
+            <p className="mt-3 text-bone/60">
+              Share a little about what you do and a link to your portfolio or profile.
+            </p>
             <div className="mt-10">
               <InquiryForm
                 type="careers"

@@ -10,7 +10,8 @@ import { img } from "../../content/images";
 import clsx from "../../lib/clsx";
 import type Lenis from "lenis";
 
-const lenis = () => (typeof window !== "undefined" ? (window as unknown as { __lenis?: Lenis }).__lenis : undefined);
+const lenis = () =>
+  typeof window !== "undefined" ? (window as unknown as { __lenis?: Lenis }).__lenis : undefined;
 
 export function Nav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -67,7 +68,7 @@ export function Nav() {
       lenis()?.stop();
       document.body.style.overflow = "hidden";
     } else {
-      if (document.documentElement.dataset.intro !== "play") lenis()?.start();
+      if (document.documentElement.dataset["intro"] !== "play") lenis()?.start();
       document.body.style.overflow = "";
     }
   }, [open]);
@@ -78,8 +79,13 @@ export function Nav() {
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const items = header.current!.querySelectorAll("[data-nav-item]");
-        const play = () => gsap.fromTo(items, { y: -30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, stagger: 0.06, duration: 1, ease: "expo.out", delay: 0.1 });
-        if (document.documentElement.dataset.intro === "play") {
+        const play = () =>
+          gsap.fromTo(
+            items,
+            { y: -30, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, stagger: 0.06, duration: 1, ease: "expo.out", delay: 0.1 },
+          );
+        if (document.documentElement.dataset["intro"] === "play") {
           gsap.set(items, { autoAlpha: 0 });
           document.addEventListener("chm:intro-done", play, { once: true });
           return () => document.removeEventListener("chm:intro-done", play);
@@ -91,7 +97,8 @@ export function Nav() {
     { scope: header },
   );
 
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/"));
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
   const servicesActive = serviceNav.some((s) => isActive(s.href)) || isActive("/what-we-do");
 
   const openMega = () => {
@@ -104,7 +111,10 @@ export function Nav() {
 
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-10001 focus:rounded-full focus:bg-copper-300 focus:px-5 focus:py-3 focus:text-ink">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-10001 focus:rounded-full focus:bg-copper-300 focus:px-5 focus:py-3 focus:text-ink"
+      >
         Skip to content
       </a>
       <header
@@ -119,17 +129,30 @@ export function Nav() {
             aria-label="Primary"
             className={clsx(
               "relative flex h-[60px] items-center justify-between rounded-full pl-5 pr-2 transition-all duration-500 md:h-[64px] md:pl-6",
-              (scrolled || mega) && !open ? "glass shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] ring-1 ring-bone/10" : "bg-transparent",
+              (scrolled || mega) && !open
+                ? "glass shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] ring-1 ring-bone/10"
+                : "bg-transparent",
             )}
           >
-            <Link href="/" data-nav-item aria-label="CleverHouse Media — home" className="relative z-10 block w-[150px] shrink-0 sm:w-[178px]">
+            <Link
+              href="/"
+              data-nav-item
+              aria-label="CleverHouse Media — home"
+              className="relative z-10 block w-[150px] shrink-0 sm:w-[178px]"
+            >
               <Logo variant="light" priority />
             </Link>
 
             <ul className="hidden items-center gap-1 lg:flex">
               {primaryNav.map((item) =>
                 item.href === "/what-we-do" ? (
-                  <li key={item.href} data-nav-item onMouseEnter={openMega} onMouseLeave={closeMega} className="relative">
+                  <li
+                    key={item.href}
+                    data-nav-item
+                    onMouseEnter={openMega}
+                    onMouseLeave={closeMega}
+                    className="relative"
+                  >
                     <button
                       type="button"
                       aria-expanded={mega}
@@ -141,11 +164,23 @@ export function Nav() {
                       )}
                     >
                       {item.label}
-                      <Plus size={14} className={clsx("transition-transform duration-500", mega && "rotate-45")} aria-hidden="true" />
+                      <Plus
+                        size={14}
+                        className={clsx("transition-transform duration-500", mega && "rotate-45")}
+                        aria-hidden="true"
+                      />
                     </button>
                   </li>
                 ) : (
-                  <li key={item.href} data-nav-item className={item.href === "/seo" || item.href === "/digital-marketing" ? "hidden xl:block" : undefined}>
+                  <li
+                    key={item.href}
+                    data-nav-item
+                    className={
+                      item.href === "/seo" || item.href === "/digital-marketing"
+                        ? "hidden xl:block"
+                        : undefined
+                    }
+                  >
                     <Link
                       href={item.href}
                       aria-current={isActive(item.href) ? "page" : undefined}
@@ -155,7 +190,9 @@ export function Nav() {
                       )}
                     >
                       {item.label}
-                      {isActive(item.href) && <span className="absolute bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-copper-400" />}
+                      {isActive(item.href) && (
+                        <span className="absolute bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-copper-400" />
+                      )}
                     </Link>
                   </li>
                 ),
@@ -163,7 +200,10 @@ export function Nav() {
             </ul>
 
             <div className="flex items-center gap-2" data-nav-item>
-              <Link href="/contact" className="btn btn-copper hidden whitespace-nowrap px-5! py-3! text-[0.9rem]! sm:inline-flex">
+              <Link
+                href="/contact"
+                className="btn btn-copper hidden whitespace-nowrap px-5! py-3! text-[0.9rem]! sm:inline-flex"
+              >
                 <span className="relative">Start a Project</span>
               </Link>
               <button
@@ -175,8 +215,18 @@ export function Nav() {
                 className="relative z-1001 grid h-12 w-12 place-items-center rounded-full bg-bone/10 ring-1 ring-bone/15 transition-colors hover:bg-bone/20 lg:hidden"
               >
                 <span className="relative block h-3 w-5">
-                  <span className={clsx("absolute left-0 h-[1.5px] w-5 bg-bone transition-all duration-500 ease-out-expo", open ? "top-1.5 rotate-45" : "top-0")} />
-                  <span className={clsx("absolute left-0 h-[1.5px] bg-bone transition-all duration-500 ease-out-expo", open ? "top-1.5 w-5 -rotate-45" : "top-3 w-3")} />
+                  <span
+                    className={clsx(
+                      "absolute left-0 h-[1.5px] w-5 bg-bone transition-all duration-500 ease-out-expo",
+                      open ? "top-1.5 rotate-45" : "top-0",
+                    )}
+                  />
+                  <span
+                    className={clsx(
+                      "absolute left-0 h-[1.5px] bg-bone transition-all duration-500 ease-out-expo",
+                      open ? "top-1.5 w-5 -rotate-45" : "top-3 w-3",
+                    )}
+                  />
                 </span>
               </button>
             </div>
@@ -196,10 +246,15 @@ export function Nav() {
                   <div>
                     <p className="label text-copper-300">What we do</p>
                     <p className="mt-4 font-display text-3xl leading-[1.05] tracking-tight">
-                      Creative thinking, <span className="serif-accent text-copper-300">built</span> into every channel.
+                      Creative thinking, <span className="serif-accent text-copper-300">built</span>{" "}
+                      into every channel.
                     </p>
                   </div>
-                  <Link href="/what-we-do" className="mt-8 inline-flex items-center gap-2 text-sm text-copper-200 link-line w-fit" tabIndex={mega ? 0 : -1}>
+                  <Link
+                    href="/what-we-do"
+                    className="mt-8 inline-flex items-center gap-2 text-sm text-copper-200 link-line w-fit"
+                    tabIndex={mega ? 0 : -1}
+                  >
                     Explore all services <ArrowUpRight size={14} />
                   </Link>
                 </div>
@@ -214,7 +269,9 @@ export function Nav() {
                           isActive(s.href) && "bg-bone/5",
                         )}
                       >
-                        <span className="font-display text-[1.05rem] tracking-tight group-hover:text-copper-200">{s.label}</span>
+                        <span className="font-display text-[1.05rem] tracking-tight group-hover:text-copper-200">
+                          {s.label}
+                        </span>
                         <span className="text-xs text-bone/45">{s.description}</span>
                       </Link>
                     </li>
@@ -222,14 +279,25 @@ export function Nav() {
                 </ul>
                 <div className="col-span-3 flex flex-col gap-3">
                   <div className="relative min-h-[150px] flex-1 overflow-hidden rounded-2xl">
-                    <Image src={img.thinkerGlasses} alt="" fill sizes="300px" className="object-cover duotone" />
+                    <Image
+                      src={img.thinkerGlasses}
+                      alt=""
+                      fill
+                      sizes="300px"
+                      className="object-cover duotone"
+                    />
                     <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/30 to-transparent" />
                     <div className="absolute bottom-0 p-4">
                       <p className="label text-copper-200">Free evaluations</p>
                     </div>
                   </div>
                   {resourceNav.slice(1, 3).map((r) => (
-                    <Link key={r.href} href={r.href} tabIndex={mega ? 0 : -1} className="flex items-center justify-between rounded-xl bg-bone/5 px-4 py-3 text-sm hover:bg-bone/10">
+                    <Link
+                      key={r.href}
+                      href={r.href}
+                      tabIndex={mega ? 0 : -1}
+                      className="flex items-center justify-between rounded-xl bg-bone/5 px-4 py-3 text-sm hover:bg-bone/10"
+                    >
                       {r.label} <ArrowUpRight size={14} className="text-copper-300" />
                     </Link>
                   ))}
@@ -255,10 +323,26 @@ function MobileMenu({ open, isActive }: { open: boolean; isActive: (h: string) =
       tl.current = gsap
         .timeline({ paused: true })
         .set(el, { visibility: "visible" })
-        .fromTo(el, { clipPath: "circle(0% at calc(100% - 44px) 44px)" }, { clipPath: "circle(150% at calc(100% - 44px) 44px)", duration: 0.9, ease: "expo.inOut" })
-        .from(el.querySelectorAll("[data-m-link]"), { yPercent: 110, duration: 0.9, stagger: 0.05, ease: "expo.out" }, "-=0.45")
-        .from(el.querySelectorAll("[data-m-fade]"), { autoAlpha: 0, y: 20, stagger: 0.05, duration: 0.6 }, "-=0.6")
-        .from(el.querySelector("[data-m-mark]"), { autoAlpha: 0, rotate: -12, scale: 0.8, duration: 1.2 }, "-=1");
+        .fromTo(
+          el,
+          { clipPath: "circle(0% at calc(100% - 44px) 44px)" },
+          { clipPath: "circle(150% at calc(100% - 44px) 44px)", duration: 0.9, ease: "expo.inOut" },
+        )
+        .from(
+          el.querySelectorAll("[data-m-link]"),
+          { yPercent: 110, duration: 0.9, stagger: 0.05, ease: "expo.out" },
+          "-=0.45",
+        )
+        .from(
+          el.querySelectorAll("[data-m-fade]"),
+          { autoAlpha: 0, y: 20, stagger: 0.05, duration: 0.6 },
+          "-=0.6",
+        )
+        .from(
+          el.querySelector("[data-m-mark]"),
+          { autoAlpha: 0, rotate: -12, scale: 0.8, duration: 1.2 },
+          "-=1",
+        );
     },
     { scope: root },
   );
@@ -285,7 +369,10 @@ function MobileMenu({ open, isActive }: { open: boolean; isActive: (h: string) =
       className="invisible fixed inset-0 z-880 overflow-y-auto bg-ink lg:hidden"
     >
       <div className="absolute inset-0 grid-lines opacity-50" />
-      <div data-m-mark className="pointer-events-none absolute -bottom-16 -right-20 w-[85vw] max-w-[520px] opacity-[0.08]">
+      <div
+        data-m-mark
+        className="pointer-events-none absolute -bottom-16 -right-20 w-[85vw] max-w-[520px] opacity-[0.08]"
+      >
         <LogoMark />
       </div>
       <div className="shell relative flex min-h-full flex-col pb-10 pt-28">
