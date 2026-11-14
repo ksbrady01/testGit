@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+
+Host: https://www.wearechmedia.com
+Sitemap: https://www.wearechmedia.com/sitemap.xml

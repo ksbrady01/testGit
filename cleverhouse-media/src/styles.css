@@ -1,0 +1,438 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   CleverHouse Media — "The Art of Thinking Ahead"
+   ========================================================================== */
+
+:root {
+  --font-display: "Space Grotesk";
+  --font-body: "Manrope";
+  --font-serif: "Instrument Serif";
+  --font-mono: "JetBrains Mono";
+  --ink: #120b07;
+  --ink-850: #1a110c;
+  --bone: #f4ede4;
+  --paper: #fbf8f3;
+  --copper-300: #e2b48a;
+  --copper-400: #cf9a6a;
+  --copper-500: #b88058;
+  --copper-600: #985e38;
+  --copper-700: #6e4127;
+  --verdigris: #6cc2b1;
+  --copper-gradient: linear-gradient(115deg, #7a4728 0%, #b88058 28%, #edcdae 46%, #b88058 62%, #8a5332 100%);
+  --nav-h: 76px;
+  --gutter: clamp(1rem, 3.2vw, 3rem);
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--ink);
+  }
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  body {
+    @apply bg-ink text-bone font-sans;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--copper-500);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--copper-400);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  img {
+    user-select: none;
+  }
+}
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: theme("maxWidth.shell");
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Utility label — mono, tracked, small caps feel */
+  .label {
+    @apply font-mono text-micro uppercase;
+  }
+  .label-dot::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--copper-500);
+    margin-right: 0.7em;
+    transform: translateY(-1px);
+  }
+
+  .text-copper {
+    background: var(--copper-gradient);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-copper-anim {
+    @apply text-copper animate-shimmer;
+  }
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px currentColor;
+  }
+  .text-outline-copper {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--copper-500);
+  }
+
+  .serif-accent {
+    @apply font-serif italic font-normal;
+    letter-spacing: -0.01em;
+  }
+
+  /* Surfaces */
+  .surface-ink {
+    @apply bg-ink text-bone;
+  }
+  .surface-paper {
+    @apply text-ink;
+    background: var(--paper);
+    color-scheme: light;
+  }
+  .surface-bone {
+    @apply bg-bone text-ink;
+    color-scheme: light;
+  }
+
+  /* Fine architectural grid lines */
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgba(244, 237, 228, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(244, 237, 228, 0.055) 1px, transparent 1px);
+    background-size: calc(100% / 12) 120px;
+  }
+  .grid-lines-dark {
+    background-image:
+      linear-gradient(to right, rgba(18, 11, 7, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(18, 11, 7, 0.06) 1px, transparent 1px);
+    background-size: calc(100% / 12) 120px;
+  }
+  .grid-cols-lines {
+    background-image: linear-gradient(to right, rgba(244, 237, 228, 0.06) 1px, transparent 1px);
+    background-size: calc(100% / 6) 100%;
+  }
+
+  /* Film grain */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.09;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* Buttons */
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-3 rounded-full font-display font-medium tracking-tight transition-colors duration-300 select-none;
+    padding: 1.05rem 1.7rem;
+    font-size: 0.98rem;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .btn-copper {
+    @apply text-ink;
+    background: linear-gradient(120deg, #c48d62, #e2b48a 45%, #b88058);
+  }
+  .btn-copper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #f4ede4;
+    transform: translateY(101%);
+    border-radius: inherit;
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-copper:hover::before,
+  .btn-copper:focus-visible::before {
+    transform: translateY(0);
+  }
+  .btn-ghost {
+    @apply text-bone;
+    box-shadow: inset 0 0 0 1px rgba(244, 237, 228, 0.28);
+  }
+  .btn-ghost:hover {
+    box-shadow: inset 0 0 0 1px rgba(226, 180, 138, 0.9);
+    @apply text-copper-200;
+  }
+  .btn-dark {
+    @apply bg-ink text-bone;
+  }
+  .btn-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--copper-600);
+    transform: translateY(101%);
+    border-radius: inherit;
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-dark:hover::before,
+  .btn-dark:focus-visible::before {
+    transform: translateY(0);
+  }
+  .btn-ghost-dark {
+    @apply text-ink;
+    box-shadow: inset 0 0 0 1px rgba(18, 11, 7, 0.3);
+  }
+  .btn-ghost-dark:hover {
+    box-shadow: inset 0 0 0 1px var(--copper-600);
+    color: var(--copper-700);
+  }
+  .btn .btn-icon {
+    @apply inline-grid place-items-center rounded-full;
+    width: 1.9rem;
+    height: 1.9rem;
+    margin-right: -0.9rem;
+    background: rgba(18, 11, 7, 0.12);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn:hover .btn-icon {
+    transform: rotate(-45deg);
+  }
+
+  /* Underline link */
+  .link-line {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    transition: background-size 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-line:hover,
+  .link-line:focus-visible {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+
+  /* Hairline rule */
+  .rule {
+    height: 1px;
+    background: currentColor;
+    opacity: 0.16;
+  }
+
+  /* Form fields */
+  .field {
+    @apply w-full bg-transparent text-lg text-bone placeholder:text-bone-500 transition-colors;
+    border: 0;
+    border-bottom: 1px solid rgba(244, 237, 228, 0.22);
+    padding: 0.9rem 0 0.8rem;
+    border-radius: 0;
+  }
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--copper-400);
+  }
+  .field[aria-invalid="true"] {
+    border-bottom-color: #f08a6c;
+  }
+  .field-light {
+    @apply text-ink placeholder:text-bone-500;
+    border-bottom-color: rgba(18, 11, 7, 0.22);
+  }
+  .field-light:focus {
+    border-bottom-color: var(--copper-600);
+  }
+  select.field option {
+    background: #1a110c;
+    color: #f4ede4;
+  }
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition-all duration-300 cursor-pointer select-none;
+    box-shadow: inset 0 0 0 1px rgba(244, 237, 228, 0.22);
+  }
+  .chip:hover {
+    box-shadow: inset 0 0 0 1px rgba(226, 180, 138, 0.8);
+  }
+  .chip[data-active="true"],
+  input:checked + .chip {
+    @apply bg-copper-400 text-ink;
+    box-shadow: none;
+  }
+  input:focus-visible + .chip {
+    outline: 2px solid var(--copper-400);
+    outline-offset: 3px;
+  }
+  .chip-light {
+    box-shadow: inset 0 0 0 1px rgba(18, 11, 7, 0.2);
+  }
+
+  /* Concept project badge */
+  .concept-badge {
+    @apply inline-flex items-center gap-2 rounded-full font-mono uppercase;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    padding: 0.42rem 0.75rem;
+    background: rgba(18, 11, 7, 0.72);
+    color: #edcdae;
+    box-shadow: inset 0 0 0 1px rgba(226, 180, 138, 0.35);
+    backdrop-filter: blur(8px);
+  }
+}
+
+@layer utilities {
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent);
+    mask-image: linear-gradient(to bottom, #000 60%, transparent);
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  }
+  .duotone {
+    filter: grayscale(1) sepia(0.55) saturate(1.25) contrast(1.06) brightness(0.92);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .clip-full {
+    clip-path: inset(0 0 0 0);
+  }
+  .glass {
+    background: rgba(26, 17, 12, 0.55);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  }
+  .glass-light {
+    background: rgba(251, 248, 243, 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Intro / splash gating. An inline script in <head> sets data-intro before
+   first paint so repeat visitors never see a flash of the splash.
+   -------------------------------------------------------------------------- */
+#chm-splash {
+  display: none;
+}
+html[data-intro="play"] #chm-splash {
+  display: block;
+}
+html[data-intro="play"] body {
+  overflow: hidden;
+}
+
+/* Elements that animate in on load start hidden only when motion is allowed */
+html.motion-ok [data-enter] {
+  opacity: 0;
+}
+
+/* Custom cursor */
+.cursor-root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
+@media (hover: none), (pointer: coarse) {
+  .cursor-root {
+    display: none;
+  }
+}
+html.has-cursor,
+html.has-cursor a,
+html.has-cursor button {
+  cursor: none;
+}
+html.has-cursor input,
+html.has-cursor textarea,
+html.has-cursor select {
+  cursor: text;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hero depth: the solid line fades out where it passes behind the thinker,
+   revealing the outlined twin on the layer beneath the photograph. */
+@media (min-width: 768px) {
+  .hero-fade-line {
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 40%, rgba(0, 0, 0, 0.32) 60%);
+    mask-image: linear-gradient(90deg, #000 0%, #000 40%, rgba(0, 0, 0, 0.32) 60%);
+  }
+}
+
+/* Split headings stay hidden until split (prevents a flash of unsplit text) */
+html.motion-ok [data-split] {
+  visibility: hidden;
+}
+
+/* GROWTH — luminous copper that catches the light */
+.text-growth {
+  background: linear-gradient(100deg, #cf9a6a 0%, #e2b48a 30%, #fff3e6 48%, #e2b48a 64%, #b88058 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: growth-sheen 5s ease-in-out infinite;
+  padding-right: 0.02em;
+}
+@keyframes growth-sheen {
+  0%,
+  100% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+}
+
+/* SplitText line masks */
+.split-line {
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
