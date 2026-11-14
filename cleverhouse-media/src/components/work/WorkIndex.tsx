@@ -2,13 +2,10 @@ import Image from "../site/Img";
 import Link from "../site/Link";
 import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { Flip } from "gsap/Flip";
-import { gsap, useGSAP } from "../../lib/gsap";
+import { Flip, gsap, useGSAP } from "../../lib/gsap";
 import { projects, workFilters, type WorkCategory } from "../../content/projects";
 import { BrowserFrame, MockSite, PhoneFrame, MockMobile, SocialPost } from "./Mockups";
 import clsx from "../../lib/clsx";
-
-if (typeof window !== "undefined") gsap.registerPlugin(Flip);
 
 const layouts = [
   // full-bleed feature
@@ -23,7 +20,7 @@ export function WorkIndex() {
   const root = useRef<HTMLDivElement>(null);
   const grid = useRef<HTMLUListElement>(null);
   const [filter, setFilter] = useState<"all" | WorkCategory>("all");
-  const flipState = useRef<Flip.FlipState | null>(null);
+  const flipState = useRef<ReturnType<typeof Flip.getState> | null>(null);
 
   const visible = projects.filter((p) => filter === "all" || p.categories.includes(filter));
 

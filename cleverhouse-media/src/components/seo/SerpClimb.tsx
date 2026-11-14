@@ -1,9 +1,6 @@
 import { useRef } from "react";
 import { Search } from "lucide-react";
-import { Flip } from "gsap/Flip";
-import { gsap, ScrollTrigger, useGSAP } from "../../lib/gsap";
-
-if (typeof window !== "undefined") gsap.registerPlugin(Flip);
+import { Flip, gsap, ScrollTrigger, useGSAP } from "../../lib/gsap";
 
 const others = [
   "Competitor directory listing",
