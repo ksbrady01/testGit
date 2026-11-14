@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import { EvaluationPage } from "@/components/sections/EvaluationPage";
-import { BrowserFrame, MockSite } from "@/components/work/Mockups";
-import { projects } from "@/content/projects";
-import { img } from "@/content/images";
+import { seo } from "../lib/seo";
+import { EvaluationPage } from "../components/sections/EvaluationPage";
+import { BrowserFrame, MockSite } from "../components/work/Mockups";
+import { projects } from "../content/projects";
+import { img } from "../content/images";
 
 const metadata = {
   title: "Free Website Evaluation — Is Your Website Helping You Grow?",
@@ -25,7 +25,7 @@ function AnnotatedSite() {
         <MockSite project={projects[2]} />
       </BrowserFrame>
       {notes.map((n, i) => (
-        <span key={n.t} className={`absolute ${n.c} flex items-center gap-2 rounded-full bg-ink/90 px-3 py-1.5 text-xs text-bone ring-1 ring-copper-400/50 backdrop-blur`}>
+        <span key={n.t} className={`absolute ${n.c} flex items-center gap-2 rounded-full bg-ink/90 px-3 py-1.5 text-xs text-bone ring-1 ring-copper-400/50 backdrop-blur-sm`}>
           <span className="grid h-4 w-4 place-items-center rounded-full bg-copper-400 font-mono text-[0.55rem] text-ink">{i + 1}</span>
           {n.t}
         </span>

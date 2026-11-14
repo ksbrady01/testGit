@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
 import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
-import appCss from "@/styles.css?url";
-import { Nav } from "@/components/layout/Nav";
-import { Footer } from "@/components/layout/Footer";
-import { NotFound } from "@/components/layout/NotFound";
-import { SmoothScroll } from "@/components/providers/SmoothScroll";
-import { Cursor } from "@/components/providers/Cursor";
-import { PageTransition } from "@/components/providers/PageTransition";
-import { site } from "@/content/site";
+import appCss from "../styles.css?url";
+import { Nav } from "../components/layout/Nav";
+import { Footer } from "../components/layout/Footer";
+import { NotFound } from "../components/layout/NotFound";
+import { SmoothScroll } from "../components/providers/SmoothScroll";
+import { Cursor } from "../components/providers/Cursor";
+import { PageTransition } from "../components/providers/PageTransition";
+import { site } from "../content/site";
 
 // Runs before first paint: decides whether the intro film plays (first visit to "/" this session)
 // and whether motion-based initial states should apply.
@@ -72,7 +72,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       <body>
         <SmoothScroll>
           <Nav />
-          <main id="main" tabIndex={-1} className="outline-none">
+          <main id="main" tabIndex={-1} className="outline-hidden">
             {children}
           </main>
           <Footer />

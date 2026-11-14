@@ -1,14 +1,14 @@
-import Image from "@/components/ui/Img";
-import { lazyClient } from "@/lib/lazyClient";
+import Image from "../ui/Img";
+import { lazyClient } from "../../lib/lazyClient";
 import { useEffect, useRef, useState } from "react";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
-import { canUseWebGL } from "@/lib/webgl";
-import { SplitHeading } from "@/components/motion/Motion";
-import { img } from "@/content/images";
-import clsx from "@/lib/clsx";
-import type { MorphProgress } from "@/components/three/ThinkingMorph";
+import { gsap, ScrollTrigger, useGSAP } from "../../lib/gsap";
+import { canUseWebGL } from "../../lib/webgl";
+import { SplitHeading } from "../motion/Motion";
+import { img } from "../../content/images";
+import clsx from "../../lib/clsx";
+import type { MorphProgress } from "../three/ThinkingMorph";
 
-const ThinkingMorph = lazyClient(() => import("@/components/three/ThinkingMorph"));
+const ThinkingMorph = lazyClient(() => import("../three/ThinkingMorph"));
 
 const stages = [
   {
@@ -94,7 +94,7 @@ export function ThinkingProcess() {
       </div>
 
       {/* Desktop: pinned storytelling */}
-      <div ref={pinEl} className="relative hidden h-[100svh] overflow-hidden md:block">
+      <div ref={pinEl} className="relative hidden h-svh overflow-hidden md:block">
         <div className="absolute inset-0 grid-lines opacity-60" aria-hidden="true" />
         <div className="shell relative grid h-full grid-cols-12 items-center gap-6">
           {/* Stage index */}
@@ -122,11 +122,11 @@ export function ThinkingProcess() {
               {stages.map((s, i) => (
                 <div
                   key={s.word}
-                  className="absolute inset-0 transition-[clip-path] duration-[1100ms] ease-in-out-quart"
+                  className="absolute inset-0 transition-[clip-path] duration-1100 ease-in-out-quart"
                   style={{ clipPath: stage >= i ? "inset(0% 0% 0% 0%)" : "inset(100% 0% 0% 0%)" }}
                 >
-                  <Image src={s.image} alt={s.alt} fill sizes="42vw" className={clsx("object-cover transition-transform duration-[1600ms] ease-out-expo", stage === i ? "scale-100" : "scale-110")} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/30" />
+                  <Image src={s.image} alt={s.alt} fill sizes="42vw" className={clsx("object-cover transition-transform duration-1600 ease-out-expo", stage === i ? "scale-100" : "scale-110")} />
+                  <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/50 to-ink/30" />
                 </div>
               ))}
               {webgl && <ThinkingMorph progress={progress.current} className="absolute inset-0" />}
@@ -158,9 +158,9 @@ export function ThinkingProcess() {
       <ol className="shell space-y-14 pb-24 md:hidden">
         {stages.map((s, i) => (
           <li key={s.word}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
+            <div className="relative aspect-4/3 overflow-hidden rounded-3xl">
               <Image src={s.image} alt={s.alt} fill sizes="100vw" className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-ink/80 to-transparent" />
               <span className="absolute bottom-4 left-5 font-display text-5xl font-medium uppercase tracking-[-0.03em]">{s.word}</span>
             </div>
             <p className="label mt-6 text-copper-300">Stage 0{i + 1}</p>

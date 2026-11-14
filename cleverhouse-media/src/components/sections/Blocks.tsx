@@ -1,10 +1,10 @@
-import Image from "@/components/ui/Img";
-import Link from "@/components/ui/Link";
+import Image from "../ui/Img";
+import Link from "../ui/Link";
 import { ArrowUpRight, Plus } from "lucide-react";
-import { Reveal, SplitHeading, ScrollZoom } from "@/components/motion/Motion";
-import { Button } from "@/components/ui/Button";
-import { LogoMark } from "@/components/brand/Logo";
-import clsx from "@/lib/clsx";
+import { Reveal, SplitHeading, ScrollZoom } from "../motion/Motion";
+import { Button } from "../ui/Button";
+import { LogoMark } from "../brand/Logo";
+import clsx from "../../lib/clsx";
 
 /* Section heading pattern: label column + large heading */
 export function SectionHead({
@@ -118,7 +118,7 @@ export function ImageBand({ image, alt = "", statement, caption }: { image: stri
           <Image src={image} alt={alt} fill sizes="100vw" className="object-cover" />
         </div>
       </ScrollZoom>
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-ink/10" />
+      <div className="absolute inset-0 bg-linear-to-t from-ink/90 via-ink/30 to-ink/10" />
       <div className="shell relative flex h-full flex-col justify-end pb-14">
         {statement && <SplitHeading className="max-w-[18ch] font-display text-big font-medium">{statement}</SplitHeading>}
         {caption && <p className="label mt-6 text-bone/60">{caption}</p>}
@@ -180,7 +180,7 @@ export function ProcessStrip({ steps, light = false }: { steps: { step: string; 
   return (
     <Reveal kind="up" stagger={0.1} as="ol" className="grid gap-px overflow-hidden rounded-[28px] md:grid-cols-4" style={{ background: light ? "rgba(18,11,7,0.1)" : "rgba(244,237,228,0.1)" }}>
       {steps.map((s, i) => (
-        <li key={s.step} className={clsx("flex min-h-[260px] flex-col justify-between p-8", light ? "bg-[#fbf8f3]" : "bg-ink")}>
+        <li key={s.step} className={clsx("flex min-h-[260px] flex-col justify-between p-8", light ? "bg-bone-50" : "bg-ink")}>
           <span className={clsx("font-mono text-sm", light ? "text-copper-700" : "text-copper-400")}>0{i + 1}</span>
           <div>
             <h3 className={clsx("font-display text-3xl font-medium tracking-tight", light && "text-ink")}>{s.step}</h3>

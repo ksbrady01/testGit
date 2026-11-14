@@ -1,7 +1,7 @@
-import Image from "@/components/ui/Img";
-import { SplitHeading, Reveal, Parallax } from "@/components/motion/Motion";
-import { Button } from "@/components/ui/Button";
-import clsx from "@/lib/clsx";
+import Image from "../ui/Img";
+import { SplitHeading, Reveal, Parallax } from "../motion/Motion";
+import { Button } from "../ui/Button";
+import clsx from "../../lib/clsx";
 
 type Cta = { label: string; href: string };
 
@@ -68,7 +68,7 @@ export function PageHero({
             <Image src={image} alt={imageAlt} fill priority sizes="100vw" className="object-cover" />
           </Parallax>
         )}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/60 to-ink/20" />
+        <div className="absolute inset-0 -z-10 bg-linear-to-t from-ink via-ink/60 to-ink/20" />
         <div className="absolute inset-0 -z-10 grid-lines opacity-40" />
         <div className="grain absolute inset-0 -z-10" />
         <div className="shell">
@@ -105,7 +105,7 @@ export function PageHero({
           </div>
           {image && (
             <div className="relative lg:col-span-5">
-              <Reveal kind="image" className="relative aspect-[4/5] overflow-hidden rounded-[32px]">
+              <Reveal kind="image" className="relative aspect-4/5 overflow-hidden rounded-[32px]">
                 <Image src={image} alt={imageAlt} fill priority sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
               </Reveal>
               {aside && <div className="absolute -bottom-6 -left-6 max-w-[80%] md:-left-12">{aside}</div>}
@@ -128,10 +128,10 @@ export function PageHero({
               speed={[-30, 20, -14][i]}
               className={clsx(
                 "absolute overflow-hidden rounded-[24px] shadow-2xl",
-                ["right-[6%] top-[14%] hidden w-[22vw] max-w-[340px] rotate-[4deg] md:block", "right-[22%] top-[52%] hidden w-[16vw] max-w-[240px] -rotate-[5deg] lg:block", "left-[58%] top-[8%] hidden w-[12vw] max-w-[180px] rotate-[-3deg] xl:block"][i],
+                ["right-[6%] top-[14%] hidden w-[22vw] max-w-[340px] rotate-[4deg] md:block", "right-[22%] top-[52%] hidden w-[16vw] max-w-[240px] -rotate-[5deg] lg:block", "left-[58%] top-[8%] hidden w-[12vw] max-w-[180px] -rotate-3 xl:block"][i],
               )}
             >
-              <Reveal kind="image" delay={0.2 + i * 0.15} className="relative aspect-[3/4]">
+              <Reveal kind="image" delay={0.2 + i * 0.15} className="relative aspect-3/4">
                 <Image src={src} alt="" fill priority={i === 0} sizes="25vw" className="object-cover" />
               </Reveal>
             </Parallax>

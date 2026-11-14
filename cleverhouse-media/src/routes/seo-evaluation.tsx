@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import { EvaluationPage } from "@/components/sections/EvaluationPage";
-import { SerpClimb } from "@/components/seo/SerpClimb";
-import { img } from "@/content/images";
+import { seo } from "../lib/seo";
+import { EvaluationPage } from "../components/sections/EvaluationPage";
+import { SerpClimb } from "../components/seo/SerpClimb";
+import { img } from "../content/images";
 
 const metadata = {
   title: "Free SEO Evaluation — How Visible Is Your Business?",

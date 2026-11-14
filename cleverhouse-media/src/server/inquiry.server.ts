@@ -1,13 +1,15 @@
 // Server-only: inquiry validation, spam protection and delivery (Resend email and/or webhook).
-import { promises as fs } from "fs";
-import path from "path";
-import { inquiryLabels, normalizeUrl, validateInquiry, type InquiryPayload, type InquiryType } from "@/lib/inquiry";
+import { inquiryLabels, normalizeUrl, validateInquiry, type InquiryPayload, type InquiryType } from "../lib/inquiry";
 
 const TYPES: InquiryType[] = ["contact", "seo-evaluation", "website-evaluation", "careers", "live-concepts"];
 const MIN_FILL_MS = 2500; // humans take longer than this to fill a form
 const RATE_LIMIT = 5; // submissions per IP per window
 const WINDOW_MS = 10 * 60 * 1000;
 const hits = new Map<string, number[]>();
+
+/** Reads a server secret without depending on Node's type definitions. */
+const env = (key: string): string | undefined =>
+  (globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env?.[key];
 
 function rateLimited(ip: string) {
   const now = Date.now();
@@ -69,9 +71,9 @@ export async function handleInquiry(req: Request) {
   const record = { ...payload, receivedAt: new Date().toISOString() };
   const subject = `${inquiryLabels[type]} — ${payload.name}${payload.company ? ` (${payload.company})` : ""}`;
 
-  const resendKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.INQUIRY_TO_EMAIL;
-  const webhook = process.env.INQUIRY_WEBHOOK_URL;
+  const resendKey = env("RESEND_API_KEY");
+  const toEmail = env("INQUIRY_TO_EMAIL");
+  const webhook = env("INQUIRY_WEBHOOK_URL");
   let delivered = false;
   const failures: string[] = [];
 
@@ -85,7 +87,7 @@ export async function handleInquiry(req: Request) {
         method: "POST",
         headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          from: process.env.INQUIRY_FROM_EMAIL || "CleverHouse Website <onboarding@resend.dev>",
+          from: env("INQUIRY_FROM_EMAIL") || "CleverHouse Website <onboarding@resend.dev>",
           to: toEmail.split(",").map((s) => s.trim()),
           reply_to: payload.email,
           subject,
@@ -94,7 +96,7 @@ export async function handleInquiry(req: Request) {
       });
       if (r.ok) delivered = true;
       else failures.push(`resend:${r.status}`);
-    } catch (err) {
+    } catch {
       failures.push("resend:network");
     }
   }
@@ -113,17 +115,10 @@ export async function handleInquiry(req: Request) {
     }
   }
 
-  if (!delivered && process.env.NODE_ENV !== "production") {
-    // Development fallback: keep submissions locally so the form is fully testable.
-    try {
-      const dir = path.join(process.cwd(), ".data");
-      await fs.mkdir(dir, { recursive: true });
-      await fs.appendFile(path.join(dir, "inquiries.jsonl"), JSON.stringify(record) + "\n");
-      console.info(`[inquiry] ${subject} — saved to .data/inquiries.jsonl (no delivery configured)`);
-      delivered = true;
-    } catch (err) {
-      console.error("[inquiry] could not write local file", err);
-    }
+  if (!delivered && import.meta.env.DEV) {
+    // Development fallback: log the submission so the form is fully testable without secrets.
+    console.info(`[inquiry] ${subject} (no delivery configured; dev only)\n${JSON.stringify(record, null, 2)}`);
+    delivered = true;
   }
 
   if (!delivered) {

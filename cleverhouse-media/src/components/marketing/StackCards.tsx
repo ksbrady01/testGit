@@ -1,6 +1,6 @@
-import Image from "@/components/ui/Img";
+import Image from "../ui/Img";
 import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP } from "../../lib/gsap";
 
 type Card = { kicker: string; title: string; body: string; image: string; points: string[] };
 
@@ -55,7 +55,7 @@ export function StackCards({ cards }: { cards: Card[] }) {
           </div>
           <div className="relative min-h-[300px]">
             <Image src={c.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink-850/60 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-r from-ink-850/60 to-transparent" />
           </div>
         </article>
       ))}

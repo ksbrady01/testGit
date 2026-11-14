@@ -1,12 +1,12 @@
-import Image from "@/components/ui/Img";
-import Link from "@/components/ui/Link";
+import Image from "../ui/Img";
+import Link from "../ui/Link";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { SplitHeading } from "@/components/motion/Motion";
-import { Button } from "@/components/ui/Button";
-import { BrowserFrame, MockSite, PhoneFrame, MockMobile } from "@/components/work/Mockups";
-import { projects } from "@/content/projects";
+import { gsap, useGSAP } from "../../lib/gsap";
+import { SplitHeading } from "../motion/Motion";
+import { Button } from "../ui/Button";
+import { BrowserFrame, MockSite, PhoneFrame, MockMobile } from "../work/Mockups";
+import { projects } from "../../content/projects";
 
 /** Horizontal, pinned showcase of featured (concept) projects. */
 export function FeaturedWork() {
@@ -78,8 +78,8 @@ export function FeaturedWork() {
         </div>
       </div>
 
-      <div ref={pin} className="relative overflow-hidden lg:h-[100svh]">
-        <div ref={track} className="flex flex-col gap-6 px-[var(--gutter)] pb-20 lg:h-full lg:w-max lg:flex-row lg:items-center lg:gap-[3vw] lg:pb-0">
+      <div ref={pin} className="relative overflow-hidden lg:h-svh">
+        <div ref={track} className="flex flex-col gap-6 px-(--gutter) pb-20 lg:h-full lg:w-max lg:flex-row lg:items-center lg:gap-[3vw] lg:pb-0">
           {projects.map((p, i) => (
             <article
               key={p.slug}
@@ -88,7 +88,7 @@ export function FeaturedWork() {
             >
               <Link href={`/work/${p.slug}`} className="absolute inset-0 z-30" aria-label={`View concept project: ${p.name}`} data-cursor="View" />
               <Image src={p.hero} alt="" fill sizes="85vw" className="-z-10 object-cover opacity-35 duotone" />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/80 to-ink/30" />
+              <div className="absolute inset-0 -z-10 bg-linear-to-r from-ink via-ink/80 to-ink/30" />
               <div className="absolute -z-10 h-[60%] w-[50%] rounded-full blur-[120px]" style={{ background: p.accent, opacity: 0.18, right: "5%", top: "10%" }} />
 
               <div className="relative z-10 flex w-full flex-col justify-between p-6 md:p-10 lg:w-[44%] lg:p-14">
@@ -139,7 +139,7 @@ export function FeaturedWork() {
             </Button>
           </div>
         </div>
-        <div className="absolute bottom-8 left-[var(--gutter)] right-[var(--gutter)] hidden h-px bg-ink/15 lg:block" aria-hidden="true">
+        <div className="absolute bottom-8 left-(--gutter) right-(--gutter) hidden h-px bg-ink/15 lg:block" aria-hidden="true">
           <span ref={bar} className="block h-full origin-left scale-x-0 bg-copper-600" />
         </div>
       </div>

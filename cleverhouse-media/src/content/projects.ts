@@ -36,6 +36,8 @@ export type ConceptBrand = {
   cta: string;
 };
 
+export type SocialPiece = { image: string; caption: string; kind: "post" | "story" | "ad" };
+
 export type Project = {
   slug: string;
   kind: "concept" | "client";
@@ -47,14 +49,16 @@ export type Project = {
   tagline: string;
   summary: string;
   hero: string;
-  gallery: string[];
+  /** At least three images (pages lay out three). */
+  gallery: [string, string, string, ...string[]];
   accent: string;
   brand: ConceptBrand;
   challenge: string;
   approach: { title: string; body: string }[];
   services: string[];
   deliverables: string[];
-  social: { image: string; caption: string; kind: "post" | "story" | "ad" }[];
+  /** At least three social pieces (pages lay out three). */
+  social: [SocialPiece, SocialPiece, SocialPiece, ...SocialPiece[]];
   search?: { query: string; title: string; snippet: string; local?: boolean };
   /** For concept work we describe what we would measure — never invented numbers. */
   outcomes: { title: string; body: string }[];
@@ -69,7 +73,8 @@ export type Project = {
   };
 };
 
-export const projects: Project[] = [
+/** The four concept projects are always present; client work can be appended. */
+export const projects: [Project, Project, Project, Project, ...Project[]] = [
   {
     slug: "bluebonnet-plumbing-air",
     kind: "concept",
@@ -324,7 +329,7 @@ export const projects: Project[] = [
       insight: "A first-time guest makes most of their decision before they ever park the car. The website has to feel like a warm handshake.",
       research: ["First-time guest journey interviews", "Staff workflow for events & registrations", "Communication channel audit", "Accessibility review"],
       strategy: "Design for the newcomer first, then build connected paths for members — events, groups, serving, and giving — all from one welcoming home.",
-      creative: "Warm lantern amber on soft cream, rounded sans typography, and photography of real community moments.",
+      creative: "Warm lantern amber on soft cream, rounded-sm sans typography, and photography of real community moments.",
       process: [
         { step: "Welcome", body: "Map the newcomer journey and the questions guests ask most." },
         { step: "Connect", body: "Unify events, registrations, and communication tools." },

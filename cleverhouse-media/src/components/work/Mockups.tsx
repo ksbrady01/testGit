@@ -1,7 +1,7 @@
-import Image from "@/components/ui/Img";
+import Image from "../ui/Img";
 import { Heart, MessageCircle, Send, Bookmark, Search, MapPin, Star, Phone, Menu } from "lucide-react";
-import type { Project } from "@/content/projects";
-import clsx from "@/lib/clsx";
+import type { Project } from "../../content/projects";
+import clsx from "../../lib/clsx";
 
 const fontFor = (s: Project["brand"]["fontStyle"]) => (s === "serif" ? "font-serif" : s === "grotesk" ? "font-display" : "font-sans");
 
@@ -95,7 +95,7 @@ export function MockSite({ project, image }: { project: Project; image?: string 
       {/* service strip */}
       <div className="absolute inset-x-[4cqw] bottom-[4cqw] z-10 grid grid-cols-3 gap-[1.4cqw]">
         {project.approach.slice(0, 3).map((a) => (
-          <div key={a.title} className="rounded-[1.2cqw] p-[1.6cqw] backdrop-blur" style={{ background: `${b.fg}12`, boxShadow: `inset 0 0 0 1px ${b.fg}1f` }}>
+          <div key={a.title} className="rounded-[1.2cqw] p-[1.6cqw] backdrop-blur-sm" style={{ background: `${b.fg}12`, boxShadow: `inset 0 0 0 1px ${b.fg}1f` }}>
             <span className="block h-[0.5cqw] w-[3cqw] rounded-full" style={{ background: b.accent }} />
             <p className={clsx(f, "mt-[1cqw] text-[1.4cqw] font-semibold leading-tight")}>{a.title}</p>
           </div>

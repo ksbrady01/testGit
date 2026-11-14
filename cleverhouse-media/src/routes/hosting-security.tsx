@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
+import { seo } from "../lib/seo";
 import { ShieldCheck, Server, Zap, RefreshCcw, Lock, Activity } from "lucide-react";
-import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand, Faq, SectionHead } from "@/components/sections/Blocks";
-import { Reveal } from "@/components/motion/Motion";
-import { img } from "@/content/images";
+import { PageHero } from "../components/sections/PageHero";
+import { CtaBand, Faq, SectionHead } from "../components/sections/Blocks";
+import { Reveal } from "../components/motion/Motion";
+import { img } from "../content/images";
 
 const metadata = {
   title: "Hosting & Security",

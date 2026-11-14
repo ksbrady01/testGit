@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import { ServiceDetail } from "@/components/sections/ServiceDetail";
-import { Ecosystem } from "@/components/home/Ecosystem";
-import { img } from "@/content/images";
+import { seo } from "../../lib/seo";
+import { ServiceDetail } from "../../components/sections/ServiceDetail";
+import { Ecosystem } from "../../components/home/Ecosystem";
+import { img } from "../../content/images";
 
 const metadata = {
   title: "Digital Ecosystems — Connected Platforms",

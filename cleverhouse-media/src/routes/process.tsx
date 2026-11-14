@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand } from "@/components/sections/Blocks";
-import { Reveal } from "@/components/motion/Motion";
-import { img } from "@/content/images";
+import { seo } from "../lib/seo";
+import Image from "../components/ui/Img";
+import { PageHero } from "../components/sections/PageHero";
+import { CtaBand } from "../components/sections/Blocks";
+import { Reveal } from "../components/motion/Motion";
+import { img } from "../content/images";
 
 const metadata = {
   title: "Our Process — The CHM Way",
@@ -69,7 +69,7 @@ function ProcessPage() {
                 <h2 className="-mt-4 font-display text-giant font-medium md:-mt-10">{s.name}</h2>
               </div>
               <div className="md:col-span-6 md:col-start-7">
-                <Reveal kind="image" className="relative aspect-[16/10] overflow-hidden rounded-[28px]">
+                <Reveal kind="image" className="relative aspect-16/10 overflow-hidden rounded-[28px]">
                   <Image src={s.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                 </Reveal>
                 <Reveal kind="up">

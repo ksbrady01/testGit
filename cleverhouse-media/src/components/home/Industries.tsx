@@ -1,7 +1,7 @@
-import Image from "@/components/ui/Img";
-import { Reveal, SplitHeading } from "@/components/motion/Motion";
-import { img } from "@/content/images";
-import clsx from "@/lib/clsx";
+import Image from "../ui/Img";
+import { Reveal, SplitHeading } from "../motion/Motion";
+import { img } from "../../content/images";
+import clsx from "../../lib/clsx";
 
 const industries = [
   { name: "Local businesses", note: "Home services, trades & neighborhood favorites", image: img.landscaper, span: "md:col-span-7 md:row-span-2" },
@@ -36,9 +36,9 @@ export function Industries() {
                 alt=""
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-[1.06]"
+                className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-[1.06]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
+              <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/30 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
               <div className="absolute inset-0 opacity-0 mix-blend-color transition-opacity duration-700 group-hover:opacity-60" style={{ background: "#B88058" }} />
               <figcaption className="absolute inset-x-0 bottom-0 p-6 md:p-7">
                 <p className="font-display text-2xl font-medium tracking-tight md:text-3xl">{ind.name}</p>

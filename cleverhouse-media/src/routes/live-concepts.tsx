@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import { BroadcastFrame } from "@/components/live/BroadcastFrame";
-import { InquiryForm } from "@/components/forms/InquiryForm";
-import { CtaBand, ImageBand, SectionHead } from "@/components/sections/Blocks";
-import { Marquee, Reveal, SplitHeading } from "@/components/motion/Motion";
-import { Button } from "@/components/ui/Button";
-import { img } from "@/content/images";
+import { seo } from "../lib/seo";
+import Image from "../components/ui/Img";
+import { BroadcastFrame } from "../components/live/BroadcastFrame";
+import { InquiryForm } from "../components/forms/InquiryForm";
+import { CtaBand, ImageBand, SectionHead } from "../components/sections/Blocks";
+import { Marquee, Reveal, SplitHeading } from "../components/motion/Motion";
+import { Button } from "../components/ui/Button";
+import { img } from "../content/images";
 
 const metadata = {
   title: "Live Concepts — Livestreams, Virtual Events & Interactive Campaigns",
@@ -84,7 +84,7 @@ function LiveConceptsPage() {
                 <span className="font-mono text-xs text-copper-400">{String(i + 1).padStart(2, "0")}</span>
                 {i === 0 && (
                   <div className="relative my-6 flex-1 overflow-hidden rounded-2xl">
-                    <Image src={img.studioSet} alt="A production studio set prepared for a livestream" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-105" />
+                    <Image src={img.studioSet} alt="A production studio set prepared for a livestream" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-105" />
                   </div>
                 )}
                 <div>
@@ -111,8 +111,8 @@ function LiveConceptsPage() {
           <Reveal kind="up" stagger={0.1} className="mt-16 grid gap-6 md:grid-cols-3">
             {prototypes.map((p, i) => (
               <article key={p.title} className={`group overflow-hidden rounded-[28px] bg-bone ring-1 ring-ink/5 ${i === 1 ? "md:mt-16" : ""}`}>
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image src={p.image} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-105" />
+                <div className="relative aspect-4/3 overflow-hidden">
+                  <Image src={p.image} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-105" />
                   <span className="concept-badge absolute left-4 top-4">{p.tag} · Prototype</span>
                 </div>
                 <div className="p-7">

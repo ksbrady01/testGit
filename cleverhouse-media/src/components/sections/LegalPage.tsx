@@ -1,4 +1,4 @@
-import { SplitHeading } from "@/components/motion/Motion";
+import { SplitHeading } from "../motion/Motion";
 
 export function LegalPage({ title, updated, sections }: { title: string; updated: string; sections: { h: string; p: string[] }[] }) {
   return (

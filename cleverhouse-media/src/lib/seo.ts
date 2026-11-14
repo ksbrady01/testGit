@@ -1,4 +1,4 @@
-import { site } from "@/content/site";
+import { site } from "../content/site";
 
 type PageMeta = {
   title: string | { absolute: string };

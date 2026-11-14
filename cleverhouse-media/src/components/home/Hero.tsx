@@ -1,15 +1,15 @@
-import Image from "@/components/ui/Img";
-import { lazyClient } from "@/lib/lazyClient";
+import Image from "../ui/Img";
+import { lazyClient } from "../../lib/lazyClient";
 import { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { canUseWebGL } from "@/lib/webgl";
-import { Button } from "@/components/ui/Button";
-import { img } from "@/content/images";
-import clsx from "@/lib/clsx";
-import type { Intensity } from "@/components/three/IdeaField";
+import { gsap, useGSAP } from "../../lib/gsap";
+import { canUseWebGL } from "../../lib/webgl";
+import { Button } from "../ui/Button";
+import { img } from "../../content/images";
+import clsx from "../../lib/clsx";
+import type { Intensity } from "../three/IdeaField";
 
-const IdeaField = lazyClient(() => import("@/components/three/IdeaField"));
+const IdeaField = lazyClient(() => import("../three/IdeaField"));
 
 const GROWTH = "GROWTH".split("");
 const headlineCls =
@@ -200,7 +200,7 @@ export function Hero() {
   );
 
   return (
-    <section ref={root} className="relative isolate min-h-[100svh] overflow-hidden bg-ink" aria-labelledby="hero-heading">
+    <section ref={root} className="relative isolate min-h-svh overflow-hidden bg-ink" aria-labelledby="hero-heading">
       {/* Background */}
       <div data-h-bg className="absolute inset-0 -z-10" aria-hidden="true">
         <div className="absolute inset-0 grid-lines" />
@@ -230,10 +230,10 @@ export function Hero() {
             fill
             priority
             sizes="(max-width: 768px) 100vw, 64vw"
-            className="object-cover object-[42%_20%] [filter:saturate(0.85)_contrast(1.08)_brightness(0.9)]"
+            className="object-cover object-[42%_20%] filter-[saturate(0.85)_contrast(1.08)_brightness(0.9)]"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/5 to-ink/40 md:hidden" />
+        <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/5 to-ink/40 md:hidden" />
         <div className="absolute inset-0 hidden md:block" style={{ background: "linear-gradient(90deg, #120B07 0%, rgba(18,11,7,0.55) 22%, rgba(18,11,7,0) 48%)" }} />
         <div className="absolute inset-0 hidden md:block" style={{ background: "linear-gradient(0deg, #120B07 0%, rgba(18,11,7,0.35) 30%, rgba(18,11,7,0) 55%)" }} />
         <div className="grain absolute inset-0" />
@@ -273,7 +273,7 @@ export function Hero() {
       </div>
 
       {/* Front layer */}
-      <div data-h-front className="relative z-40 flex min-h-[100svh] flex-col justify-end">
+      <div data-h-front className="relative z-40 flex min-h-svh flex-col justify-end">
         <HeroText />
       </div>
     </section>

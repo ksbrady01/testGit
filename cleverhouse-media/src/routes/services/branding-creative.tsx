@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Link from "@/components/ui/Link";
-import { ServiceDetail } from "@/components/sections/ServiceDetail";
-import { Reveal } from "@/components/motion/Motion";
-import { projects } from "@/content/projects";
-import { img } from "@/content/images";
-import clsx from "@/lib/clsx";
+import { seo } from "../../lib/seo";
+import Link from "../../components/ui/Link";
+import { ServiceDetail } from "../../components/sections/ServiceDetail";
+import { Reveal } from "../../components/motion/Motion";
+import { projects } from "../../content/projects";
+import { img } from "../../content/images";
+import clsx from "../../lib/clsx";
 
 const metadata = {
   title: "Branding & Creative",

@@ -1,10 +1,10 @@
-import Link from "@/components/ui/Link";
-import { LogoMark } from "@/components/brand/Logo";
-import { Button } from "@/components/ui/Button";
+import Link from "../ui/Link";
+import { LogoMark } from "../brand/Logo";
+import { Button } from "../ui/Button";
 
 export function NotFound() {
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink">
+    <section className="relative flex min-h-svh items-center overflow-hidden bg-ink">
       <div className="absolute inset-0 grid-lines opacity-50" aria-hidden="true" />
       <div className="pointer-events-none absolute left-1/2 top-1/2 w-[60vmin] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" aria-hidden="true">
         <LogoMark />

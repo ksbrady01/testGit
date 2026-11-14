@@ -1,8 +1,8 @@
 import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { LogoMark } from "@/components/brand/Logo";
-import { Button } from "@/components/ui/Button";
-import { SplitHeading } from "@/components/motion/Motion";
+import { gsap, useGSAP } from "../../lib/gsap";
+import { LogoMark } from "../brand/Logo";
+import { Button } from "../ui/Button";
+import { SplitHeading } from "../motion/Motion";
 
 /** Full-screen closing moment. The CH mark tilts toward the cursor under a moving copper light. */
 export function FinalCta() {
@@ -44,7 +44,7 @@ export function FinalCta() {
   );
 
   return (
-    <section ref={root} className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ink" aria-labelledby="cta-heading">
+    <section ref={root} className="relative isolate flex min-h-svh items-center overflow-hidden bg-ink" aria-labelledby="cta-heading">
       <div className="absolute inset-0 -z-10 grid-lines opacity-60" aria-hidden="true" />
       <div
         ref={light}
@@ -52,8 +52,8 @@ export function FinalCta() {
         className="pointer-events-none absolute -left-[30vmin] -top-[30vmin] -z-10 h-[60vmin] w-[60vmin] rounded-full"
         style={{ background: "radial-gradient(circle, rgba(226,180,138,0.22), transparent 65%)", transform: "translate(50vw, 50vh)" }}
       />
-      <div className="pointer-events-none absolute inset-0 -z-10 grid place-items-center [perspective:1100px]" aria-hidden="true">
-        <div ref={mark} className="w-[min(70vw,560px)] opacity-[0.16] [transform-style:preserve-3d]">
+      <div className="pointer-events-none absolute inset-0 -z-10 grid place-items-center perspective-[1100px]" aria-hidden="true">
+        <div ref={mark} className="w-[min(70vw,560px)] opacity-[0.16] transform-3d">
           <LogoMark />
         </div>
       </div>

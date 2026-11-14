@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand, ImageBand, SectionHead } from "@/components/sections/Blocks";
-import { Reveal, ScrubWords, SplitHeading } from "@/components/motion/Motion";
-import { LogoMark } from "@/components/brand/Logo";
-import { img } from "@/content/images";
+import { seo } from "../lib/seo";
+import Image from "../components/ui/Img";
+import { PageHero } from "../components/sections/PageHero";
+import { CtaBand, ImageBand, SectionHead } from "../components/sections/Blocks";
+import { Reveal, ScrubWords, SplitHeading } from "../components/motion/Motion";
+import { LogoMark } from "../components/brand/Logo";
+import { img } from "../content/images";
 
 const metadata = {
   title: "About CleverHouse Media",
@@ -98,9 +98,9 @@ function AboutPage() {
           </div>
           <Reveal kind="up" stagger={0.1} className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {disciplines.map((d, i) => (
-              <figure key={d.role} className={`group relative aspect-[3/4] overflow-hidden rounded-[28px] ${i % 2 ? "lg:mt-16" : ""}`}>
-                <Image src={d.image} alt="" fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+              <figure key={d.role} className={`group relative aspect-3/4 overflow-hidden rounded-[28px] ${i % 2 ? "lg:mt-16" : ""}`}>
+                <Image src={d.image} alt="" fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-105" />
+                <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/30 to-transparent" />
                 <figcaption className="absolute bottom-0 p-6">
                   <p className="font-display text-3xl font-medium tracking-tight">{d.role}</p>
                   <p className="mt-2 text-bone/70">{d.body}</p>

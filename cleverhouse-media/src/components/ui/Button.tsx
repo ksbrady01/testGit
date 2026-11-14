@@ -1,7 +1,7 @@
-import Link from "@/components/ui/Link";
+import Link from "./Link";
 import { ArrowUpRight } from "lucide-react";
-import clsx from "@/lib/clsx";
-import { Magnetic } from "@/components/motion/Motion";
+import clsx from "../../lib/clsx";
+import { Magnetic } from "../motion/Motion";
 
 type Variant = "copper" | "ghost" | "dark" | "ghost-dark";
 

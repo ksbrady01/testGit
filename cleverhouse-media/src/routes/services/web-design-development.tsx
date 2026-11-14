@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import { ServiceDetail } from "@/components/sections/ServiceDetail";
-import { BrowserFrame, MockMobile, MockSite, PhoneFrame } from "@/components/work/Mockups";
-import { Parallax, Reveal } from "@/components/motion/Motion";
-import { projects } from "@/content/projects";
-import { img } from "@/content/images";
+import { seo } from "../../lib/seo";
+import { ServiceDetail } from "../../components/sections/ServiceDetail";
+import { BrowserFrame, MockMobile, MockSite, PhoneFrame } from "../../components/work/Mockups";
+import { Parallax, Reveal } from "../../components/motion/Motion";
+import { projects } from "../../content/projects";
+import { img } from "../../content/images";
 
 const metadata = {
   title: "Website Design & Development",

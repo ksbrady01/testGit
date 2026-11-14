@@ -1,6 +1,6 @@
 import { useRef, type ElementType, type ReactNode, type CSSProperties } from "react";
-import { gsap, ScrollTrigger, SplitText, useGSAP } from "@/lib/gsap";
-import clsx from "@/lib/clsx";
+import { gsap, ScrollTrigger, SplitText, useGSAP } from "../../lib/gsap";
+import clsx from "../../lib/clsx";
 
 const MOTION_OK = "(prefers-reduced-motion: no-preference)";
 

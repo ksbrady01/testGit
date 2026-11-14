@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { SplitHeading } from "@/components/motion/Motion";
+import { gsap, useGSAP } from "../../lib/gsap";
+import { SplitHeading } from "../motion/Motion";
 
 const queries = ["web design agency in texas", "how to rank on google maps", "best local seo for small business", "website that gets more leads"];
 
@@ -11,10 +11,10 @@ function TypingSearch() {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
-      setText(queries[0]);
+      setText(queries[0] ?? "");
       return;
     }
-    const q = queries[qi];
+    const q = queries[qi] ?? "";
     let i = 0;
     let dir = 1;
     let pause = 0;
@@ -183,7 +183,7 @@ export function WhyUs() {
                   <p className="mt-4 text-ink/65">{it.body}</p>
                 </div>
               </div>
-              <div className="flex items-center justify-center rounded-2xl bg-[#fbf8f3] p-6 ring-1 ring-ink/5">{it.visual}</div>
+              <div className="flex items-center justify-center rounded-2xl bg-bone-50 p-6 ring-1 ring-ink/5">{it.visual}</div>
             </li>
           ))}
         </ol>

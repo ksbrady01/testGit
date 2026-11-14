@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import Link from "@/components/ui/Link";
+import { seo } from "../../lib/seo";
+import Image from "../../components/ui/Img";
+import Link from "../../components/ui/Link";
 import { ArrowUpRight } from "lucide-react";
-import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand } from "@/components/sections/Blocks";
-import { Reveal } from "@/components/motion/Motion";
-import { projects } from "@/content/projects";
-import { img } from "@/content/images";
+import { PageHero } from "../../components/sections/PageHero";
+import { CtaBand } from "../../components/sections/Blocks";
+import { Reveal } from "../../components/motion/Motion";
+import { projects } from "../../content/projects";
+import { img } from "../../content/images";
 
 const metadata = {
   title: "Case Studies",
@@ -44,9 +44,9 @@ function CaseStudiesPage() {
               <li key={p.slug}>
                 <Reveal kind="up">
                   <Link href={`/case-studies/${p.slug}`} className="group grid overflow-hidden rounded-[32px] bg-ink-850 ring-1 ring-bone/8 transition-colors hover:bg-ink-800 md:grid-cols-12" data-cursor="Read">
-                    <div className="relative aspect-[16/10] overflow-hidden md:col-span-5 md:aspect-auto md:min-h-[420px]">
-                      <Image src={p.hero} alt="" fill sizes="(max-width: 768px) 100vw, 40vw" className="object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-105" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent to-ink-850/40" />
+                    <div className="relative aspect-16/10 overflow-hidden md:col-span-5 md:aspect-auto md:min-h-[420px]">
+                      <Image src={p.hero} alt="" fill sizes="(max-width: 768px) 100vw, 40vw" className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-linear-to-r from-transparent to-ink-850/40" />
                       <span className="concept-badge absolute left-5 top-5">Concept · Study 0{i + 1}</span>
                     </div>
                     <div className="flex flex-col justify-between gap-10 p-8 md:col-span-7 md:p-12">

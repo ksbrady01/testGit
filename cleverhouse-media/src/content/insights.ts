@@ -10,7 +10,7 @@ export type Insight = {
   body: { h?: string; p: string }[];
 };
 
-export const insights: Insight[] = [
+export const insights: [Insight, ...Insight[]] = [
   {
     slug: "five-signs-your-website-is-holding-you-back",
     category: "Web Design",

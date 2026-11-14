@@ -1,9 +1,9 @@
-import Image from "@/components/ui/Img";
-import { InquiryForm } from "@/components/forms/InquiryForm";
-import { Reveal, SplitHeading } from "@/components/motion/Motion";
-import { Faq, JsonLd, faqJsonLd } from "@/components/sections/Blocks";
-import type { InquiryType } from "@/lib/inquiry";
-import clsx from "@/lib/clsx";
+import Image from "../ui/Img";
+import { InquiryForm } from "../forms/InquiryForm";
+import { Reveal, SplitHeading } from "../motion/Motion";
+import { Faq, JsonLd, faqJsonLd } from "./Blocks";
+import type { InquiryType } from "../../lib/inquiry";
+import clsx from "../../lib/clsx";
 
 type Area = { title: string; body: string };
 
@@ -43,7 +43,7 @@ export function EvaluationPage({
         <div className="absolute inset-0 grid-lines opacity-50" aria-hidden="true" />
         <div className="absolute inset-y-0 right-0 hidden w-[42%] lg:block" aria-hidden="true">
           <Image src={image} alt="" fill priority sizes="42vw" className="object-cover opacity-50" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/60 to-ink/20" />
+          <div className="absolute inset-0 bg-linear-to-r from-ink via-ink/60 to-ink/20" />
         </div>
         <div className="shell relative grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-7">

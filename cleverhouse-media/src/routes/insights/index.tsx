@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import Link from "@/components/ui/Link";
+import { seo } from "../../lib/seo";
+import Image from "../../components/ui/Img";
+import Link from "../../components/ui/Link";
 import { ArrowUpRight } from "lucide-react";
-import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand } from "@/components/sections/Blocks";
-import { Reveal } from "@/components/motion/Motion";
-import { insights } from "@/content/insights";
+import { PageHero } from "../../components/sections/PageHero";
+import { CtaBand } from "../../components/sections/Blocks";
+import { Reveal } from "../../components/motion/Motion";
+import { insights } from "../../content/insights";
 
 const metadata = {
   title: "Insights & Resources",
@@ -33,8 +33,8 @@ function InsightsPage() {
         <div className="shell">
           <Reveal kind="up">
             <Link href={`/insights/${lead.slug}`} className="group grid overflow-hidden rounded-[32px] bg-ink text-bone md:grid-cols-2" data-cursor="Read">
-              <div className="relative aspect-[16/11] md:aspect-auto md:min-h-[460px]">
-                <Image src={lead.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-105" />
+              <div className="relative aspect-16/11 md:aspect-auto md:min-h-[460px]">
+                <Image src={lead.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-105" />
               </div>
               <div className="flex flex-col justify-between gap-10 p-8 md:p-12">
                 <p className="label text-copper-300">
@@ -53,8 +53,8 @@ function InsightsPage() {
           <Reveal kind="up" stagger={0.1} className="mt-6 grid gap-6 md:grid-cols-2">
             {rest.map((a) => (
               <Link key={a.slug} href={`/insights/${a.slug}`} className="group block overflow-hidden rounded-[28px] bg-bone ring-1 ring-ink/5" data-cursor="Read">
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image src={a.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-105" />
+                <div className="relative aspect-video overflow-hidden">
+                  <Image src={a.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-105" />
                 </div>
                 <div className="p-8">
                   <p className="label text-copper-700">

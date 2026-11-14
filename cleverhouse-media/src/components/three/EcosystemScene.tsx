@@ -82,10 +82,10 @@ function Network({ nodes, active, onSelect }: { nodes: readonly Node[]; active: 
     const g = new THREE.BufferGeometry();
     const pts: number[] = [];
     positions.forEach((p, i) => {
-      const q = positions[(i + 1) % positions.length];
+      const q = positions[(i + 1) % positions.length]!;
       pts.push(p.x, p.y, p.z, q.x, q.y, q.z);
       if (i % 2 === 0) {
-        const r = positions[(i + 2) % positions.length];
+        const r = positions[(i + 2) % positions.length]!;
         pts.push(p.x, p.y, p.z, r.x, r.y, r.z);
       }
     });
@@ -103,11 +103,13 @@ function Network({ nodes, active, onSelect }: { nodes: readonly Node[]; active: 
     g.rotation.y += ((pointer.x * 0.35 + Math.sin(clock.elapsedTime * 0.15) * 0.15) - g.rotation.y) * 0.04;
     g.rotation.x += (-pointer.y * 0.2 - g.rotation.x) * 0.04;
     const p = positions[active];
-    const arr = activeLine.attributes.position.array as Float32Array;
+    if (!p) return;
+    const attr = activeLine.getAttribute("position") as THREE.BufferAttribute;
+    const arr = attr.array as Float32Array;
     arr[3] = p.x;
     arr[4] = p.y;
     arr[5] = p.z;
-    activeLine.attributes.position.needsUpdate = true;
+    attr.needsUpdate = true;
   });
 
   useEffect(() => {
@@ -134,13 +136,13 @@ function Network({ nodes, active, onSelect }: { nodes: readonly Node[]; active: 
       {positions.map((p, i) => (
         <Pulse key={`in${i}`} from={p} to={center} speed={0.22 + i * 0.03} offset={i * 0.17} color={i === active ? "#9BD8CB" : "#E2B48A"} />
       ))}
-      {positions.map((p, i) => (
-        <Pulse key={`out${i}`} from={center} to={positions[(i + 2) % positions.length]} speed={0.16} offset={i * 0.31} color="#CF9A6A" />
+      {positions.map((_, i) => (
+        <Pulse key={`out${i}`} from={center} to={positions[(i + 2) % positions.length]!} speed={0.16} offset={i * 0.31} color="#CF9A6A" />
       ))}
       {positions.map((p, i) => {
         const on = i === active || i === hover;
         return (
-          <group key={nodes[i].id} position={p}>
+          <group key={nodes[i]?.id ?? i} position={p}>
             <mesh
               onPointerOver={(e: ThreeEvent<PointerEvent>) => {
                 e.stopPropagation();
@@ -174,7 +176,7 @@ export default function EcosystemScene({ nodes, active, onSelect, className }: {
   const [visible, setVisible] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting));
+    const io = new IntersectionObserver(([e]) => setVisible(!!e?.isIntersecting));
     if (wrap.current) io.observe(wrap.current);
     return () => io.disconnect();
   }, []);

@@ -10,7 +10,7 @@ npm run dev        # http://localhost:3001
 npm run build && npm start
 ```
 
-Requires Node.js 20+. Append `?intro=1` to the homepage URL to replay the intro film (it plays once per browser session and never with reduced motion).
+Requires Node.js 20+. Styling is **Tailwind CSS v4** via `@tailwindcss/vite`: all design tokens live in the `@theme` block of `src/styles.css` (there is no `tailwind.config` file). Imports are relative (no path alias), and the code type-checks under strict settings, including `noUncheckedIndexedAccess`, `verbatimModuleSyntax` and `noUnusedLocals`, so it drops into a hosted builder's locked `tsconfig`. Append `?intro=1` to the homepage URL to replay the intro film (it plays once per browser session and never with reduced motion).
 
 ## Structure
 
@@ -20,6 +20,10 @@ Requires Node.js 20+. Append `?intro=1` to the homepage URL to replay the intro 
 - `src/components/` — UI, sections, homepage, motion primitives, and lazy-loaded WebGL scenes (`three/`).
 - `src/lib/seo.ts` — per-page title, description, canonical, Open Graph and Twitter tags.
 - `public/` — logo files, favicon, `og.png`, `sitemap.xml`, `robots.txt`.
+
+## Importing into GoHighLevel AI Studio
+
+AI Studio keeps its own locked `package.json`, `tsconfig.json` and Vite config (Tailwind v4). Copy in `src/` and `public/`, keep AI Studio's config files, and have it add these packages: `@react-three/fiber`, `three`, `@types/three`, `gsap`, `@gsap/react`, `lenis`, `lucide-react`.
 
 ## Form delivery
 

@@ -1,10 +1,10 @@
-import Link from "@/components/ui/Link";
+import Link from "../ui/Link";
 import { ArrowUpRight } from "lucide-react";
-import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand, Faq, JsonLd, NumberedRows, SectionHead, faqJsonLd } from "@/components/sections/Blocks";
-import { Tabs, type TabItem } from "@/components/sections/Tabs";
-import { Reveal, ScrubWords } from "@/components/motion/Motion";
-import { serviceNav, site } from "@/content/site";
+import { PageHero } from "./PageHero";
+import { CtaBand, Faq, JsonLd, NumberedRows, SectionHead, faqJsonLd } from "./Blocks";
+import { Tabs, type TabItem } from "./Tabs";
+import { Reveal, ScrubWords } from "../motion/Motion";
+import { serviceNav, site } from "../../content/site";
 
 type HeroProps = Parameters<typeof PageHero>[0];
 

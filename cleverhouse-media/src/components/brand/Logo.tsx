@@ -1,5 +1,5 @@
-﻿import Image from "@/components/ui/Img";
-import clsx from "@/lib/clsx";
+﻿import Image from "../ui/Img";
+import clsx from "../../lib/clsx";
 
 /**
  * Official CleverHouse Media logo (raster, extracted from the live site).

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import { LegalPage } from "@/components/sections/LegalPage";
-import { site } from "@/content/site";
+import { seo } from "../lib/seo";
+import { LegalPage } from "../components/sections/LegalPage";
+import { site } from "../content/site";
 
 const metadata = {
   title: "Terms of Use",

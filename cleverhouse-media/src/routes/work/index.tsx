@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import { Marquee, Reveal, SplitHeading } from "@/components/motion/Motion";
-import { WorkIndex } from "@/components/work/WorkIndex";
-import { CreativeWall } from "@/components/work/CreativeWall";
-import { CtaBand } from "@/components/sections/Blocks";
-import { projects } from "@/content/projects";
-import { img } from "@/content/images";
+import { seo } from "../../lib/seo";
+import Image from "../../components/ui/Img";
+import { Marquee, Reveal, SplitHeading } from "../../components/motion/Motion";
+import { WorkIndex } from "../../components/work/WorkIndex";
+import { CreativeWall } from "../../components/work/CreativeWall";
+import { CtaBand } from "../../components/sections/Blocks";
+import { projects } from "../../content/projects";
+import { img } from "../../content/images";
 
 const metadata = {
   title: "Our Work",
@@ -30,8 +30,8 @@ function WorkPage() {
             ))}
           </Marquee>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/10 to-ink" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/40 to-transparent" aria-hidden="true" />
+        <div className="absolute inset-0 bg-linear-to-b from-ink via-ink/10 to-ink" aria-hidden="true" />
+        <div className="absolute inset-0 bg-linear-to-r from-ink/90 via-ink/40 to-transparent" aria-hidden="true" />
 
         <div className="shell relative">
           <Reveal kind="fade">

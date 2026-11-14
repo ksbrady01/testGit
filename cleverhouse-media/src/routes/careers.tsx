@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import { PageHero } from "@/components/sections/PageHero";
-import { InquiryForm } from "@/components/forms/InquiryForm";
-import { Reveal } from "@/components/motion/Motion";
-import { img } from "@/content/images";
+import { seo } from "../lib/seo";
+import { PageHero } from "../components/sections/PageHero";
+import { InquiryForm } from "../components/forms/InquiryForm";
+import { Reveal } from "../components/motion/Motion";
+import { img } from "../content/images";
 
 const metadata = {
   title: "Careers",

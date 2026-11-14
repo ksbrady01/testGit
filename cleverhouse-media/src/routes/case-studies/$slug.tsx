@@ -1,18 +1,18 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import Link from "@/components/ui/Link";
-import { getProject, projects } from "@/content/projects";
-import { Reveal, SplitHeading, ScrubWords, Parallax } from "@/components/motion/Motion";
-import { BrowserFrame, MockSite, PhoneFrame, MockMobile, SocialPost } from "@/components/work/Mockups";
-import { CtaBand, ProcessStrip, Tags } from "@/components/sections/Blocks";
+import { seo } from "../../lib/seo";
+import Image from "../../components/ui/Img";
+import Link from "../../components/ui/Link";
+import { getProject, projects } from "../../content/projects";
+import { Reveal, SplitHeading, ScrubWords, Parallax } from "../../components/motion/Motion";
+import { BrowserFrame, MockSite, PhoneFrame, MockMobile, SocialPost } from "../../components/work/Mockups";
+import { CtaBand, ProcessStrip, Tags } from "../../components/sections/Blocks";
 
 function CaseStudyPage() {
   const { slug } = Route.useParams();
   const p = getProject(slug);
   if (!p) return null;
   const cs = p.caseStudy;
-  const next = projects[(projects.findIndex((x) => x.slug === p.slug) + 1) % projects.length];
+  const next = projects[(projects.findIndex((x) => x.slug === p.slug) + 1) % projects.length] ?? projects[0];
 
   return (
     <>
@@ -37,7 +37,7 @@ function CaseStudyPage() {
               </Reveal>
             </div>
             <div className="relative lg:col-span-5">
-              <Reveal kind="image" className="relative aspect-[4/5] overflow-hidden rounded-[32px]">
+              <Reveal kind="image" className="relative aspect-4/5 overflow-hidden rounded-[32px]">
                 <Image src={p.hero} alt="" fill priority sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
               </Reveal>
             </div>
@@ -152,7 +152,7 @@ function CaseStudyPage() {
 
       {/* Next */}
       <Link href={`/case-studies/${next.slug}`} className="group relative block overflow-hidden bg-ink-950 py-24 md:py-32" data-cursor="Next">
-        <Image src={next.hero} alt="" fill sizes="100vw" className="object-cover opacity-20 transition-all duration-[1400ms] ease-out-expo group-hover:scale-105 group-hover:opacity-35" />
+        <Image src={next.hero} alt="" fill sizes="100vw" className="object-cover opacity-20 transition-all duration-1400 ease-out-expo group-hover:scale-105 group-hover:opacity-35" />
         <div className="shell relative">
           <p className="label text-copper-300">Next study</p>
           <p className="mt-6 font-display text-giant font-medium transition-colors group-hover:text-copper-200">{next.name}</p>

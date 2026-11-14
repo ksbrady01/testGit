@@ -1,8 +1,8 @@
-import Image from "@/components/ui/Img";
+import Image from "../ui/Img";
 import { useEffect, useRef, useState } from "react";
-import { gsap, SplitText, useGSAP } from "@/lib/gsap";
-import { Logo, LogoMark } from "@/components/brand/Logo";
-import { img } from "@/content/images";
+import { gsap, SplitText, useGSAP } from "../../lib/gsap";
+import { Logo, LogoMark } from "../brand/Logo";
+import { img } from "../../content/images";
 import type Lenis from "lenis";
 
 /**
@@ -147,7 +147,7 @@ export function Splash() {
       setActive(false);
       return;
     }
-    const reveal = t.labels.reveal;
+    const reveal = t.labels.reveal ?? 0;
     if (t.time() < reveal) t.seek(reveal - 0.01, false);
     t.timeScale(1.4);
   };
@@ -165,7 +165,7 @@ export function Splash() {
     <div
       id="chm-splash"
       ref={root}
-      className="fixed inset-0 z-[10000] overflow-hidden bg-ink text-bone"
+      className="fixed inset-0 z-10000 overflow-hidden bg-ink text-bone"
       style={{ clipPath: "inset(0% 0% 0% 0%)" }}
       aria-label="CleverHouse Media introduction"
       role="region"
@@ -195,8 +195,8 @@ export function Splash() {
         }}
       >
         <Image src={img.thinkerProfile} alt="" fill priority sizes="100vw" className="object-cover object-[60%_35%] opacity-90" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/20 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/40" />
+        <div className="absolute inset-0 bg-linear-to-r from-ink via-ink/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-ink via-transparent to-ink/40" />
         <div
           data-s-light
           className="absolute inset-0 opacity-0 mix-blend-color-dodge"
@@ -243,13 +243,13 @@ export function Splash() {
         <span data-s-frag className="absolute left-[34%] top-[8%] label text-copper-200 opacity-0">brand / story</span>
         <span data-s-frag className="absolute left-[80%] top-[70%] label text-verdigris-300 opacity-0">mobile-first</span>
         <span data-s-frag className="absolute left-[26%] top-[70%] label text-copper-200 opacity-0">search intent ↗</span>
-        <span data-s-frag className="absolute left-[60%] top-[56%] rounded-full bg-bone/10 px-3 py-1.5 font-display text-sm text-bone opacity-0 backdrop-blur">grow →</span>
+        <span data-s-frag className="absolute left-[60%] top-[56%] rounded-full bg-bone/10 px-3 py-1.5 font-display text-sm text-bone opacity-0 backdrop-blur-sm">grow →</span>
       </div>
 
       {/* Scene 1 — brand */}
       <div data-s-brand className="absolute inset-0 grid place-items-center">
         <div data-s-glow className="absolute h-[60vmin] w-[60vmin] rounded-full opacity-0 blur-3xl" style={{ background: "radial-gradient(circle, rgba(184,128,88,0.38), transparent 65%)" }} aria-hidden="true" />
-        <div className="relative flex flex-col items-center [perspective:900px]">
+        <div className="relative flex flex-col items-center perspective-[900px]">
           <div data-s-mark className="relative w-[92px] opacity-0 md:w-[120px]">
             <LogoMark priority alt="" />
             <div
@@ -270,7 +270,7 @@ export function Splash() {
       {/* Message */}
       <div className="absolute inset-x-0 bottom-[14%] md:bottom-[12%]">
         <div className="shell">
-          <p data-s-msg style={{ opacity: 0, visibility: "hidden" }} className="max-w-[18ch] font-display text-[clamp(1.9rem,4.6vw,4.4rem)] font-medium leading-[1] tracking-[-0.035em] md:max-w-[22ch]">
+          <p data-s-msg style={{ opacity: 0, visibility: "hidden" }} className="max-w-[18ch] font-display text-[clamp(1.9rem,4.6vw,4.4rem)] font-medium leading-none tracking-[-0.035em] md:max-w-[22ch]">
             Every great digital experience begins with an <span className="serif-accent text-copper-300">idea.</span>
           </p>
         </div>
@@ -280,7 +280,7 @@ export function Splash() {
         type="button"
         data-s-skip
         onClick={skip}
-        className="absolute bottom-6 right-6 z-10 flex items-center gap-3 rounded-full bg-bone/10 px-5 py-3 text-sm text-bone/80 ring-1 ring-bone/15 backdrop-blur transition-colors hover:bg-bone/20 hover:text-bone md:bottom-8 md:right-8"
+        className="absolute bottom-6 right-6 z-10 flex items-center gap-3 rounded-full bg-bone/10 px-5 py-3 text-sm text-bone/80 ring-1 ring-bone/15 backdrop-blur-sm transition-colors hover:bg-bone/20 hover:text-bone md:bottom-8 md:right-8"
       >
         Skip intro
         <span className="font-mono text-[0.65rem] text-bone/40">ESC</span>

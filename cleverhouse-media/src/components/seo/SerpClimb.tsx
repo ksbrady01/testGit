@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Search } from "lucide-react";
 import { Flip } from "gsap/Flip";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { gsap, ScrollTrigger, useGSAP } from "../../lib/gsap";
 
 if (typeof window !== "undefined") gsap.registerPlugin(Flip);
 
@@ -31,7 +31,7 @@ export function SerpClimb({ query = "the service you offer + your city" }: { que
     { scope: root },
   );
   return (
-    <div ref={root} className="rounded-[28px] bg-ink-850/90 p-5 ring-1 ring-bone/10 backdrop-blur md:p-6">
+    <div ref={root} className="rounded-[28px] bg-ink-850/90 p-5 ring-1 ring-bone/10 backdrop-blur-sm md:p-6">
       <div className="flex items-center gap-3 rounded-full bg-bone/8 px-4 py-3 ring-1 ring-bone/10">
         <Search size={16} className="text-copper-300" />
         <span className="text-sm text-bone/80">{query}</span>

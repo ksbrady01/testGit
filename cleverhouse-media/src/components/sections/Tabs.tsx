@@ -1,6 +1,6 @@
 import { useId, useRef, useState } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import clsx from "@/lib/clsx";
+import { gsap, useGSAP } from "../../lib/gsap";
+import clsx from "../../lib/clsx";
 
 export type TabItem = { label: string; title: string; body: string; points: string[]; result?: string };
 
@@ -33,9 +33,10 @@ export function Tabs({ items, light = false }: { items: TabItem[]; light?: boole
   };
 
   const it = items[active];
+  if (!it) return null;
   return (
     <div className="grid gap-10 lg:grid-cols-12">
-      <div role="tablist" aria-orientation="vertical" aria-label="Topics" className="no-scrollbar -mx-[var(--gutter)] flex gap-2 overflow-x-auto px-[var(--gutter)] lg:col-span-4 lg:mx-0 lg:flex-col lg:px-0">
+      <div role="tablist" aria-orientation="vertical" aria-label="Topics" className="no-scrollbar -mx-(--gutter) flex gap-2 overflow-x-auto px-(--gutter) lg:col-span-4 lg:mx-0 lg:flex-col lg:px-0">
         {items.map((t, i) => (
           <button
             key={t.label}

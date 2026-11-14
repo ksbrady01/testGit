@@ -1,12 +1,12 @@
-import Image from "@/components/ui/Img";
-import Link from "@/components/ui/Link";
+import Image from "../ui/Img";
+import Link from "../ui/Link";
 import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Flip } from "gsap/Flip";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { projects, workFilters, type WorkCategory } from "@/content/projects";
-import { BrowserFrame, MockSite, PhoneFrame, MockMobile, SocialPost } from "@/components/work/Mockups";
-import clsx from "@/lib/clsx";
+import { gsap, useGSAP } from "../../lib/gsap";
+import { projects, workFilters, type WorkCategory } from "../../content/projects";
+import { BrowserFrame, MockSite, PhoneFrame, MockMobile, SocialPost } from "./Mockups";
+import clsx from "../../lib/clsx";
 
 if (typeof window !== "undefined") gsap.registerPlugin(Flip);
 
@@ -50,7 +50,7 @@ export function WorkIndex() {
         onEnter: (els) => gsap.fromTo(els, { autoAlpha: 0, y: 60, scale: 0.94 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.9, ease: "expo.out", delay: 0.2 }),
         onLeave: (els) => gsap.to(els, { autoAlpha: 0, scale: 0.92, duration: 0.5, ease: "power2.in" }),
         onComplete: () => {
-          import("@/lib/gsap").then(({ ScrollTrigger }) => ScrollTrigger.refresh());
+          import("../../lib/gsap").then(({ ScrollTrigger }) => ScrollTrigger.refresh());
         },
       });
       flipState.current = null;
@@ -118,7 +118,7 @@ export function WorkIndex() {
                   data-work-media
                   className={clsx(
                     "relative overflow-hidden rounded-[32px] bg-ink-850",
-                    big ? "aspect-[4/5] sm:aspect-[16/10] md:aspect-[21/10]" : "aspect-[4/5] md:aspect-[4/5]",
+                    big ? "aspect-4/5 sm:aspect-16/10 md:aspect-21/10" : "aspect-4/5 md:aspect-4/5",
                   )}
                 >
                   <Image
@@ -126,13 +126,13 @@ export function WorkIndex() {
                     alt=""
                     fill
                     sizes={big ? "100vw" : "(max-width: 768px) 100vw, 55vw"}
-                    className="object-cover transition-all duration-[1400ms] ease-out-expo group-hover:scale-105 group-hover:opacity-40"
+                    className="object-cover transition-all duration-1400 ease-out-expo group-hover:scale-105 group-hover:opacity-40"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-ink/80 via-ink/10 to-transparent" />
                   {/* Hover reveal: the work itself */}
                   <div
                     className={clsx(
-                      "pointer-events-none absolute transition-all duration-[1100ms] ease-out-expo",
+                      "pointer-events-none absolute transition-all duration-1100 ease-out-expo",
                       big
                         ? "right-[4%] top-1/2 w-[48%] -translate-y-[44%] opacity-95 group-hover:-translate-y-1/2 group-hover:opacity-100 max-md:hidden"
                         : "inset-x-[8%] top-[14%] translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100",
@@ -150,7 +150,7 @@ export function WorkIndex() {
                       </div>
                     )}
                     {big && (
-                      <div className="absolute -bottom-[22%] -right-[3%] w-[30%] rotate-[5deg] transition-transform duration-[1100ms] ease-out-expo group-hover:rotate-0">
+                      <div className="absolute -bottom-[22%] -right-[3%] w-[30%] rotate-[5deg] transition-transform duration-1100 ease-out-expo group-hover:rotate-0">
                         <SocialPost project={p} post={p.social[0]} />
                       </div>
                     )}

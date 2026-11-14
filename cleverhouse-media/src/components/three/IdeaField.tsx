@@ -1,7 +1,7 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import { qualityTier } from "@/lib/webgl";
+import { qualityTier } from "../../lib/webgl";
 
 export type Intensity = { v: number; scroll: number };
 
@@ -53,15 +53,16 @@ function Thoughts({ count, intensity }: { count: number; intensity: Intensity })
 
   useFrame(({ clock }) => {
     const t = clock.elapsedTime;
-    const arr = points.current!.geometry.attributes.position.array as Float32Array;
+    const attr = points.current!.geometry.getAttribute("position") as THREE.BufferAttribute;
+    const arr = attr.array as Float32Array;
     for (let i = 0; i < count; i++) {
-      const s = speeds[i];
+      const s = speeds[i]!;
       const i3 = i * 3;
-      arr[i3] = base[i3] + Math.sin(t * 0.3 * s + i) * 0.12;
-      arr[i3 + 1] = base[i3 + 1] + ((t * 0.08 * s + i * 0.37) % 2.4) * 0.35 - 0.4 + intensity.scroll * 1.6 * s;
-      arr[i3 + 2] = base[i3 + 2] + Math.cos(t * 0.25 * s + i) * 0.12;
+      arr[i3] = base[i3]! + Math.sin(t * 0.3 * s + i) * 0.12;
+      arr[i3 + 1] = base[i3 + 1]! + ((t * 0.08 * s + i * 0.37) % 2.4) * 0.35 - 0.4 + intensity.scroll * 1.6 * s;
+      arr[i3 + 2] = base[i3 + 2]! + Math.cos(t * 0.25 * s + i) * 0.12;
     }
-    points.current!.geometry.attributes.position.needsUpdate = true;
+    attr.needsUpdate = true;
     points.current!.rotation.y = t * 0.03;
     if (mat.current) mat.current.opacity = 0.9 * intensity.v * (1 - intensity.scroll * 0.7);
   });
@@ -180,8 +181,8 @@ function Network({ intensity, offset }: { intensity: Intensity; offset: [number,
   const lineGeo = useMemo(() => {
     const pts: number[] = [];
     for (let i = 0; i < nodes.length; i++) {
-      const a = nodes[i];
-      const b = nodes[(i + 1) % nodes.length];
+      const a = nodes[i]!;
+      const b = nodes[(i + 1) % nodes.length]!;
       pts.push(...a, ...b);
       if (i % 2 === 0) pts.push(...a, 0, 0.6, 0); // spokes to the mind
     }
@@ -250,7 +251,7 @@ export default function IdeaField({ intensity, className }: { intensity: Intensi
     const upd = () => setWide(mq.matches);
     upd();
     mq.addEventListener("change", upd);
-    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0 });
+    const io = new IntersectionObserver(([e]) => setVisible(!!e?.isIntersecting), { threshold: 0 });
     if (wrap.current) io.observe(wrap.current);
     return () => {
       mq.removeEventListener("change", upd);

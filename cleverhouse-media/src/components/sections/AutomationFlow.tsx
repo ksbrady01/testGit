@@ -1,7 +1,7 @@
-import Image from "@/components/ui/Img";
+import Image from "../ui/Img";
 import { useRef } from "react";
 import { Bell, Bot, Database, Mail, MousePointerClick, CalendarCheck } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP } from "../../lib/gsap";
 
 const steps = [
   { icon: MousePointerClick, title: "A visitor asks for a quote", note: "Website form · 9:47 pm" },
@@ -36,10 +36,10 @@ export function AutomationFlow({ image }: { image: string }) {
       <div className="absolute inset-0 grid-lines opacity-40" aria-hidden="true" />
       <div className="shell relative grid items-center gap-16 lg:grid-cols-12">
         <div className="relative lg:col-span-5">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[32px]">
+          <div className="relative aspect-4/5 overflow-hidden rounded-[32px]">
             <Image src={image} alt="A focused workstation where automations are built" fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-ink/80 p-5 ring-1 ring-verdigris-400/30 backdrop-blur">
+            <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/30 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-ink/80 p-5 ring-1 ring-verdigris-400/30 backdrop-blur-sm">
               <p className="label text-verdigris-300">A day in the life of a lead</p>
               <p className="mt-2 font-display text-xl">From first click to booked appointment — without anyone dropping the ball.</p>
             </div>

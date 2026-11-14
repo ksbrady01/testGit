@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Check, Loader2, AlertCircle } from "lucide-react";
-import { gsap } from "@/lib/gsap";
-import { validateInquiry, type FieldErrors, type InquiryPayload, type InquiryType } from "@/lib/inquiry";
-import { budgetOptions, serviceInterestOptions, site, timelineOptions } from "@/content/site";
-import clsx from "@/lib/clsx";
+import { gsap } from "../../lib/gsap";
+import { validateInquiry, type FieldErrors, type InquiryPayload, type InquiryType } from "../../lib/inquiry";
+import { budgetOptions, serviceInterestOptions, site, timelineOptions } from "../../content/site";
+import clsx from "../../lib/clsx";
 
 type Field = "company" | "website" | "phone" | "service" | "budget" | "timeline" | "message" | "keywords" | "location" | "goals";
 
@@ -99,7 +99,7 @@ export function InquiryForm({
 
   if (status === "success") {
     return (
-      <div ref={successRef} tabIndex={-1} className={clsx("rounded-[28px] p-8 outline-none md:p-12", light ? "bg-white ring-1 ring-ink/10" : "bg-ink-850 ring-1 ring-bone/10")} role="status" aria-live="polite">
+      <div ref={successRef} tabIndex={-1} className={clsx("rounded-[28px] p-8 outline-hidden md:p-12", light ? "bg-white ring-1 ring-ink/10" : "bg-ink-850 ring-1 ring-bone/10")} role="status" aria-live="polite">
         <span data-check className="grid h-16 w-16 place-items-center rounded-full bg-copper-400 text-ink">
           <Check size={30} strokeWidth={2.5} />
         </span>
@@ -291,7 +291,7 @@ export function InquiryForm({
         </button>
       </div>
 
-      <div aria-live="assertive" className="min-h-[1px]">
+      <div aria-live="assertive" className="min-h-px">
         {status === "error" && serverError && (
           <p className="flex items-start gap-2 rounded-2xl bg-[#f08a6c]/10 p-4 text-sm text-[#f3a58c] ring-1 ring-[#f08a6c]/30">
             <AlertCircle size={16} className="mt-0.5 shrink-0" aria-hidden="true" />

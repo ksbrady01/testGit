@@ -1,11 +1,11 @@
-import Image from "@/components/ui/Img";
-import Link from "@/components/ui/Link";
+import Image from "../ui/Img";
+import Link from "../ui/Link";
 import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { SplitHeading } from "@/components/motion/Motion";
-import { services } from "@/content/services";
-import clsx from "@/lib/clsx";
+import { gsap, useGSAP } from "../../lib/gsap";
+import { SplitHeading } from "../motion/Motion";
+import { services } from "../../content/services";
+import clsx from "../../lib/clsx";
 
 /**
  * Editorial service rows. On desktop, a floating image preview follows the
@@ -93,12 +93,12 @@ export function ServicesRows() {
                     href={s.href}
                     onPointerEnter={() => setActive(i)}
                     onFocus={() => setActive(i)}
-                    className="group relative block py-7 outline-none md:py-9"
+                    className="group relative block py-7 outline-hidden md:py-9"
                   >
                     <span
                       aria-hidden="true"
                       className={clsx(
-                        "absolute inset-0 origin-bottom bg-gradient-to-r from-copper-700/25 via-copper-600/10 to-transparent transition-transform duration-700 ease-out-expo",
+                        "absolute inset-0 origin-bottom bg-linear-to-r from-copper-700/25 via-copper-600/10 to-transparent transition-transform duration-700 ease-out-expo",
                         isOn ? "scale-y-100" : "scale-y-0",
                       )}
                     />
@@ -106,13 +106,13 @@ export function ServicesRows() {
                       <span className="font-mono text-sm text-copper-400 md:col-span-1">{s.index}</span>
                       <span
                         className={clsx(
-                          "font-display text-[clamp(1.9rem,4.6vw,4.6rem)] font-medium leading-[1] tracking-[-0.035em] transition-all duration-700 ease-out-expo md:col-span-7",
+                          "font-display text-[clamp(1.9rem,4.6vw,4.6rem)] font-medium leading-none tracking-[-0.035em] transition-all duration-700 ease-out-expo md:col-span-7",
                           isOn ? "translate-x-3 text-copper-200" : "text-bone",
                         )}
                       >
                         {s.title}
                       </span>
-                      <span className="hidden text-bone/60 md:col-span-3 md:block">{s.summary.split(" — ")[0].split(".")[0]}.</span>
+                      <span className="hidden text-bone/60 md:col-span-3 md:block">{s.summary.split(" — ")[0]?.split(".")[0]}.</span>
                       <span className="absolute right-0 top-1 grid h-11 w-11 place-items-center rounded-full ring-1 ring-bone/20 transition-all duration-500 group-hover:rotate-45 group-hover:bg-copper-400 group-hover:text-ink md:relative md:col-span-1 md:justify-self-end">
                         <ArrowUpRight size={18} />
                       </span>

@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import { ServiceDetail } from "@/components/sections/ServiceDetail";
-import { CreativeWall } from "@/components/work/CreativeWall";
-import { img } from "@/content/images";
+import { seo } from "../../lib/seo";
+import { ServiceDetail } from "../../components/sections/ServiceDetail";
+import { CreativeWall } from "../../components/work/CreativeWall";
+import { img } from "../../content/images";
 
 const metadata = {
   title: "Social Media Marketing & Strategy",

@@ -1,12 +1,12 @@
-import Link from "@/components/ui/Link";
+import Link from "../ui/Link";
 import { useRef } from "react";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { Logo, LogoMark } from "@/components/brand/Logo";
-import { Marquee } from "@/components/motion/Motion";
-import { Button } from "@/components/ui/Button";
-import { companyNav, resourceNav, serviceNav, site } from "@/content/site";
-import { projects } from "@/content/projects";
+import { gsap, useGSAP } from "../../lib/gsap";
+import { Logo, LogoMark } from "../brand/Logo";
+import { Marquee } from "../motion/Motion";
+import { Button } from "../ui/Button";
+import { companyNav, resourceNav, serviceNav, site } from "../../content/site";
+import { projects } from "../../content/projects";
 
 export function Footer() {
   const root = useRef<HTMLElement>(null);
@@ -40,10 +40,10 @@ export function Footer() {
     <footer ref={root} className="relative overflow-hidden bg-ink-950 text-bone" aria-labelledby="footer-heading">
       <div className="absolute inset-0 grid-cols-lines opacity-70" aria-hidden="true" />
       <div
-        className="pointer-events-none absolute -right-[10vw] top-[8%] w-[60vw] max-w-[760px] opacity-[0.07] [perspective:1200px]"
+        className="pointer-events-none absolute -right-[10vw] top-[8%] w-[60vw] max-w-[760px] opacity-[0.07] perspective-distant"
         aria-hidden="true"
       >
-        <div data-f-mark className="[transform-style:preserve-3d]">
+        <div data-f-mark className="transform-3d">
           <LogoMark />
         </div>
       </div>

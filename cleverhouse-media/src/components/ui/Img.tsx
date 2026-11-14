@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
-import imageLoader from "@/lib/imageLoader";
-import clsx from "@/lib/clsx";
+import imageLoader from "../../lib/imageLoader";
+import clsx from "../../lib/clsx";
 
 const WIDTHS = [384, 640, 828, 1080, 1280, 1600, 1920, 2560];
 

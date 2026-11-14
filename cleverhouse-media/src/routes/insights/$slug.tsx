@@ -1,11 +1,11 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import Link from "@/components/ui/Link";
-import { getInsight, insights } from "@/content/insights";
-import { CtaBand, JsonLd } from "@/components/sections/Blocks";
-import { Reveal, SplitHeading } from "@/components/motion/Motion";
-import { site } from "@/content/site";
+import { seo } from "../../lib/seo";
+import Image from "../../components/ui/Img";
+import Link from "../../components/ui/Link";
+import { getInsight } from "../../content/insights";
+import { CtaBand, JsonLd } from "../../components/sections/Blocks";
+import { Reveal, SplitHeading } from "../../components/motion/Motion";
+import { site } from "../../content/site";
 
 function InsightPage() {
   const { slug } = Route.useParams();
@@ -29,7 +29,7 @@ function InsightPage() {
             <p className="mt-8 max-w-[52ch] text-lead text-bone/70">{a.excerpt}</p>
           </div>
         </header>
-        <Reveal kind="image" className="relative mx-auto aspect-[21/9] max-w-[1680px] overflow-hidden">
+        <Reveal kind="image" className="relative mx-auto aspect-21/9 max-w-shell overflow-hidden">
           <Image src={a.image} alt="" fill priority sizes="100vw" className="object-cover" />
         </Reveal>
         <div className="surface-paper py-20 md:py-28">

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { LogoMark } from "@/components/brand/Logo";
+import { gsap, ScrollTrigger } from "../../lib/gsap";
+import { LogoMark } from "../brand/Logo";
 import type Lenis from "lenis";
 
 /**
@@ -99,7 +99,7 @@ export function PageTransition() {
     <div
       ref={curtain}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[9000] hidden bg-ink"
+      className="pointer-events-none fixed inset-0 z-9000 hidden bg-ink"
       style={{ boxShadow: "0 -2px 0 0 #b88058, 0 2px 0 0 #b88058" }}
     >
       <div className="absolute inset-0 grid-lines opacity-60" />

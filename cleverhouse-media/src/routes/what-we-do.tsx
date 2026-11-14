@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import Link from "@/components/ui/Link";
+import { seo } from "../lib/seo";
+import Image from "../components/ui/Img";
+import Link from "../components/ui/Link";
 import { ArrowUpRight } from "lucide-react";
-import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand, ProcessStrip, SectionHead, JsonLd } from "@/components/sections/Blocks";
-import { Marquee, Reveal, ScrollZoom } from "@/components/motion/Motion";
-import { services } from "@/content/services";
-import { img } from "@/content/images";
-import { site } from "@/content/site";
-import clsx from "@/lib/clsx";
+import { PageHero } from "../components/sections/PageHero";
+import { CtaBand, ProcessStrip, SectionHead, JsonLd } from "../components/sections/Blocks";
+import { Marquee, Reveal, ScrollZoom } from "../components/motion/Motion";
+import { services } from "../content/services";
+import { img } from "../content/images";
+import { site } from "../content/site";
+import clsx from "../lib/clsx";
 
 const metadata = {
   title: "What We Do",
@@ -69,9 +69,9 @@ function WhatWeDoPage() {
               <article key={s.id} className="grid items-center gap-10 md:grid-cols-12 md:gap-6">
                 <div className={clsx("relative md:col-span-6", flip ? "md:order-2 md:col-start-7" : "")}>
                   <Link href={s.href} className="group block" data-cursor="Explore" tabIndex={-1} aria-hidden="true">
-                    <ScrollZoom className="relative aspect-[5/6] rounded-[32px] md:aspect-[4/5]">
+                    <ScrollZoom className="relative aspect-5/6 rounded-[32px] md:aspect-4/5">
                       <div className="relative h-full w-full">
-                        <Image src={s.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-105" />
+                        <Image src={s.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-105" />
                       </div>
                     </ScrollZoom>
                     <span className="absolute left-5 top-5 font-display text-[clamp(4rem,9vw,9rem)] font-medium leading-none tracking-[-0.05em] text-bone/90 mix-blend-difference">{s.index}</span>
@@ -112,8 +112,8 @@ function WhatWeDoPage() {
           <Reveal kind="up" stagger={0.08} className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {more.map((m) => (
               <Link key={m.href} href={m.href} className="group relative flex min-h-[420px] flex-col justify-end overflow-hidden rounded-[28px] bg-ink p-7 text-bone">
-                <Image src={m.image} alt="" fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover opacity-60 transition-all duration-[1200ms] ease-out-expo group-hover:scale-105 group-hover:opacity-40" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
+                <Image src={m.image} alt="" fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover opacity-60 transition-all duration-1200 ease-out-expo group-hover:scale-105 group-hover:opacity-40" />
+                <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/40 to-transparent" />
                 <div className="relative">
                   <h3 className="font-display text-3xl font-medium tracking-tight">{m.title}</h3>
                   <p className="mt-3 text-bone/75">{m.body}</p>

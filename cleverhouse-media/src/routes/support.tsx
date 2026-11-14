@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand, NumberedRows } from "@/components/sections/Blocks";
-import { Reveal } from "@/components/motion/Motion";
-import { img } from "@/content/images";
-import { site } from "@/content/site";
+import { seo } from "../lib/seo";
+import { PageHero } from "../components/sections/PageHero";
+import { CtaBand, NumberedRows } from "../components/sections/Blocks";
+import { Reveal } from "../components/motion/Motion";
+import { img } from "../content/images";
+import { site } from "../content/site";
 
 const metadata = {
   title: "Support",

@@ -1,13 +1,13 @@
-import Link from "@/components/ui/Link";
-import Image from "@/components/ui/Img";
+import Link from "../ui/Link";
+import Image from "../ui/Img";
 import { useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Plus } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { Logo, LogoMark } from "@/components/brand/Logo";
-import { primaryNav, serviceNav, resourceNav, site } from "@/content/site";
-import { img } from "@/content/images";
-import clsx from "@/lib/clsx";
+import { gsap, useGSAP } from "../../lib/gsap";
+import { Logo, LogoMark } from "../brand/Logo";
+import { primaryNav, serviceNav, resourceNav, site } from "../../content/site";
+import { img } from "../../content/images";
+import clsx from "../../lib/clsx";
 import type Lenis from "lenis";
 
 const lenis = () => (typeof window !== "undefined" ? (window as unknown as { __lenis?: Lenis }).__lenis : undefined);
@@ -84,6 +84,7 @@ export function Nav() {
           document.addEventListener("chm:intro-done", play, { once: true });
           return () => document.removeEventListener("chm:intro-done", play);
         }
+        return undefined;
       });
       return () => mm.revert();
     },
@@ -103,13 +104,13 @@ export function Nav() {
 
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[10001] focus:rounded-full focus:bg-copper-300 focus:px-5 focus:py-3 focus:text-ink">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-10001 focus:rounded-full focus:bg-copper-300 focus:px-5 focus:py-3 focus:text-ink">
         Skip to content
       </a>
       <header
         ref={header}
         className={clsx(
-          "fixed inset-x-0 top-0 z-[900] transition-transform duration-700 ease-out-expo",
+          "fixed inset-x-0 top-0 z-900 transition-transform duration-700 ease-out-expo",
           hidden && !mega && !open ? "-translate-y-full" : "translate-y-0",
         )}
       >
@@ -162,7 +163,7 @@ export function Nav() {
             </ul>
 
             <div className="flex items-center gap-2" data-nav-item>
-              <Link href="/contact" className="btn btn-copper hidden whitespace-nowrap !px-5 !py-3 !text-[0.9rem] sm:inline-flex">
+              <Link href="/contact" className="btn btn-copper hidden whitespace-nowrap px-5! py-3! text-[0.9rem]! sm:inline-flex">
                 <span className="relative">Start a Project</span>
               </Link>
               <button
@@ -171,7 +172,7 @@ export function Nav() {
                 aria-expanded={open}
                 aria-controls="mobile-menu"
                 aria-label={open ? "Close menu" : "Open menu"}
-                className="relative z-[1001] grid h-12 w-12 place-items-center rounded-full bg-bone/10 ring-1 ring-bone/15 transition-colors hover:bg-bone/20 lg:hidden"
+                className="relative z-1001 grid h-12 w-12 place-items-center rounded-full bg-bone/10 ring-1 ring-bone/15 transition-colors hover:bg-bone/20 lg:hidden"
               >
                 <span className="relative block h-3 w-5">
                   <span className={clsx("absolute left-0 h-[1.5px] w-5 bg-bone transition-all duration-500 ease-out-expo", open ? "top-1.5 rotate-45" : "top-0")} />
@@ -222,7 +223,7 @@ export function Nav() {
                 <div className="col-span-3 flex flex-col gap-3">
                   <div className="relative min-h-[150px] flex-1 overflow-hidden rounded-2xl">
                     <Image src={img.thinkerGlasses} alt="" fill sizes="300px" className="object-cover duotone" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/30 to-transparent" />
                     <div className="absolute bottom-0 p-4">
                       <p className="label text-copper-200">Free evaluations</p>
                     </div>
@@ -281,7 +282,7 @@ function MobileMenu({ open, isActive }: { open: boolean; isActive: (h: string) =
       aria-label="Site menu"
       aria-hidden={!open}
       inert={!open}
-      className="invisible fixed inset-0 z-[880] overflow-y-auto bg-ink lg:hidden"
+      className="invisible fixed inset-0 z-880 overflow-y-auto bg-ink lg:hidden"
     >
       <div className="absolute inset-0 grid-lines opacity-50" />
       <div data-m-mark className="pointer-events-none absolute -bottom-16 -right-20 w-[85vw] max-w-[520px] opacity-[0.08]">
@@ -295,7 +296,7 @@ function MobileMenu({ open, isActive }: { open: boolean; isActive: (h: string) =
                 data-m-link
                 href={l.href}
                 className={clsx(
-                  "flex items-baseline gap-4 py-1 font-display text-[clamp(2.4rem,11vw,4.5rem)] font-medium leading-[1] tracking-[-0.04em]",
+                  "flex items-baseline gap-4 py-1 font-display text-[clamp(2.4rem,11vw,4.5rem)] font-medium leading-none tracking-[-0.04em]",
                   isActive(l.href) ? "text-copper-300" : "text-bone",
                 )}
               >

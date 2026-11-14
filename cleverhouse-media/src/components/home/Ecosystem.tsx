@@ -1,15 +1,15 @@
-import { lazyClient } from "@/lib/lazyClient";
-import Link from "@/components/ui/Link";
+import { lazyClient } from "../../lib/lazyClient";
+import Link from "../ui/Link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { canUseWebGL } from "@/lib/webgl";
-import { SplitHeading } from "@/components/motion/Motion";
-import { LogoMark } from "@/components/brand/Logo";
-import { ecosystemNodes } from "@/content/services";
-import clsx from "@/lib/clsx";
+import { gsap, useGSAP } from "../../lib/gsap";
+import { canUseWebGL } from "../../lib/webgl";
+import { SplitHeading } from "../motion/Motion";
+import { LogoMark } from "../brand/Logo";
+import { ecosystemNodes } from "../../content/services";
+import clsx from "../../lib/clsx";
 
-const EcosystemScene = lazyClient(() => import("@/components/three/EcosystemScene"));
+const EcosystemScene = lazyClient(() => import("../three/EcosystemScene"));
 
 /** SVG fallback diagram (no WebGL / reduced motion). */
 function EcosystemFallback({ active, onSelect }: { active: number; onSelect: (i: number) => void }) {
@@ -24,14 +24,14 @@ function EcosystemFallback({ active, onSelect }: { active: number; onSelect: (i:
           <line key={i} x1={300} y1={230} x2={x} y2={y} stroke={i === active ? "#9BD8CB" : "#B88058"} strokeOpacity={i === active ? 0.9 : 0.35} />
         ))}
         {pts.map(([x, y], i) => {
-          const [nx, ny] = pts[(i + 1) % pts.length];
+          const [nx, ny] = pts[(i + 1) % pts.length] ?? [x, y];
           return <line key={`r${i}`} x1={x} y1={y} x2={nx} y2={ny} stroke="#F4EDE4" strokeOpacity={0.08} />;
         })}
         {pts.map(([x, y], i) => (
           <g key={`n${i}`} onClick={() => onSelect(i)} className="cursor-pointer">
             <circle cx={x} cy={y} r={i === active ? 14 : 10} fill={i === active ? "#9BD8CB" : "#B88058"} />
             <text x={x} y={y + 34} textAnchor="middle" fill="#F4EDE4" fontSize="15" fontFamily="var(--font-display)">
-              {ecosystemNodes[i].label}
+              {ecosystemNodes[i]?.label}
             </text>
           </g>
         ))}
@@ -124,10 +124,10 @@ export function Ecosystem() {
             ))}
           </ul>
 
-          <div data-eco-stage className="relative aspect-[4/3] lg:col-span-8">
+          <div data-eco-stage className="relative aspect-4/3 lg:col-span-8">
             {webgl === true && <EcosystemScene nodes={ecosystemNodes} active={active} onSelect={select} className="absolute inset-0" />}
             {webgl === false && <EcosystemFallback active={active} onSelect={select} />}
-            <div className="absolute bottom-0 right-0 flex items-center gap-3 rounded-full bg-ink/70 px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-verdigris-300 ring-1 ring-verdigris-400/30 backdrop-blur">
+            <div className="absolute bottom-0 right-0 flex items-center gap-3 rounded-full bg-ink/70 px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-verdigris-300 ring-1 ring-verdigris-400/30 backdrop-blur-sm">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-verdigris-300" /> System connected · data flowing
             </div>
           </div>

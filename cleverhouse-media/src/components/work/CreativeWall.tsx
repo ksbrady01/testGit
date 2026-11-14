@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { projects } from "@/content/projects";
-import { SocialPost, SearchConcept } from "@/components/work/Mockups";
+import { gsap, useGSAP } from "../../lib/gsap";
+import { projects } from "../../content/projects";
+import { SocialPost, SearchConcept } from "./Mockups";
 
 /** Horizontal storytelling: campaign & social creative across every concept. */
 export function CreativeWall() {
@@ -30,9 +30,9 @@ export function CreativeWall() {
   const items = projects.flatMap((p) => p.social.map((s) => ({ p, s })));
 
   return (
-    <section ref={root} className="surface-bone relative overflow-hidden md:h-[100svh]" aria-labelledby="wall-heading">
+    <section ref={root} className="surface-bone relative overflow-hidden md:h-svh" aria-labelledby="wall-heading">
       <div className="absolute inset-0 grid-lines-dark opacity-60" aria-hidden="true" />
-      <div ref={track} className="relative flex h-full flex-col gap-10 px-[var(--gutter)] py-24 md:w-max md:flex-row md:items-center md:gap-12 md:py-0">
+      <div ref={track} className="relative flex h-full flex-col gap-10 px-(--gutter) py-24 md:w-max md:flex-row md:items-center md:gap-12 md:py-0">
         <div className="shrink-0 md:w-[36vw]">
           <p className="label label-dot text-copper-700">Campaign & social creative</p>
           <h2 id="wall-heading" className="mt-6 font-display text-huge font-medium text-ink">

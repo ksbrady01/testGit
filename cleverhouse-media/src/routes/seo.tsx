@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand, Faq, JsonLd, SectionHead, faqJsonLd } from "@/components/sections/Blocks";
-import { Tabs } from "@/components/sections/Tabs";
-import { SerpClimb } from "@/components/seo/SerpClimb";
-import { Reveal, ScrubWords } from "@/components/motion/Motion";
-import { img } from "@/content/images";
-import { site } from "@/content/site";
+import { seo } from "../lib/seo";
+import Image from "../components/ui/Img";
+import { PageHero } from "../components/sections/PageHero";
+import { CtaBand, Faq, JsonLd, SectionHead, faqJsonLd } from "../components/sections/Blocks";
+import { Tabs } from "../components/sections/Tabs";
+import { SerpClimb } from "../components/seo/SerpClimb";
+import { Reveal, ScrubWords } from "../components/motion/Motion";
+import { img } from "../content/images";
+import { site } from "../content/site";
 
 const metadata = {
   title: "SEO Services — Help the Right People Find You",
@@ -130,7 +130,7 @@ function SeoPage() {
 
       <section className="relative h-[70svh] min-h-[460px] overflow-hidden">
         <Image src={img.texas} alt="A Texas city skyline" fill sizes="100vw" className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-ink/10" />
+        <div className="absolute inset-0 bg-linear-to-r from-ink via-ink/70 to-ink/10" />
         <div className="shell relative flex h-full items-center">
           <Reveal kind="up" className="max-w-[34ch]">
             <p className="label text-copper-300">Local focus</p>

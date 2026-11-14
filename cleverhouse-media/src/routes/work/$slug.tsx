@@ -1,14 +1,14 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import Image from "@/components/ui/Img";
-import Link from "@/components/ui/Link";
+import { seo } from "../../lib/seo";
+import Image from "../../components/ui/Img";
+import Link from "../../components/ui/Link";
 import { ArrowUpRight, Info } from "lucide-react";
-import { getProject, projects } from "@/content/projects";
-import { Parallax, Reveal, SplitHeading, ScrollZoom } from "@/components/motion/Motion";
-import { BrowserFrame, MockMobile, MockSite, PhoneFrame, SearchConcept, SocialPost } from "@/components/work/Mockups";
-import { CtaBand, JsonLd, Tags } from "@/components/sections/Blocks";
-import { site } from "@/content/site";
-import clsx from "@/lib/clsx";
+import { getProject, projects } from "../../content/projects";
+import { Parallax, Reveal, SplitHeading, ScrollZoom } from "../../components/motion/Motion";
+import { BrowserFrame, MockMobile, MockSite, PhoneFrame, SearchConcept, SocialPost } from "../../components/work/Mockups";
+import { CtaBand, JsonLd, Tags } from "../../components/sections/Blocks";
+import { site } from "../../content/site";
+import clsx from "../../lib/clsx";
 
 const fontFor = (s: string) => (s === "serif" ? "font-serif" : s === "grotesk" ? "font-display" : "font-sans");
 
@@ -18,7 +18,7 @@ function ProjectPage() {
   if (!p) return null;
   const b = p.brand;
   const idx = projects.findIndex((x) => x.slug === p.slug);
-  const related = [projects[(idx + 1) % projects.length], projects[(idx + 2) % projects.length]];
+  const related = [projects[(idx + 1) % projects.length], projects[(idx + 2) % projects.length]].filter((r) => r !== undefined);
 
   return (
     <>
@@ -35,11 +35,11 @@ function ProjectPage() {
       />
 
       {/* 1. Cinematic hero */}
-      <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ink pb-14 pt-40">
+      <section className="relative isolate flex min-h-svh items-end overflow-hidden bg-ink pb-14 pt-40">
         <Parallax speed={20} className="absolute inset-0 -z-10 scale-110">
           <Image src={p.hero} alt="" fill priority sizes="100vw" className="object-cover" />
         </Parallax>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/55 to-ink/25" />
+        <div className="absolute inset-0 -z-10 bg-linear-to-t from-ink via-ink/55 to-ink/25" />
         <div className="absolute -z-10 h-[50vh] w-[50vw] rounded-full blur-[140px]" style={{ background: p.accent, opacity: 0.22, left: "-10%", bottom: "-10%" }} aria-hidden="true" />
         <div className="shell">
           <Reveal kind="fade" className="flex flex-wrap items-center gap-3">
@@ -155,7 +155,7 @@ function ProjectPage() {
           {/* Photography direction */}
           <div className="mt-4 grid gap-4 md:grid-cols-3">
             {p.gallery.map((g, i) => (
-              <Reveal key={g} kind="image" delay={i * 0.1} className="relative aspect-[4/5] overflow-hidden rounded-[28px]">
+              <Reveal key={g} kind="image" delay={i * 0.1} className="relative aspect-4/5 overflow-hidden rounded-[28px]">
                 <Image src={g} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
               </Reveal>
             ))}
@@ -251,9 +251,9 @@ function ProjectPage() {
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {related.map((r) => (
               <Link key={r.slug} href={`/work/${r.slug}`} className="group block" data-cursor="View">
-                <ScrollZoom className="relative aspect-[16/10] rounded-[28px]" from={1.12}>
+                <ScrollZoom className="relative aspect-16/10 rounded-[28px]" from={1.12}>
                   <div className="relative h-full w-full">
-                    <Image src={r.hero} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-105" />
+                    <Image src={r.hero} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-1400 ease-out-expo group-hover:scale-105" />
                   </div>
                 </ScrollZoom>
                 <div className="mt-5 flex items-baseline justify-between gap-4">
