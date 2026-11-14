@@ -1,0 +1,88 @@
+{
+  "courses": [
+    {
+      "id": "cwelcome01",
+      "title": "Welcome to Central Union",
+      "description": "A short orientation for newcomers: who we are as a church family, what to expect when you visit, and simple ways to get connected.",
+      "category": "Church Life",
+      "tags": ["newcomers", "orientation"],
+      "hue": 222,
+      "authorId": "",
+      "createdAt": "2026-11-12T06:00:00.000Z",
+      "updatedAt": "2026-11-12T06:00:00.000Z",
+      "lessons": [
+        { "id": "l1", "title": "Who we are", "type": "text", "minutes": 5, "url": "", "assetId": "", "fileName": "", "body": "# A family gathered around Christ\nCentral Union Church of Christ is a congregation of people learning to follow Jesus together. We gather to worship, study Scripture, pray and serve our neighbors.\n\n# What we value\n- **Scripture**: we open the Bible together and let it shape how we live.\n- **Worship**: we meet to praise God, share the Lord's Supper and encourage one another.\n- **Community**: no one should have to walk the road of faith alone.\n- **Service**: we look for ways to love our town in practical ways.\n\nWherever you are on your faith journey, you are welcome here." },
+        { "id": "l2", "title": "What to expect on a Sunday", "type": "text", "minutes": 5, "url": "", "assetId": "", "fileName": "", "body": "# Arriving\nGreeters at the door are happy to help you find a seat, the restrooms, or classes for children. Come as you are; there is no dress code.\n\n# The service\nA typical gathering includes singing, prayer, Scripture reading, the Lord's Supper and a sermon. Feel free to participate as you're comfortable.\n\n# Afterward\nStick around to meet a few people. If you have questions, ask any greeter or staff member. That's what we're here for." },
+        { "id": "l3", "title": "Getting connected", "type": "text", "minutes": 6, "url": "", "assetId": "", "fileName": "", "body": "# Find your people\nThe best way to feel at home is to be known. Here are a few easy next steps:\n- Join a Bible class or small group.\n- Take one of the classes in this app and invite a friend to take it with you.\n- Sign up to serve on a team that fits your gifts.\n\n# Stay in the loop\nMake sure the church office has your contact information so you hear about events, prayer requests and opportunities to serve." },
+        { "id": "l4", "title": "Your next step", "type": "text", "minutes": 4, "url": "", "assetId": "", "fileName": "", "body": "# Take one step this week\nGrowing in faith happens one step at a time. Pick **one** of these and do it this week:\n- Introduce yourself to someone new on Sunday.\n- Start the class **How to Read the Bible** in this app.\n- Ask a leader about joining a small group.\n\nCongratulations on finishing this orientation. We're glad you're here!" }
+      ]
+    },
+    {
+      "id": "cbible02",
+      "title": "How to Read the Bible",
+      "description": "A practical beginner's guide: how the Bible is organized, how to read a passage in context, and a simple method for daily reading.",
+      "category": "Bible Study",
+      "tags": ["beginner", "scripture", "daily-habits"],
+      "hue": 200,
+      "authorId": "",
+      "createdAt": "2026-11-12T06:00:01.000Z",
+      "updatedAt": "2026-11-12T06:00:01.000Z",
+      "lessons": [
+        { "id": "l1", "title": "Getting oriented: the books of the Bible", "type": "text", "minutes": 7, "url": "", "assetId": "", "fileName": "", "body": "# One story, many books\nThe Bible is a library of 66 books written over many centuries. It is divided into two main parts:\n- **The Old Testament** (39 books): creation, God's covenant with Israel, the Law, history, poetry and the prophets.\n- **The New Testament** (27 books): the life of Jesus in the four Gospels, the early church in Acts, letters to churches and individuals, and Revelation.\n\n# Finding your way\nReferences look like **John 3:16**: the book (John), the chapter (3) and the verse (16). The table of contents at the front of most Bibles is your friend." },
+        { "id": "l2", "title": "Reading in context", "type": "text", "minutes": 8, "url": "", "assetId": "", "fileName": "", "body": "# Ask three questions\nBefore deciding what a verse means for you, ask:\n- **What kind of writing is this?** Poetry, history, a letter and prophecy are read differently.\n- **What comes before and after?** Read the whole paragraph or chapter, not just one verse.\n- **Who was it written to first?** Understanding the original audience helps you understand the message.\n\n# Let Scripture explain Scripture\nWhen a passage is hard to understand, look for other passages that speak to the same theme." },
+        { "id": "l3", "title": "A simple daily method (SOAP)", "type": "text", "minutes": 8, "url": "", "assetId": "", "fileName": "", "body": "# SOAP in four steps\n- **S - Scripture**: read a short passage and write down a verse that stands out.\n- **O - Observation**: what does it say? Note who, what, where and why.\n- **A - Application**: how does this shape what I believe or do today?\n- **P - Prayer**: talk to God about what you read.\n\n# Start small\nTen to fifteen minutes a day is plenty. A good place to begin is the Gospel of Mark, one short section each day." },
+        { "id": "l4", "title": "Reading together", "type": "text", "minutes": 5, "url": "", "assetId": "", "fileName": "", "body": "# Better together\nReading with others helps you notice things you'd miss on your own and keeps you consistent.\n- Invite a friend to follow the same reading plan.\n- Share one thing you learned each week.\n- Bring your questions to a Bible class.\n\nWell done! You now have the tools to read the Bible with confidence." }
+      ]
+    },
+    {
+      "id": "cserve03",
+      "title": "Serving Well: Volunteer Basics",
+      "description": "Everything a new volunteer needs: why we serve, how to be a dependable teammate, welcoming guests and following safety practices.",
+      "category": "Serving & Volunteering",
+      "tags": ["volunteers", "training", "hospitality"],
+      "hue": 38,
+      "authorId": "",
+      "createdAt": "2026-11-12T06:00:02.000Z",
+      "updatedAt": "2026-11-12T06:00:02.000Z",
+      "lessons": [
+        { "id": "l1", "title": "Why we serve", "type": "text", "minutes": 5, "url": "", "assetId": "", "fileName": "", "body": "# Following Jesus' example\nJesus said he came not to be served but to serve. When we serve, we reflect his love and help the whole church family thrive.\n\n# Every role matters\nGreeting at the door, running the sound board, teaching children or preparing a meal: each role helps someone encounter God's love." },
+        { "id": "l2", "title": "Being a dependable teammate", "type": "text", "minutes": 6, "url": "", "assetId": "", "fileName": "", "body": "# Simple habits that help\n- Check your schedule and confirm when you're asked to serve.\n- Arrive a few minutes early so you're ready before people arrive.\n- If something comes up, let your team leader know as soon as you can and help find a replacement.\n- Ask questions. No one expects you to know everything on day one." },
+        { "id": "l3", "title": "Welcoming guests", "type": "text", "minutes": 6, "url": "", "assetId": "", "fileName": "", "body": "# First impressions last\n- Smile, make eye contact and introduce yourself by name.\n- Offer help without pressure: show people where to go rather than just pointing.\n- Learn and use names when you can.\n- Introduce newcomers to someone else so they leave with more than one connection." },
+        { "id": "l4", "title": "Safety basics", "type": "text", "minutes": 7, "url": "", "assetId": "", "fileName": "", "body": "# Keeping everyone safe\nFollow Central Union's safety policies whenever you serve. In general:\n- When serving with children or youth, never be alone with a child; keep two approved adults present.\n- Know where exits, first-aid supplies and fire extinguishers are located.\n- Report any concern or incident to your team leader right away.\n\nAsk your ministry leader for the specific policies and any required screening for your role." }
+      ]
+    },
+    {
+      "id": "cprayer04",
+      "title": "Prayer Practices for Everyday Life",
+      "description": "Grow a steady, honest prayer life with simple patterns you can use anywhere: ACTS, praying Scripture and building a daily rhythm.",
+      "category": "Faith Foundations",
+      "tags": ["prayer", "spiritual-growth", "daily-habits"],
+      "hue": 280,
+      "authorId": "",
+      "createdAt": "2026-11-12T06:00:03.000Z",
+      "updatedAt": "2026-11-12T06:00:03.000Z",
+      "lessons": [
+        { "id": "l1", "title": "What prayer is", "type": "text", "minutes": 5, "url": "", "assetId": "", "fileName": "", "body": "# Talking with God\nPrayer is conversation with God. It doesn't require special words, only honesty. Jesus taught his disciples to pray simply and sincerely.\n\n# Prayer shapes us\nAs we pray, we bring our needs to God, and over time prayer reshapes our hearts toward trust, gratitude and love for others." },
+        { "id": "l2", "title": "The ACTS pattern", "type": "text", "minutes": 6, "url": "", "assetId": "", "fileName": "", "body": "# Four movements\n- **A - Adoration**: praise God for who he is.\n- **C - Confession**: honestly name where you've fallen short.\n- **T - Thanksgiving**: thank God for specific gifts.\n- **S - Supplication**: ask for what you and others need.\n\nTry praying through ACTS for five minutes today." },
+        { "id": "l3", "title": "Praying Scripture", "type": "text", "minutes": 6, "url": "", "assetId": "", "fileName": "", "body": "# Borrowing the Bible's words\nThe Psalms are a prayer book. Read a psalm slowly and turn each line into your own prayer.\n\nStart with **Psalm 23** or **Psalm 121**. When a phrase stands out, pause and pray it back to God in your own words." },
+        { "id": "l4", "title": "Building a daily rhythm", "type": "text", "minutes": 5, "url": "", "assetId": "", "fileName": "", "body": "# Make it a habit\n- Pick a consistent time and place.\n- Keep a short list of people and needs to pray for.\n- Pray with others: at meals, with family or with a prayer partner.\n- Be gentle with yourself on days you miss. Just begin again." }
+      ]
+    },
+    {
+      "id": "clead05",
+      "title": "Leading a Small Group",
+      "description": "Practical skills for small group leaders: planning a meeting, asking good questions and caring for the people in your group.",
+      "category": "Leadership",
+      "tags": ["leaders", "small-groups"],
+      "hue": 168,
+      "authorId": "",
+      "createdAt": "2026-11-12T06:00:04.000Z",
+      "updatedAt": "2026-11-12T06:00:04.000Z",
+      "lessons": [
+        { "id": "l1", "title": "Planning a great meeting", "type": "text", "minutes": 7, "url": "", "assetId": "", "fileName": "", "body": "# A simple flow\n- **Welcome** (10 min): food, catching up, an easy icebreaker.\n- **Study** (30 min): read the passage and discuss.\n- **Prayer** (15 min): share requests and pray together.\n\nSend a reminder a day or two before, and start and end on time." },
+        { "id": "l2", "title": "Asking good questions", "type": "text", "minutes": 7, "url": "", "assetId": "", "fileName": "", "body": "# Move from facts to life\n- **Observe**: What does this passage say?\n- **Interpret**: What did it mean to its first readers?\n- **Apply**: What would change if we took this seriously this week?\n\nAvoid yes-or-no questions, get comfortable with silence, and invite quieter members in by name, gently." },
+        { "id": "l3", "title": "Caring for your group", "type": "text", "minutes": 6, "url": "", "assetId": "", "fileName": "", "body": "# Shepherding well\n- Follow up when someone misses a meeting.\n- Celebrate milestones: birthdays, new jobs, answered prayers.\n- Share leadership: let others host, lead discussion or coordinate meals.\n- Know when to involve a minister for situations beyond your group's care.\n\nThank you for leading. Small groups are where many people first feel truly known." }
+      ]
+    }
+  ]
+}
