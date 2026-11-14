@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "description": "CleverHouse Media — agency website (TanStack Start). The Art of Thinking Ahead.",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "vite dev --port 3001",
     "build": "vite build",
