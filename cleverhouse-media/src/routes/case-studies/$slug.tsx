@@ -1,7 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { seo } from "../../lib/seo";
-import Image from "../../components/ui/Img";
-import Link from "../../components/ui/Link";
+import Image from "../../components/site/Img";
+import Link from "../../components/site/Link";
 import { getProject, projects } from "../../content/projects";
 import { Reveal, SplitHeading, ScrubWords, Parallax } from "../../components/motion/Motion";
 import {

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo } from "../../lib/seo";
-import Image from "../../components/ui/Img";
-import Link from "../../components/ui/Link";
+import Image from "../../components/site/Img";
+import Link from "../../components/site/Link";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "../../components/sections/PageHero";
 import { CtaBand } from "../../components/sections/Blocks";

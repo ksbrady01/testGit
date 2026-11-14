@@ -1,5 +1,5 @@
-import Link from "../ui/Link";
-import Image from "../ui/Img";
+import Link from "../site/Link";
+import Image from "../site/Img";
 import { useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Plus } from "lucide-react";

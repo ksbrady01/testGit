@@ -1,4 +1,4 @@
-import Image from "../ui/Img";
+import Image from "../site/Img";
 import { InquiryForm } from "../forms/InquiryForm";
 import { Reveal, SplitHeading } from "../motion/Motion";
 import { Faq, JsonLd, faqJsonLd } from "./Blocks";

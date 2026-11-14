@@ -4,7 +4,7 @@ import { CampaignOrbit } from "../components/marketing/CampaignOrbit";
 import { StackCards } from "../components/marketing/StackCards";
 import { CtaBand, JsonLd, NumberedRows, SectionHead } from "../components/sections/Blocks";
 import { Reveal, SplitHeading } from "../components/motion/Motion";
-import { Button } from "../components/ui/Button";
+import { Button } from "../components/site/Button";
 import { img } from "../content/images";
 import { site } from "../content/site";
 

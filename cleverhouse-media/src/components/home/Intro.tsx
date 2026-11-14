@@ -1,5 +1,5 @@
-import Image from "../ui/Img";
-import Link from "../ui/Link";
+import Image from "../site/Img";
+import Link from "../site/Link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal, ScrubWords, SplitHeading, Parallax } from "../motion/Motion";
 import { img } from "../../content/images";

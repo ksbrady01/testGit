@@ -1,7 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { seo } from "../../lib/seo";
-import Image from "../../components/ui/Img";
-import Link from "../../components/ui/Link";
+import Image from "../../components/site/Img";
+import Link from "../../components/site/Link";
 import { ArrowUpRight, Info } from "lucide-react";
 import { getProject, projects } from "../../content/projects";
 import { Parallax, Reveal, SplitHeading, ScrollZoom } from "../../components/motion/Motion";

@@ -1,4 +1,4 @@
-import Image from "../ui/Img";
+import Image from "../site/Img";
 import {
   Heart,
   MessageCircle,

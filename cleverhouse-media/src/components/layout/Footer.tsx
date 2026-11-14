@@ -1,10 +1,10 @@
-import Link from "../ui/Link";
+import Link from "../site/Link";
 import { useRef } from "react";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { gsap, useGSAP } from "../../lib/gsap";
 import { Logo, LogoMark } from "../brand/Logo";
 import { Marquee } from "../motion/Motion";
-import { Button } from "../ui/Button";
+import { Button } from "../site/Button";
 import { companyNav, resourceNav, serviceNav, site } from "../../content/site";
 import { projects } from "../../content/projects";
 

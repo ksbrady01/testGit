@@ -1,4 +1,4 @@
-import Image from "../ui/Img";
+import Image from "../site/Img";
 import { useRef } from "react";
 import { Bell, Bot, Database, Mail, MousePointerClick, CalendarCheck } from "lucide-react";
 import { gsap, useGSAP } from "../../lib/gsap";

@@ -1,8 +1,8 @@
-import Image from "../ui/Img";
-import Link from "../ui/Link";
+import Image from "../site/Img";
+import Link from "../site/Link";
 import { ArrowUpRight, Plus } from "lucide-react";
 import { Reveal, SplitHeading, ScrollZoom } from "../motion/Motion";
-import { Button } from "../ui/Button";
+import { Button } from "../site/Button";
 import { LogoMark } from "../brand/Logo";
 import clsx from "../../lib/clsx";
 

@@ -1,6 +1,6 @@
-import Image from "../ui/Img";
+import Image from "../site/Img";
 import { SplitHeading, Reveal, Parallax } from "../motion/Motion";
-import { Button } from "../ui/Button";
+import { Button } from "../site/Button";
 import clsx from "../../lib/clsx";
 
 type Cta = { label: string; href: string };

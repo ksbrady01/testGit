@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "../../lib/gsap";
 import { LogoMark } from "../brand/Logo";
-import { Button } from "../ui/Button";
+import { Button } from "../site/Button";
 import { SplitHeading } from "../motion/Motion";
 
 /** Full-screen closing moment. The CH mark tilts toward the cursor under a moving copper light. */

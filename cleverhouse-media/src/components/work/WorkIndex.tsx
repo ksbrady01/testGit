@@ -1,5 +1,5 @@
-import Image from "../ui/Img";
-import Link from "../ui/Link";
+import Image from "../site/Img";
+import Link from "../site/Link";
 import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Flip } from "gsap/Flip";

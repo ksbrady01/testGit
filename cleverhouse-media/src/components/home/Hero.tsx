@@ -1,10 +1,10 @@
-import Image from "../ui/Img";
+import Image from "../site/Img";
 import { lazyClient } from "../../lib/lazyClient";
 import { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import { gsap, useGSAP } from "../../lib/gsap";
 import { canUseWebGL } from "../../lib/webgl";
-import { Button } from "../ui/Button";
+import { Button } from "../site/Button";
 import { img } from "../../content/images";
 import clsx from "../../lib/clsx";
 import type { Intensity } from "../three/IdeaField";

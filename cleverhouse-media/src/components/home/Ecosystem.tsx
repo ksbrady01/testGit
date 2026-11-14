@@ -1,5 +1,5 @@
 import { lazyClient } from "../../lib/lazyClient";
-import Link from "../ui/Link";
+import Link from "../site/Link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { gsap, useGSAP } from "../../lib/gsap";

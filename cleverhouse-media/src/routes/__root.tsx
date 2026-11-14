@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
 import { reportVibeError } from "../lib/vibe-error-reporting";
-import Link from "../components/ui/Link";
+import Link from "../components/site/Link";
 import { Nav } from "../components/layout/Nav";
 import { Footer } from "../components/layout/Footer";
 import { NotFound } from "../components/layout/NotFound";

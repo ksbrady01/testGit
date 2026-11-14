@@ -1,4 +1,4 @@
-import Image from "../ui/Img";
+import Image from "../site/Img";
 import { Reveal, SplitHeading } from "../motion/Motion";
 import { img } from "../../content/images";
 import clsx from "../../lib/clsx";

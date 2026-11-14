@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo } from "../lib/seo";
-import Image from "../components/ui/Img";
+import Image from "../components/site/Img";
 import { BroadcastFrame } from "../components/live/BroadcastFrame";
 import { InquiryForm } from "../components/forms/InquiryForm";
 import { CtaBand, ImageBand, SectionHead } from "../components/sections/Blocks";
 import { Marquee, Reveal, SplitHeading } from "../components/motion/Motion";
-import { Button } from "../components/ui/Button";
+import { Button } from "../components/site/Button";
 import { img } from "../content/images";
 
 const metadata = {

@@ -1,10 +1,10 @@
-import Image from "../ui/Img";
-import Link from "../ui/Link";
+import Image from "../site/Img";
+import Link from "../site/Link";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { gsap, useGSAP } from "../../lib/gsap";
 import { SplitHeading } from "../motion/Motion";
-import { Button } from "../ui/Button";
+import { Button } from "../site/Button";
 import { BrowserFrame, MockSite, PhoneFrame, MockMobile } from "../work/Mockups";
 import { projects } from "../../content/projects";
 

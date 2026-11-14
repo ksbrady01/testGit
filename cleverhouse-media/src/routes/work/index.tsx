@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo } from "../../lib/seo";
-import Image from "../../components/ui/Img";
+import Image from "../../components/site/Img";
 import { Marquee, Reveal, SplitHeading } from "../../components/motion/Motion";
 import { WorkIndex } from "../../components/work/WorkIndex";
 import { CreativeWall } from "../../components/work/CreativeWall";

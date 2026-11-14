@@ -1,4 +1,4 @@
-import Image from "../ui/Img";
+import Image from "../site/Img";
 import { useEffect, useState } from "react";
 
 /** A "live broadcast" frame: REC indicator, running timecode, lower-third. Decorative. */

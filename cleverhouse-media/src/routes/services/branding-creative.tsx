@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo } from "../../lib/seo";
-import Link from "../../components/ui/Link";
+import Link from "../../components/site/Link";
 import { ServiceDetail } from "../../components/sections/ServiceDetail";
 import { Reveal } from "../../components/motion/Motion";
 import { projects } from "../../content/projects";

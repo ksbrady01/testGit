@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo } from "../lib/seo";
-import Image from "../components/ui/Img";
+import Image from "../components/site/Img";
 import { Mail, MapPin, Clock } from "lucide-react";
 import { InquiryForm } from "../components/forms/InquiryForm";
 import { Reveal, SplitHeading } from "../components/motion/Motion";

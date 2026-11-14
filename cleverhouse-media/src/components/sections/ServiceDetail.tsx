@@ -1,4 +1,4 @@
-import Link from "../ui/Link";
+import Link from "../site/Link";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "./PageHero";
 import { CtaBand, Faq, JsonLd, NumberedRows, SectionHead, faqJsonLd } from "./Blocks";

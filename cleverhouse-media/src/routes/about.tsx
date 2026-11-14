@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo } from "../lib/seo";
-import Image from "../components/ui/Img";
+import Image from "../components/site/Img";
 import { PageHero } from "../components/sections/PageHero";
 import { CtaBand, ImageBand, SectionHead } from "../components/sections/Blocks";
 import { Reveal, ScrubWords, SplitHeading } from "../components/motion/Motion";

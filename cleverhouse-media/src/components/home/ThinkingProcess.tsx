@@ -1,4 +1,4 @@
-import Image from "../ui/Img";
+import Image from "../site/Img";
 import { lazyClient } from "../../lib/lazyClient";
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "../../lib/gsap";

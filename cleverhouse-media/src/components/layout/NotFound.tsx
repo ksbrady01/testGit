@@ -1,6 +1,6 @@
-import Link from "../ui/Link";
+import Link from "../site/Link";
 import { LogoMark } from "../brand/Logo";
-import { Button } from "../ui/Button";
+import { Button } from "../site/Button";
 
 export function NotFound() {
   return (

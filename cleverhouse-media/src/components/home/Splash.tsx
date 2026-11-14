@@ -1,4 +1,4 @@
-import Image from "../ui/Img";
+import Image from "../site/Img";
 import { useEffect, useRef, useState } from "react";
 import { gsap, SplitText, useGSAP } from "../../lib/gsap";
 import { Logo, LogoMark } from "../brand/Logo";

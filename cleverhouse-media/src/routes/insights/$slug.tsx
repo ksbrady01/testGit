@@ -1,7 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { seo } from "../../lib/seo";
-import Image from "../../components/ui/Img";
-import Link from "../../components/ui/Link";
+import Image from "../../components/site/Img";
+import Link from "../../components/site/Link";
 import { getInsight } from "../../content/insights";
 import { CtaBand, JsonLd } from "../../components/sections/Blocks";
 import { Reveal, SplitHeading } from "../../components/motion/Motion";

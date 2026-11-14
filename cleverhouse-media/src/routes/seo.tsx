@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo } from "../lib/seo";
-import Image from "../components/ui/Img";
+import Image from "../components/site/Img";
 import { PageHero } from "../components/sections/PageHero";
 import { CtaBand, Faq, JsonLd, SectionHead, faqJsonLd } from "../components/sections/Blocks";
 import { Tabs } from "../components/sections/Tabs";
