@@ -16,22 +16,14 @@ const lenis = () =>
 export function Nav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [mega, setMega] = useState(false);
   const [open, setOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
   const megaTimer = useRef<number>(0);
 
+  // The header stays pinned at all times; scrolling only deepens its backdrop and shadow.
   useEffect(() => {
-    let last = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 30);
-      if (Math.abs(y - last) > 6) {
-        setHidden(y > last && y > 400);
-        last = y;
-      }
-    };
+    const onScroll = () => setScrolled(window.scrollY > 30);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -117,21 +109,22 @@ export function Nav() {
       >
         Skip to content
       </a>
-      <header
-        ref={header}
-        className={clsx(
-          "fixed inset-x-0 top-0 z-900 transition-transform duration-700 ease-out-expo",
-          hidden && !mega && !open ? "-translate-y-full" : "translate-y-0",
-        )}
-      >
+      <header ref={header} className="fixed inset-x-0 top-0 z-900">
         <div className="shell pt-3 md:pt-4">
           <nav
             aria-label="Primary"
             className={clsx(
               "relative flex h-[60px] items-center justify-between rounded-full pl-5 pr-2 transition-all duration-500 md:h-[64px] md:pl-6",
-              (scrolled || mega) && !open
-                ? "glass shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] ring-1 ring-bone/10"
-                : "bg-transparent",
+              // Always a dark, blurred backdrop so the cream logo and links stay legible
+              // over light pages, light sections and busy photography alike.
+              open
+                ? "bg-transparent"
+                : clsx(
+                    "ring-1 ring-bone/10 backdrop-blur-xl backdrop-saturate-150",
+                    scrolled || mega
+                      ? "bg-ink/90 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)]"
+                      : "bg-ink/80",
+                  ),
             )}
           >
             <Link
