@@ -1,93 +1,99 @@
-# Central Union Online Classes (React + Vite)
+# Central Union Online Classes — GoHighLevel AI Studio edition
 
-Online classes for **Central Union Church of Christ**, built with React + Vite for GoHighLevel AI Studio. Learners sign in with their email, take classes made of text, YouTube video, uploaded video or PDF lessons, pick up where they left off, earn XP, levels, badges and certificates, and get reminders for unfinished classes.
+Online classes for **Central Union Church of Christ**, built on AI Studio's own TanStack Start template (`tanstack_start_ts`). Learners sign in with their email, take classes made of reading, YouTube video and PDF lessons, pick up exactly where they left off, earn XP, levels, badges and certificates, and get reminders for unfinished classes.
+
+This project uses AI Studio's template files unchanged — `tsconfig.json`, `vite.config.ts` (`@leadconnector/vite-tanstack-config`), `bunfig.toml`, `eslint.config.js`, `src/server.ts`, `src/start.ts`, `src/router.tsx` and the error-reporting helpers — so it drops into an AI Studio project with no conversion. `package.json` and `bun.lock` match the template set used for the CleverHouse Media project, so installs are reproducible.
 
 ## Run it
 
 ```bash
-npm install
-npm run dev        # http://localhost:3002
-npm run build      # outputs dist/
-npm run preview
+bun install
+bun run dev        # or: npm run dev
+bun run typecheck
+bun run lint
+bun run build
 ```
 
-Requires Node.js 20+.
+## Moving it into AI Studio
 
-## Features
+1. In AI Studio, create a new **TanStack Start** project and connect **Git Sync** (it creates a private GitHub repo).
+2. Replace that repo's contents with this project and push a normal commit (never force-push). AI Studio pulls it in automatically.
+3. Add the settings below, then **Publish** and add the custom domain.
 
-- **Catalog**: search, categories and tags; anyone signed in can create a class and share a link to it.
-- **Lessons**: text (supports `# headings`, `- bullets`, `**bold**`), YouTube videos played in the page, uploaded video files, and PDFs.
-- **Progress**: resume at the last lesson (and the last spot in an uploaded video); progress bars throughout.
-- **My learning**: level ring, streak, in-progress and completed classes, badges, reminder settings, sign out.
-- **Gamification**: XP per lesson, class, daily streak and published class; 8 levels (Newcomer to Elder); 7 badges; leaderboard.
-- **Certificates**: on-screen certificate with the church logo, downloadable as a PNG.
-- **Reminders**: an in-app bell for classes that need attention; optional GoHighLevel webhook for email/SMS reminders.
-- **Learners page** for editors (emails listed in `VITE_ADMIN_EMAILS`).
-- Light and dark mode, animations, responsive layout, `prefers-reduced-motion` respected.
+## Pages
+
+| URL | Page |
+| --- | --- |
+| `/` | Class catalog: search, categories, tags, continue-learning card, level |
+| `/classes/$courseId` | Class details, outline, start/resume, share link, edit/delete |
+| `/learn/$courseId` | Lesson player: resumes at the last lesson; YouTube videos play in the page |
+| `/certificate/$courseId` | Certificate with the church logo, downloadable as PNG |
+| `/my-learning` | Level, streak, in-progress and completed classes, badges, reminder settings, sign out |
+| `/leaderboard` | XP leaderboard |
+| `/create`, `/edit/$courseId` | Class editor: text, YouTube and PDF lessons, categories, tags, cover color |
+| `/learners` | Editors only: everyone's progress and who's due a reminder |
+| `/api/reminders` | Server route that forwards progress to GoHighLevel |
 
 ## Structure
 
-- `src/App.js` — the whole UI (React with `htm` tagged templates, so no JSX build step is required).
-- `src/backend/index.js` — **the only file the UI talks to for data**: `db`, `user`, `auth`, `assets`, `assetUrl`, `downloads`.
-- `src/backend/localBackend.js` — document store saved in the browser (`localStorage`), seeded from `src/content/seed.json`.
-- `src/backend/webhook.js` — optional GoHighLevel sync for reminders.
-- `src/content/seed.json` — the starter classes.
-- `src/config.js` — church name, admin emails, share URL, logo paths.
-- `public/brand/` — `logo.png` (dark backgrounds), `logo-deep.png` (light backgrounds/certificates), `emblem.png` (header and favicon).
+- `src/routes/` — file-based routes (thin wrappers around the pages).
+- `src/classes/pages/` — page components.
+- `src/classes/components/` — shell (header, reminders bell, sign-in, toasts, pop-ups), cards, icons, progress UI.
+- `src/classes/state/AppProvider.tsx` — sign-in state, classes, progress, XP, levels, badges, streaks, reminders.
+- `src/classes/backend/` — **the only place data is read or written** (see below).
+- `src/classes/content/seed.ts` — the starter classes.
+- `src/classes/constants.ts` — church name, XP values, levels, badges, categories, logo paths.
+- `src/server/reminders.server.ts` — validates and forwards reminder data to GoHighLevel.
+- `public/brand/` — `logo.png` (dark backgrounds), `logo-deep.png` (certificates), `emblem.png` (header/favicon).
 
 ## Settings
 
-Set these as AI Studio environment variables, or in `.env` (see `.env.example`). All are optional.
-
-| Variable | What it does |
-| --- | --- |
-| `VITE_ADMIN_EMAILS` | Comma-separated emails that can edit or delete any class and see the Learners page. |
-| `VITE_APP_URL` | Public URL used in "Share class" links. Defaults to the current page. |
-| `VITE_GHL_WEBHOOK_URL` | GoHighLevel Inbound Webhook URL that receives learner progress for reminders. |
-
-## Important: where data is stored today
-
-The included backend saves classes and progress **in each person's browser**. That is enough to try the app, but:
-
-- A learner's progress is only on the device and browser they used.
-- Classes created in the app are only visible in that browser. Starter classes come from `seed.json`, so edit that file (or connect a database) to publish classes to everyone.
-- File upload buttons are hidden until file storage is connected (`assets` is `null`). Lessons can still use YouTube links and PDF links.
-
-### Connecting a real database
-
-Keep the exports of `src/backend/index.js` and change their insides so they read and write your server (Supabase, Firebase, an AI Studio server function, etc.):
-
-- `db.doc(path)` → `get()`, `set(data)`, `update(data)`, `delete()`, `onSnapshot(callback)`
-- `db.collection(path)` → `orderBy(field, dir)`, `limit(n)`, `where(field, op, value)`, `get()`, `onSnapshot(callback)`, `doc(id)`
-- Collections used: `courses/{courseId}`, `learners/{learnerId}`, `leaderboard/{learnerId}`.
-- `auth.signIn({ name, email })` → replace with a real sign-in (for example an email magic link) so people can return from any device.
-- `assets.upload(file)` → resolve `{ id, url }`; `assetUrl(id)` → the file's URL.
-
-Snapshots are `{ id, exists, data(), metadata }` for documents and `{ docs, size, empty, metadata }` for collections.
+| Name | Where | What it does |
+| --- | --- | --- |
+| `VITE_ADMIN_EMAILS` | Environment variable | Comma-separated emails that can edit/delete any class and see `/learners`. |
+| `VITE_APP_URL` | Environment variable | Public URL used in "Share class" links (defaults to the current site). |
+| `GHL_REMINDER_WEBHOOK_URL` | **Secret** | GoHighLevel Inbound Webhook URL for reminder emails/texts. Kept on the server. |
 
 ## Reminders with GoHighLevel
 
-1. In GoHighLevel, create a workflow with the **Inbound Webhook** trigger and copy its URL into `VITE_GHL_WEBHOOK_URL`.
-2. Each time a learner's progress changes, the app posts:
+1. Create a workflow with the **Inbound Webhook** trigger and save its URL as the `GHL_REMINDER_WEBHOOK_URL` secret.
+2. Whenever a learner's progress changes, the server posts:
 
    ```json
    {
      "event": "learner.progress",
      "learnerId": "u_…", "email": "member@example.com", "name": "Jane Doe",
      "xp": 140, "level": "2 - Seeker", "completedCount": 1,
-     "incomplete": [{ "courseId": "cbible02", "title": "How to Read the Bible", "pct": 50, "next": "Reading in context", "resumeUrl": "https://…/#learn-cbible02" }],
+     "incomplete": [{ "courseId": "cbible02", "title": "How to Read the Bible", "pct": 50, "next": "Reading in context", "resumeUrl": "https://…/learn/cbible02" }],
+     "hasIncomplete": true,
      "reminderFrequency": "3days", "emailReminders": true,
-     "nextReminderAt": "2026-11-16T15:00:00.000Z", "lastActive": "2026-11-13T15:00:00.000Z"
+     "nextReminderAt": "2026-11-21T15:00:00.000Z", "lastActive": "2026-11-18T15:00:00.000Z"
    }
    ```
 
-3. In the workflow: create/update the contact by email, add a tag such as `class-in-progress` when `incomplete` is not empty, wait until `nextReminderAt`, then send an email or SMS with the `resumeUrl`. Remove the tag when `incomplete` is empty.
+3. In the workflow: create/update the contact by email; if `hasIncomplete` is true and `emailReminders` is true, add a tag such as `class-in-progress`, wait until `nextReminderAt`, then send an email or SMS with the `resumeUrl`. Remove the tag when `hasIncomplete` is false.
 
-The webhook URL is visible in the browser, so use a workflow that only updates contacts and sends reminders.
+## Where data is stored today
+
+`src/classes/backend/localStore.ts` saves classes and progress **in each person's browser** (seeded from `seed.ts`). That makes the app fully usable right away, but:
+
+- A learner's progress stays on the device and browser they used.
+- Classes created in the app are only visible in that browser; edit `seed.ts` (or connect a database) to publish classes to everyone.
+- File upload buttons are hidden until file storage is connected (`assets` is `null`); lessons use YouTube links and PDF links.
+
+### Connecting a real database
+
+Keep the exports of `src/classes/backend/index.ts` and change their insides to call your database (for example through TanStack Start server functions):
+
+- `db: Store` — `doc(path)` with `get / set / update / delete / onSnapshot`, and `collection(path)` with `where / orderBy / limit / get / onSnapshot / doc / add` (types in `backend/types.ts`).
+- Collections: `courses/{courseId}`, `learners/{learnerId}`, `leaderboard/{learnerId}`.
+- `auth` — replace the email sign-in with real sign-in (for example a magic link) so people can return from any device.
+- `assets.upload(file)` → `{ id, url }`, and `assetUrl(id)` → the file's URL, to enable PDF and video uploads.
 
 ## Before launch
 
-1. Set `VITE_ADMIN_EMAILS` to the people who manage classes.
-2. Connect a database and real sign-in (see above) so progress follows people across devices.
+1. Set `VITE_ADMIN_EMAILS` and the `GHL_REMINDER_WEBHOOK_URL` secret.
+2. Connect a database and real sign-in so progress follows people across devices.
 3. Replace the PNG logos in `public/brand/` with official files if available.
 4. Prefer editing code over AI re-prompts in AI Studio, which may overwrite custom work.
+5. `package.json` still lists a few packages from the shared template set (`gsap`, `three`, `lenis`, `@react-three/fiber`); they're unused here and can be removed with `bun remove` once the project is in AI Studio.
